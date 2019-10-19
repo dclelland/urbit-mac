@@ -24,7 +24,7 @@ An Urbit client for macOS
 - Toolbar should be inline with the traffic light buttons
 - Back, forward, refresh buttons
 - Address field (and spinner/loading indicator)
-- Tabs (and new tab button, and tab titles) (search for 'mac tabbed application' tutorial)
+- Tabs (and new tab button, and tab titles) (search for 'mac tabbed application' tutorial; multiple windows)
 - Menu items (what goes in here?)
 
 ### Web view
