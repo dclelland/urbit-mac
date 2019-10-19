@@ -21,6 +21,7 @@
 		6592D192235AE8B60044886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6592D194235AE8B60044886F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6592D195235AE8B60044886F /* Urbit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Urbit.entitlements; sourceTree = "<group>"; };
+		6592D19B235AF0C20044886F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +38,7 @@
 		6592D17F235AE8B40044886F = {
 			isa = PBXGroup;
 			children = (
+				6592D19B235AF0C20044886F /* README.md */,
 				6592D18A235AE8B40044886F /* Urbit */,
 				6592D189235AE8B40044886F /* Products */,
 			);
