@@ -10,7 +10,7 @@
 		6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18B235AE8B40044886F /* AppDelegate.swift */; };
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
 		6592D190235AE8B60044886F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6592D18F235AE8B60044886F /* Assets.xcassets */; };
-		6592D193235AE8B60044886F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6592D191235AE8B60044886F /* Main.storyboard */; };
+		6592D193235AE8B60044886F /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6592D191235AE8B60044886F /* App.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,7 +18,7 @@
 		6592D18B235AE8B40044886F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6592D18D235AE8B40044886F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6592D18F235AE8B60044886F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6592D192235AE8B60044886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6592D192235AE8B60044886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/App.storyboard; sourceTree = "<group>"; };
 		6592D194235AE8B60044886F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6592D195235AE8B60044886F /* Urbit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Urbit.entitlements; sourceTree = "<group>"; };
 		6592D19B235AF0C20044886F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -35,6 +35,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		651A3A87235C37A0008FF70E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6592D18D235AE8B40044886F /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		651A3A88235C37AA008FF70E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6592D18F235AE8B60044886F /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		651A3A89235C37BE008FF70E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6592D194235AE8B60044886F /* Info.plist */,
+				6592D195235AE8B60044886F /* Urbit.entitlements */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		6592D17F235AE8B40044886F = {
 			isa = PBXGroup;
 			children = (
@@ -55,12 +80,11 @@
 		6592D18A235AE8B40044886F /* Urbit */ = {
 			isa = PBXGroup;
 			children = (
+				6592D191235AE8B60044886F /* App.storyboard */,
 				6592D18B235AE8B40044886F /* AppDelegate.swift */,
-				6592D18D235AE8B40044886F /* ViewController.swift */,
-				6592D18F235AE8B60044886F /* Assets.xcassets */,
-				6592D191235AE8B60044886F /* Main.storyboard */,
-				6592D194235AE8B60044886F /* Info.plist */,
-				6592D195235AE8B60044886F /* Urbit.entitlements */,
+				651A3A87235C37A0008FF70E /* Controllers */,
+				651A3A88235C37AA008FF70E /* Resources */,
+				651A3A89235C37BE008FF70E /* Supporting Files */,
 			);
 			path = Urbit;
 			sourceTree = "<group>";
@@ -124,7 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6592D190235AE8B60044886F /* Assets.xcassets in Resources */,
-				6592D193235AE8B60044886F /* Main.storyboard in Resources */,
+				6592D193235AE8B60044886F /* App.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,12 +167,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6592D191235AE8B60044886F /* Main.storyboard */ = {
+		6592D191235AE8B60044886F /* App.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6592D192235AE8B60044886F /* Base */,
 			);
-			name = Main.storyboard;
+			name = App.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -271,12 +295,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Urbit/Urbit.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Urbit/Supporting Files/Urbit.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SP382Y6YUY;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Urbit/Info.plist;
+				INFOPLIST_FILE = "Urbit/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -291,12 +315,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Urbit/Urbit.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Urbit/Supporting Files/Urbit.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SP382Y6YUY;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Urbit/Info.plist;
+				INFOPLIST_FILE = "Urbit/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
