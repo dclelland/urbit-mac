@@ -57,7 +57,6 @@
 		651A3A88235C37AA008FF70E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				65D06078235C470300B03823 /* urbit-darwin-v0.9.0 */,
 				6592D18F235AE8B60044886F /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -70,6 +69,14 @@
 				6592D195235AE8B60044886F /* Urbit.entitlements */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6556BA69235C7A9E0091EE19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65D06078235C470300B03823 /* urbit-darwin-v0.9.0 */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		6592D17F235AE8B40044886F = {
@@ -98,6 +105,7 @@
 				6592D18B235AE8B40044886F /* AppDelegate.swift */,
 				651A3A87235C37A0008FF70E /* Controllers */,
 				65D0607D235C68EC00B03823 /* Extensions */,
+				6556BA69235C7A9E0091EE19 /* Frameworks */,
 				651A3A88235C37AA008FF70E /* Resources */,
 				651A3A89235C37BE008FF70E /* Supporting Files */,
 			);
