@@ -12,10 +12,6 @@ An Urbit client for macOS
 
 ## Todo
 
-### Project setup
-
-- Keychain (or is the native keychain access good enough now that we shouldn't need this?)
-
 ### Window chrome
 
 - Window title
@@ -41,6 +37,7 @@ An Urbit client for macOS
 
 - Think about where the planet is to be stored, how sessions are handled/persisted securely, etc
 - Difference between 'new planet' and 'start existing planet'
+- Install Keychain pod (or is the native keychain access good enough now that we shouldn't need this?)
 
 ## Other ideas
 
