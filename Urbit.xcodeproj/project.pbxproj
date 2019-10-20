@@ -11,6 +11,7 @@
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
 		6592D190235AE8B60044886F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6592D18F235AE8B60044886F /* Assets.xcassets */; };
 		6592D193235AE8B60044886F /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6592D191235AE8B60044886F /* App.storyboard */; };
+		65D06079235C470300B03823 /* urbit-darwin-v0.9.0 in Resources */ = {isa = PBXBuildFile; fileRef = 65D06078235C470300B03823 /* urbit-darwin-v0.9.0 */; };
 		B3895453CAC026B198D3FCD6 /* Pods_Urbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		6592D194235AE8B60044886F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6592D195235AE8B60044886F /* Urbit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Urbit.entitlements; sourceTree = "<group>"; };
 		6592D19B235AF0C20044886F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		65D06078235C470300B03823 /* urbit-darwin-v0.9.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "urbit-darwin-v0.9.0"; sourceTree = "<group>"; };
 		E1BDB1AB75C1075AA9CD9D6F /* Pods-Urbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urbit.debug.xcconfig"; path = "Target Support Files/Pods-Urbit/Pods-Urbit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +53,7 @@
 		651A3A88235C37AA008FF70E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				65D06078235C470300B03823 /* urbit-darwin-v0.9.0 */,
 				6592D18F235AE8B60044886F /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -102,7 +105,6 @@
 				E1BDB1AB75C1075AA9CD9D6F /* Pods-Urbit.debug.xcconfig */,
 				3A373BCC77BA7E3570FA9E1D /* Pods-Urbit.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -173,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D06079235C470300B03823 /* urbit-darwin-v0.9.0 in Resources */,
 				6592D190235AE8B60044886F /* Assets.xcassets in Resources */,
 				6592D193235AE8B60044886F /* App.storyboard in Resources */,
 			);

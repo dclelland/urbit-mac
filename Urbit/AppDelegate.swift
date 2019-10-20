@@ -11,6 +11,10 @@ import AppKit
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let path = Bundle.main.path(forResource: "urbit", ofType: nil, inDirectory: "urbit-darwin-v0.9.0")
+        let task = Process()
+        task.launchPath = path
+        
         
     }
 
