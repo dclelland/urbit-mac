@@ -14,7 +14,6 @@ An Urbit client for macOS
 
 ### Project setup
 
-- Cocoapods...?
 - Keychain (or is the native keychain access good enough now that we shouldn't need this?)
 
 ### Window chrome

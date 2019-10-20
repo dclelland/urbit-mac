@@ -11,9 +11,12 @@
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
 		6592D190235AE8B60044886F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6592D18F235AE8B60044886F /* Assets.xcassets */; };
 		6592D193235AE8B60044886F /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6592D191235AE8B60044886F /* App.storyboard */; };
+		B3895453CAC026B198D3FCD6 /* Pods_Urbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Urbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A373BCC77BA7E3570FA9E1D /* Pods-Urbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urbit.release.xcconfig"; path = "Target Support Files/Pods-Urbit/Pods-Urbit.release.xcconfig"; sourceTree = "<group>"; };
 		6592D188235AE8B40044886F /* Urbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592D18B235AE8B40044886F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6592D18D235AE8B40044886F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		6592D194235AE8B60044886F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6592D195235AE8B60044886F /* Urbit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Urbit.entitlements; sourceTree = "<group>"; };
 		6592D19B235AF0C20044886F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E1BDB1AB75C1075AA9CD9D6F /* Pods-Urbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urbit.debug.xcconfig"; path = "Target Support Files/Pods-Urbit/Pods-Urbit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3895453CAC026B198D3FCD6 /* Pods_Urbit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +71,8 @@
 				6592D19B235AF0C20044886F /* README.md */,
 				6592D18A235AE8B40044886F /* Urbit */,
 				6592D189235AE8B40044886F /* Products */,
+				CF2D10F5437BB348A38EF068 /* Pods */,
+				F7F0099AE43D2D93FBD790A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +96,24 @@
 			path = Urbit;
 			sourceTree = "<group>";
 		};
+		CF2D10F5437BB348A38EF068 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1BDB1AB75C1075AA9CD9D6F /* Pods-Urbit.debug.xcconfig */,
+				3A373BCC77BA7E3570FA9E1D /* Pods-Urbit.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F7F0099AE43D2D93FBD790A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -96,6 +121,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6592D198235AE8B60044886F /* Build configuration list for PBXNativeTarget "Urbit" */;
 			buildPhases = (
+				D8D04381B0448E5B23866001 /* [CP] Check Pods Manifest.lock */,
 				6592D184235AE8B40044886F /* Sources */,
 				6592D185235AE8B40044886F /* Frameworks */,
 				6592D186235AE8B40044886F /* Resources */,
@@ -153,6 +179,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D8D04381B0448E5B23866001 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Urbit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6592D184235AE8B40044886F /* Sources */ = {
@@ -293,6 +344,7 @@
 		};
 		6592D199235AE8B60044886F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1BDB1AB75C1075AA9CD9D6F /* Pods-Urbit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Urbit/Supporting Files/Urbit.entitlements";
@@ -313,6 +365,7 @@
 		};
 		6592D19A235AE8B60044886F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A373BCC77BA7E3570FA9E1D /* Pods-Urbit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Urbit/Supporting Files/Urbit.entitlements";
