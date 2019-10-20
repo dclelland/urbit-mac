@@ -14,8 +14,12 @@ import AppKit
         let path = Bundle.main.path(forResource: "urbit", ofType: nil, inDirectory: "urbit-darwin-v0.9.0")
         let task = Process()
         task.launchPath = path
-        
-        
+        task.arguments = [
+            "-c",
+            "test-comet"
+        ]
+        task.launch()
+        task.waitUntilExit()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
