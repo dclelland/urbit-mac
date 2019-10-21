@@ -11,8 +11,10 @@ import AppKit
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let process = Process.restartUrbit(name: "test-comet")
-        process.launch()
+        let process = try! Process.run(Bundle.main.urbitExecutableURL, arguments: ["-F", "zod"]) { process in
+            print("process terminated")
+        }
+        
         process.waitUntilExit()
     }
 
