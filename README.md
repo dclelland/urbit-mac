@@ -45,3 +45,4 @@ An Urbit client for macOS
 - Updates via App Store/Sparkle
 - Multiple planets/moons/comets etc...?
 - Note the ames port can be specified as an argument
+- Fix sandboxing: `urbit` wants to write to `/tmp`
