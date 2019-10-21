@@ -11,10 +11,8 @@ import AppKit
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let process = try! Process.run(Bundle.main.urbitExecutableURL, arguments: ["-F", "zod"]) { process in
-            print("process terminated")
-        }
-        
+        let process = Process.restartFakeZod()
+        process.launch()
         process.waitUntilExit()
     }
 

@@ -8,28 +8,40 @@
 
 import Foundation
 
-//extension Process {
-//    
-//    convenience init(launchPath: String?, arguments: [String]) {
-//        self.init()
-//        self.launchPath = launchPath
-//        self.arguments = arguments
-//    }
-//    
-//}
-//
-//extension Process {
-//    
-//    static func startUrbitPlanet(name: String, file: String) -> Process {
-//        return Process(launchPath: Bundle.main.urbitExecutablePath, arguments: ["-w", name, "-k", file])
-//    }
-//
-//    static func startUrbitComet(name: String) -> Process {
-//        return Process(launchPath: Bundle.main.urbitExecutablePath, arguments: ["-c", name])
-//    }
-//
-//    static func restartUrbit(name: String) -> Process {
-//        return Process(launchPath: Bundle.main.urbitExecutablePath, arguments: [name])
-//    }
-//    
-//}
+extension Process {
+    
+    convenience init(launchPath: String?, arguments: [String]) {
+        self.init()
+        self.launchPath = launchPath
+        self.arguments = arguments
+    }
+    
+}
+
+extension Process {
+    
+    static func startFakeZod() -> Process {
+        return Process(launchPath: Bundle.main.urbitExecutablePath, arguments: ["-F", "zod"])
+    }
+    
+    static func restartFakeZod() -> Process {
+        return Process(launchPath: Bundle.main.urbitExecutablePath, arguments: ["zod"])
+    }
+    
+}
+
+extension Process {
+    
+    static func startUrbitPlanet(name: String, file: String) -> Process {
+        return Process(launchPath: Bundle.main.urbitExecutablePath, arguments: ["-w", name, "-k", file])
+    }
+
+    static func startUrbitComet(name: String) -> Process {
+        return Process(launchPath: Bundle.main.urbitExecutablePath, arguments: ["-c", name])
+    }
+
+    static func restartUrbit(name: String) -> Process {
+        return Process(launchPath: Bundle.main.urbitExecutablePath, arguments: [name])
+    }
+    
+}

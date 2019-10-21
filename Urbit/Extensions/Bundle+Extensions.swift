@@ -10,8 +10,8 @@ import Foundation
 
 extension Bundle {
     
-    var urbitExecutableURL: URL {
-        return url(forAuxiliaryExecutable: "urbit")!
+    var urbitExecutablePath: String? {
+        return path(forAuxiliaryExecutable: "urbit")
     }
     
 }
