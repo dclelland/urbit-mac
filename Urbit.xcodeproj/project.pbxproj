@@ -37,6 +37,7 @@
 		3A373BCC77BA7E3570FA9E1D /* Pods-Urbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urbit.release.xcconfig"; path = "Target Support Files/Pods-Urbit/Pods-Urbit.release.xcconfig"; sourceTree = "<group>"; };
 		6517C234235D4D4800E43464 /* urbit-worker */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "urbit-worker"; sourceTree = "<group>"; };
 		6517C235235D4D4800E43464 /* urbit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = urbit; sourceTree = "<group>"; };
+		6517C24E235D59A800E43464 /* urbit-terminfo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "urbit-terminfo"; sourceTree = "<group>"; };
 		6592D188235AE8B40044886F /* Urbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592D18B235AE8B40044886F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6592D18D235AE8B40044886F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 			children = (
 				6517C235235D4D4800E43464 /* urbit */,
 				6517C234235D4D4800E43464 /* urbit-worker */,
+				6517C24E235D59A800E43464 /* urbit-terminfo */,
 			);
 			path = "urbit-darwin-v0.9.0";
 			sourceTree = "<group>";
