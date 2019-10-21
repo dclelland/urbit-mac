@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6517C238235D4D5900E43464 /* urbit in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6517C235235D4D4800E43464 /* urbit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6517C239235D4D5900E43464 /* urbit-worker in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6517C234235D4D4800E43464 /* urbit-worker */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6517C256235D9C0900E43464 /* urbit-terminfo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6517C24E235D59A800E43464 /* urbit-terminfo */; };
 		6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18B235AE8B40044886F /* AppDelegate.swift */; };
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
 		6592D190235AE8B60044886F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6592D18F235AE8B60044886F /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 			files = (
 				6517C238235D4D5900E43464 /* urbit in CopyFiles */,
 				6517C239235D4D5900E43464 /* urbit-worker in CopyFiles */,
+				6517C256235D9C0900E43464 /* urbit-terminfo in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +414,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.protonome.Urbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -434,6 +437,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.protonome.Urbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
