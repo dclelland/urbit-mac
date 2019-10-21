@@ -11,7 +11,7 @@ import Foundation
 extension Bundle {
     
     var urbitPath: String? {
-        return path(forResource: "urbit", ofType: nil, inDirectory: "urbit-darwin-v0.9.0")
+        return path(forAuxiliaryExecutable: "urbit")
     }
     
 }
