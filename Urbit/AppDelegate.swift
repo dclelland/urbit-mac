@@ -15,8 +15,8 @@ import AppKit
         let errorPipe = Pipe()
         
         let process = Process.restartFakeZod()
-        process.standardOutput = outputPipe
-        process.standardError = errorPipe
+//        process.standardOutput = outputPipe
+//        process.standardError = errorPipe
         outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
         errorPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
 //        outputPipe.fileHandleForReading.readabilityHandler = { file in
@@ -39,12 +39,14 @@ import AppKit
 //        outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
         
         process.terminationHandler = { process in
-            print("process terminated")
+            print("process terminated:", process.terminationStatus, process.terminationReason)
 //            outputPipe.fileHandleForReading.readabilityHandler = nil
         }
         
-        process.launch()
-        process.waitUntilExit()
+        try! process.run()
+        
+//        process.launch()
+//        process.waitUntilExit()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
