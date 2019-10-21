@@ -39,14 +39,15 @@ import AppKit
 //        outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
         
         process.terminationHandler = { process in
-            print("process terminated:", process.terminationStatus, process.terminationReason)
+            print("process terminated:", process.terminationReason, process.terminationStatus)
 //            outputPipe.fileHandleForReading.readabilityHandler = nil
         }
         
-        try! process.run()
-        
-//        process.launch()
-//        process.waitUntilExit()
+        do {
+            try process.run()
+        } catch let error {
+            print("process failed to run:", error)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
