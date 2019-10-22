@@ -179,6 +179,7 @@
 				6592D185235AE8B40044886F /* Frameworks */,
 				6592D186235AE8B40044886F /* Resources */,
 				6517C22F235D485200E43464 /* CopyFiles */,
+				495DF139B83FF9DB42ED5E23 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,6 +236,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		495DF139B83FF9DB42ED5E23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Urbit/Pods-Urbit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Urbit/Pods-Urbit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Urbit/Pods-Urbit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D8D04381B0448E5B23866001 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
