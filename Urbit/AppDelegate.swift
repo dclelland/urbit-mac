@@ -24,23 +24,29 @@ import AppKit
 //            print("output:", string)
 //        }
 
-        NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: outputPipe.fileHandleForReading, queue: nil) { notification in
-            let string = String(data: outputPipe.fileHandleForReading.availableData, encoding: .utf8)!
-            print("OUTPUT:")
-            print(string)
-        }
-
-        NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: errorPipe.fileHandleForReading, queue: nil) { notification in
-            let string = String(data: errorPipe.fileHandleForReading.availableData, encoding: .utf8)!
-            print("ERROR:")
-            print(string)
-        }
+//        NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: outputPipe.fileHandleForReading, queue: nil) { notification in
+//            let string = String(data: outputPipe.fileHandleForReading.availableData, encoding: .utf8)!
+//            print("OUTPUT:")
+//            print(string)
+//        }
+//
+//        NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: errorPipe.fileHandleForReading, queue: nil) { notification in
+//            let string = String(data: errorPipe.fileHandleForReading.availableData, encoding: .utf8)!
+//            print("ERROR:")
+//            print(string)
+//        }
         
 //        outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
         
         process.terminationHandler = { process in
-            print("process terminated:", process.terminationReason, process.terminationStatus)
-//            outputPipe.fileHandleForReading.readabilityHandler = nil
+            switch process.terminationReason {
+            case .exit:
+                print("process terminated (NSTaskTerminationReason.exit):", process.terminationStatus)
+            case .uncaughtSignal:
+                print("process terminated (NSTaskTerminationReason.uncaughtSignal):", process.terminationStatus)
+            @unknown default:
+                break
+            }
         }
         
         do {
