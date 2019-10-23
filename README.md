@@ -14,7 +14,6 @@ An Urbit client for macOS
 
 ### Now
 
-- Check `urbit-terminfo` is working correctly
 - See about pier location configuration (+ an 'open pier' dialog?)
 - Set up async tasks, pipe/pipe error handling and printing
 - Think about UX flow
