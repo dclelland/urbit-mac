@@ -38,6 +38,7 @@ An Urbit client for macOS
 - Could open in Terminal...?
 - Should this just be another tab?
 - Should this show while the planet is starting?
+- See: `con` command on the new Haskell client
 
 ### Session management
 
