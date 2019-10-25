@@ -705,6 +705,18 @@
                                         </segmentedCell>
                                     </segmentedControl>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="940EC740-D619-402C-9257-EE388101858F" label="Address" paletteLabel="Address" sizingBehavior="auto" id="upb-qI-PFG">
+                                    <nil key="toolTip"/>
+                                    <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="FBg-Kc-o6i">
+                                        <rect key="frame" x="0.0" y="14" width="200" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Address" usesSingleLineMode="YES" bezelStyle="round" id="Rc2-Ln-9tR">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                    </searchField>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="880747A2-A59F-4AC4-BD61-B406918B2058" label="New Tab" paletteLabel="New Tab" image="NSAddTemplate" id="qH4-cv-12p">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="38" height="24"/>
@@ -722,6 +734,8 @@
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="HOS-bO-0Sb"/>
+                                <toolbarItem reference="y0W-5j-LYc"/>
+                                <toolbarItem reference="upb-qI-PFG"/>
                                 <toolbarItem reference="y0W-5j-LYc"/>
                                 <toolbarItem reference="qH4-cv-12p"/>
                             </defaultToolbarItems>
