@@ -48,6 +48,7 @@ An Urbit client for macOS
 ## Other ideas
 
 - Pier location/desk mounting?
+- Set up the pill
 - Updates via App Store/Sparkle
 - Multiple planets/moons/comets etc...? Note the ames port can be specified as an argument, should just increment
 - Fix sandboxing: `urbit` wants to write to `/tmp`
