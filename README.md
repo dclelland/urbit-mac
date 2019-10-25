@@ -14,7 +14,6 @@ An Urbit client for macOS
 
 ### Now
 
-- Check `urbit-terminfo` is working correctly
 - See about pier location configuration (+ an 'open pier' dialog?)
 - Set up async tasks, pipe/pipe error handling and printing
 - Think about UX flow
@@ -50,6 +49,5 @@ An Urbit client for macOS
 
 - Pier location/desk mounting?
 - Updates via App Store/Sparkle
-- Multiple planets/moons/comets etc...?
-- Note the ames port can be specified as an argument
+- Multiple planets/moons/comets etc...? Note the ames port can be specified as an argument, should just increment
 - Fix sandboxing: `urbit` wants to write to `/tmp`
