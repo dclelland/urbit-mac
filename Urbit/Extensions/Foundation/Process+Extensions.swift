@@ -22,11 +22,11 @@ extension Process {
 extension Process {
     
     static func startFakeZod() -> Process {
-        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: ["-F", "zod"])
+        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: ["-d", "-F", "zod"])
     }
     
     static func restartFakeZod() -> Process {
-        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: ["zod"])
+        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: ["-d", "zod"])
     }
     
 }
