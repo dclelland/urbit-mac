@@ -10,9 +10,8 @@ import Foundation
 
 extension Process {
     
-    convenience init(currentDirectoryURL: URL, executableURL: URL, arguments: [String]) {
+    convenience init(executableURL: URL, arguments: [String]) {
         self.init()
-        self.currentDirectoryURL = currentDirectoryURL
         self.executableURL = executableURL
         self.arguments = arguments
     }
@@ -22,27 +21,27 @@ extension Process {
 extension Process {
     
     static func startFakeZod() -> Process {
-        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: ["-d", "-F", "zod"])
+        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["-d", "-F", "/Users/daniel/Code/Urbit/pier/zod"])
     }
     
     static func restartFakeZod() -> Process {
-        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: ["-d", "zod"])
+        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["-d", "/Users/daniel/Code/Urbit/pier/zod"])
     }
     
 }
 
 extension Process {
-    
+
     static func startUrbitPlanet(name: String, file: String) -> Process {
-        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: ["-w", name, "-k", file])
+        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["-w", "/Users/daniel/Code/Urbit/pier/\(name)", "-k", file])
     }
 
     static func startUrbitComet(name: String) -> Process {
-        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: ["-c", name])
+        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["-c", "/Users/daniel/Code/Urbit/pier/\(name)"])
     }
 
     static func restartUrbit(name: String) -> Process {
-        return Process(currentDirectoryURL: URL(fileURLWithPath: "/Users/daniel/Code/Urbit/pier"), executableURL: Bundle.main.urbitExecutableURL, arguments: [name])
+        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["/Users/daniel/Code/Urbit/pier/\(name)"])
     }
-    
+
 }
