@@ -14,4 +14,8 @@ extension Bundle {
         return url(forAuxiliaryExecutable: "urbit")!
     }
     
+    var kingExecutableURL: URL {
+        return url(forAuxiliaryExecutable: "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9")!
+    }
+    
 }

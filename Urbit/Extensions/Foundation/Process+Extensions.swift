@@ -21,11 +21,11 @@ extension Process {
 extension Process {
     
     static func startFakeZod() -> Process {
-        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["-d", "-F", "/Users/daniel/Code/Urbit/pier/zod"])
+        return Process(executableURL: Bundle.main.kingExecutableURL, arguments: ["-d", "-F", "/Users/daniel/Code/Urbit/pier/zod"])
     }
     
     static func restartFakeZod() -> Process {
-        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["-d", "/Users/daniel/Code/Urbit/pier/zod"])
+        return Process(executableURL: Bundle.main.kingExecutableURL, arguments: ["-d", "/Users/daniel/Code/Urbit/pier/zod"])
     }
     
 }
@@ -33,15 +33,15 @@ extension Process {
 extension Process {
 
     static func startUrbitPlanet(name: String, file: String) -> Process {
-        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["-w", "/Users/daniel/Code/Urbit/pier/\(name)", "-k", file])
+        return Process(executableURL: Bundle.main.kingExecutableURL, arguments: ["-w", "/Users/daniel/Code/Urbit/pier/\(name)", "-k", file])
     }
 
     static func startUrbitComet(name: String) -> Process {
-        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["-c", "/Users/daniel/Code/Urbit/pier/\(name)"])
+        return Process(executableURL: Bundle.main.kingExecutableURL, arguments: ["-c", "/Users/daniel/Code/Urbit/pier/\(name)"])
     }
 
     static func restartUrbit(name: String) -> Process {
-        return Process(executableURL: Bundle.main.urbitExecutableURL, arguments: ["/Users/daniel/Code/Urbit/pier/\(name)"])
+        return Process(executableURL: Bundle.main.kingExecutableURL, arguments: ["/Users/daniel/Code/Urbit/pier/\(name)"])
     }
 
 }
