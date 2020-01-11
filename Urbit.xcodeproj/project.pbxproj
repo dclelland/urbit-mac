@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6504674E23C963D9009F302F /* urbit in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65045C9923C95A07009F302F /* urbit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6504674F23C963D9009F302F /* urbit-worker in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65045C9823C95A07009F302F /* urbit-worker */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6504675023C963D9009F302F /* urbit-terminfo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6504674C23C963B4009F302F /* urbit-terminfo */; };
+		6504675123C963DF009F302F /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65045C9B23C95A07009F302F /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */; };
-		65841614235F0DA300842845 /* urbit in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65841612235F0D7F00842845 /* urbit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		65841615235F0DA600842845 /* urbit-worker in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65841611235F0D7F00842845 /* urbit-worker */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		65841616235F0DA800842845 /* urbit-terminfo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65841613235F0D9100842845 /* urbit-terminfo */; };
 		6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18B235AE8B40044886F /* AppDelegate.swift */; };
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
 		6592D190235AE8B60044886F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6592D18F235AE8B60044886F /* Assets.xcassets */; };
@@ -27,9 +28,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				65841614235F0DA300842845 /* urbit in CopyFiles */,
-				65841615235F0DA600842845 /* urbit-worker in CopyFiles */,
-				65841616235F0DA800842845 /* urbit-terminfo in CopyFiles */,
+				6504674E23C963D9009F302F /* urbit in CopyFiles */,
+				6504674F23C963D9009F302F /* urbit-worker in CopyFiles */,
+				6504675023C963D9009F302F /* urbit-terminfo in CopyFiles */,
+				6504675123C963DF009F302F /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,10 +40,11 @@
 /* Begin PBXFileReference section */
 		124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Urbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A373BCC77BA7E3570FA9E1D /* Pods-Urbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urbit.release.xcconfig"; path = "Target Support Files/Pods-Urbit/Pods-Urbit.release.xcconfig"; sourceTree = "<group>"; };
+		65045C9823C95A07009F302F /* urbit-worker */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "urbit-worker"; sourceTree = "<group>"; };
+		65045C9923C95A07009F302F /* urbit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = urbit; sourceTree = "<group>"; };
+		65045C9B23C95A07009F302F /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9"; sourceTree = "<group>"; };
+		6504674C23C963B4009F302F /* urbit-terminfo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "urbit-terminfo"; sourceTree = "<group>"; };
 		6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+Extensions.swift"; sourceTree = "<group>"; };
-		65841611235F0D7F00842845 /* urbit-worker */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "urbit-worker"; sourceTree = "<group>"; };
-		65841612235F0D7F00842845 /* urbit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = urbit; sourceTree = "<group>"; };
-		65841613235F0D9100842845 /* urbit-terminfo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "urbit-terminfo"; sourceTree = "<group>"; };
 		6592D188235AE8B40044886F /* Urbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592D18B235AE8B40044886F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6592D18D235AE8B40044886F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +70,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		650451C723C95A02009F302F /* urbit-darwin-v0.10.1 */ = {
+			isa = PBXGroup;
+			children = (
+				65045C9923C95A07009F302F /* urbit */,
+				65045C9823C95A07009F302F /* urbit-worker */,
+				6504674C23C963B4009F302F /* urbit-terminfo */,
+			);
+			path = "urbit-darwin-v0.10.1";
+			sourceTree = "<group>";
+		};
+		65045C9A23C95A07009F302F /* king-darwin-beta */ = {
+			isa = PBXGroup;
+			children = (
+				65045C9B23C95A07009F302F /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 */,
+			);
+			path = "king-darwin-beta";
+			sourceTree = "<group>";
+		};
 		6517C257235E9CD800E43464 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,19 +133,10 @@
 		6556BA69235C7A9E0091EE19 /* Executables */ = {
 			isa = PBXGroup;
 			children = (
-				65840B40235F0D7900842845 /* urbit-darwin-v0.9.1 */,
+				65045C9A23C95A07009F302F /* king-darwin-beta */,
+				650451C723C95A02009F302F /* urbit-darwin-v0.10.1 */,
 			);
 			path = Executables;
-			sourceTree = "<group>";
-		};
-		65840B40235F0D7900842845 /* urbit-darwin-v0.9.1 */ = {
-			isa = PBXGroup;
-			children = (
-				65841612235F0D7F00842845 /* urbit */,
-				65841611235F0D7F00842845 /* urbit-worker */,
-				65841613235F0D9100842845 /* urbit-terminfo */,
-			);
-			path = "urbit-darwin-v0.9.1";
 			sourceTree = "<group>";
 		};
 		6592D17F235AE8B40044886F = {
