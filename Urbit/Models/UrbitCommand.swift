@@ -8,54 +8,66 @@
 
 import Foundation
 
-enum UrbitCommand: CustomStringConvertible {
+protocol UrbitCommand: CustomStringConvertible {
     
-    case new(UrbitCommandNew, options: [UrbitCommandOption] = [])
-    case run(UrbitCommandRun, options: [UrbitCommandOption] = [])
-    case debug(UrbitCommandDebug)
-    case connect(UrbitCommandConnect)
+    var arguments: [String] { get }
+    
+}
+
+extension UrbitCommand {
     
     var description: String {
-        switch self {
-        case .new(let new, let options):
-            var arguments = "new \(new)"
-            for option in options {
-                arguments.append(contentsOf: " \(option)")
-            }
-            return arguments
-        case .run(let run, let options):
-            var arguments = "run \(run)"
-            for option in options {
-                arguments.append(contentsOf: " \(option)")
-            }
-            return arguments
-        case .debug(let debug):
-            return "bug \(debug)"
-        case .connect(let pier):
-            return "con \(pier)"
-        }
+        return arguments.joined(separator: " ")
     }
     
 }
 
-struct UrbitCommandNew: CustomStringConvertible {
+//enum UrbitCommand: CustomStringConvertible {
+//
+//    case new(UrbitCommandNew, options: [UrbitCommandOption] = [])
+//    case run(UrbitCommandRun, options: [UrbitCommandOption] = [])
+//    case debug(UrbitCommandDebug)
+//    case connect(UrbitCommandConnect)
+//
+//    var description: String {
+//        switch self {
+//        case .new(let new, let options):
+//            var arguments = "new \(new)"
+//            for option in options {
+//                arguments.append(contentsOf: " \(option)")
+//            }
+//            return arguments
+//        case .run(let run, let options):
+//            var arguments = "run \(run)"
+//            for option in options {
+//                arguments.append(contentsOf: " \(option)")
+//            }
+//            return arguments
+//        case .debug(let debug):
+//            return "bug \(debug)"
+//        case .connect(let pier):
+//            return "con \(pier)"
+//        }
+//    }
+//
+//}
+
+struct UrbitCommandNew: UrbitCommand {
     
-    #warning("TODO: Finish UrbitProcessCommandNew")
-    
-    enum BootType: CustomStringConvertible {
+    enum BootType: UrbitCommand {
         
         case newComet
         case newFakeship(ship: String)
         case newFromKeyfile(keyfile: URL)
         
-        var description: String {
+        var arguments: [String] {
             switch self {
             case .newComet:
-                return "--comet"
+                return ["--comet"]
             case .newFakeship(let ship):
-                return "--fake \(ship)"
+                return ["--fake", ship]
             case .newFromKeyfile(let keyfile):
-                return "--keyfile \(keyfile)"
+                return ["--keyfile", keyfile.absoluteString]
             }
         }
         
@@ -66,6 +78,7 @@ struct UrbitCommandNew: CustomStringConvertible {
     var arvo: URL? = nil
     var bootType: BootType
     var lite: Bool = false
+    var options: [UrbitCommandOption] = []
     
 //    new :: Parser New
 //    new = do
@@ -109,23 +122,35 @@ struct UrbitCommandNew: CustomStringConvertible {
 //        }
 //      deriving (Show)
     
-    var description: String {
-        fatalError()
+    var arguments: [String] {
+        var arguments = ["new"]
+        
+        #warning("TODO: Finish UrbitProcessCommandNew")
+        
+        for option in options {
+            arguments.append(contentsOf: option.arguments)
+        }
+        return arguments
     }
     
 }
 
-struct UrbitCommandRun: CustomStringConvertible {
+struct UrbitCommandRun: UrbitCommand {
     
     var pier: URL
+    var options: [UrbitCommandOption] = []
     
-    var description: String {
-        return "\(pier)"
+    var arguments: [String] {
+        var arguments = ["run", pier.absoluteString]
+        for option in options {
+            arguments.append(contentsOf: option.arguments)
+        }
+        return arguments
     }
     
 }
 
-enum UrbitCommandDebug: CustomStringConvertible {
+enum UrbitCommandDebug: UrbitCommand {
     
     case validatePill(pill: URL, printPill: Bool = false, printBoot: Bool = false)
     case collectAllEffects(pier: URL)
@@ -135,54 +160,53 @@ enum UrbitCommandDebug: CustomStringConvertible {
     case checkDawn(keyfile: URL)
     case checkComet
     
-    var description: String {
+    var arguments: [String] {
+        var arguments = ["bug"]
         switch self {
         case .validatePill(let pill, let printPill, let printBoot):
-            var arguments = "validate-pill \(pill)"
+            arguments.append(contentsOf: ["validate-pill", pill.absoluteString])
             if printPill == true {
-                arguments.append(contentsOf: " --print-pill")
+                arguments.append(contentsOf: ["--print-pill"])
             }
             if printBoot == true {
-                arguments.append(contentsOf: " --print-boot")
+                arguments.append(contentsOf: ["--print-boot"])
             }
-            return arguments
         case .collectAllEffects(let pier):
-            return "collect-all-fx \(pier)"
+            arguments.append(contentsOf: ["collect-all-fx", pier.absoluteString])
         case .eventBrowser(let pier):
-            return "validate-events \(pier)"
+            arguments.append(contentsOf: ["validate-events", pier.absoluteString])
         case .validateEvents(let pier, let first, let last):
-            var arguments = "event-browser \(pier)"
+            arguments.append(contentsOf: ["event-browser", pier.absoluteString])
             if let first = first {
-                arguments.append(contentsOf: " --first \(first)")
+                arguments.append(contentsOf: ["--first", String(first)])
             }
             if let last = last {
-                arguments.append(contentsOf: " --last \(last)")
+                arguments.append(contentsOf: ["--last", String(last)])
             }
-            return arguments
         case .validateEffects(let pier, let first, let last):
-            var arguments = "validate-effects \(pier)"
+            arguments.append(contentsOf: ["validate-effects", pier.absoluteString])
             if let first = first {
-                arguments.append(contentsOf: " --first \(first)")
+                arguments.append(contentsOf: ["--first", String(first)])
             }
             if let last = last {
-                arguments.append(contentsOf: " --last \(last)")
+                arguments.append(contentsOf: ["--last", String(last)])
             }
-            return arguments
         case .checkDawn(let keyfile):
-            return "dawn \(keyfile)"
+            arguments.append(contentsOf: ["dawn", keyfile.absoluteString])
         case .checkComet:
-            return "comet"
+            arguments.append(contentsOf: ["comet"])
         }
+        return arguments
     }
     
 }
 
-struct UrbitCommandConnect: CustomStringConvertible {
+struct UrbitCommandConnect: UrbitCommand {
     
     var pier: URL
     
-    var description: String {
-        return "\(pier)"
+    var arguments: [String] {
+        return ["con", pier.absoluteString]
     }
     
 }

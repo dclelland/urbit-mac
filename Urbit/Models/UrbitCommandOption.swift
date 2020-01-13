@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UrbitCommandOption: CustomStringConvertible {
+enum UrbitCommandOption: UrbitCommand {
     
     case ames(port: UInt16)
     case quiet
@@ -20,26 +20,26 @@ enum UrbitCommandOption: CustomStringConvertible {
     case collectEffects
     case offline
     
-    var description: String {
+    var arguments: [String] {
         switch self {
         case .ames(let port):
-            return "--ames \(port)"
+            return ["--ames", String(port)]
         case .quiet:
-            return "--quiet"
+            return ["--quiet"]
         case .verbose:
-            return "--verbose"
+            return ["--verbose"]
         case .exit:
-            return "--exit"
+            return ["--exit"]
         case .dryRun:
-            return "--dry-run"
+            return ["--dry-run"]
         case .trace:
-            return "--trace"
+            return ["--trace"]
         case .local:
-            return "--local"
+            return ["--local"]
         case .collectEffects:
-            return "--collect-fx"
+            return ["--collect-fx"]
         case .offline:
-            return "--offline"
+            return ["--offline"]
         }
     }
     
