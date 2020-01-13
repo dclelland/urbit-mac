@@ -14,8 +14,8 @@ import AppKit
         let outputPipe = Pipe()
         let errorPipe = Pipe()
         
-        let command = UrbitCommandNew.startFakeZod()
-//        let command = UrbitCommandRun.restartFakeZod()
+//        let command = UrbitCommandNew.startFakeZod()
+        let command = UrbitCommandRun.restartFakeZod()
         let process = command.process
         
         print("URBIT BINARY ARGUMENTS:", (process.arguments ?? []).joined(separator: " "))
