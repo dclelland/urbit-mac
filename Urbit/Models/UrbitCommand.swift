@@ -17,7 +17,10 @@ protocol UrbitCommand {
 extension UrbitCommand {
     
     var process: Process {
-        return Process(executableURL: Bundle.main.kingExecutableURL, arguments: arguments)
+        let process = Process()
+        process.executableURL = Bundle.main.url(forAuxiliaryExecutable: "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9")!
+        process.arguments = arguments
+        return process
     }
     
 }

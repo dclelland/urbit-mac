@@ -14,8 +14,11 @@ import AppKit
         let outputPipe = Pipe()
         let errorPipe = Pipe()
         
-        let process = UrbitCommandNew.startFakeZod().process
-//        let process = UrbitCommandRun.restartFakeZod().process
+        let command = UrbitCommandNew.startFakeZod()
+//        let command = UrbitCommandRun.restartFakeZod()
+        let process = command.process
+        
+        print("URBIT BINARY ARGUMENTS:", (process.arguments ?? []).joined(separator: " "))
 //        process.standardOutput = outputPipe
 //        process.standardError = errorPipe
         outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
