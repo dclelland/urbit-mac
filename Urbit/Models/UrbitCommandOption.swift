@@ -1,5 +1,5 @@
 //
-//  UrbitProcessOption.swift
+//  UrbitCommandOption.swift
 //  Urbit
 //
 //  Created by Daniel Clelland on 13/01/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UrbitProcessOption: CustomStringConvertible {
+enum UrbitCommandOption: CustomStringConvertible {
     
     case ames(port: UInt16)
     case quiet

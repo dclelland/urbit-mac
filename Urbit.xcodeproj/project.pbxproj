@@ -12,8 +12,8 @@
 		6504675023C963D9009F302F /* urbit-terminfo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6504674C23C963B4009F302F /* urbit-terminfo */; };
 		6504675123C963DF009F302F /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65045C9B23C95A07009F302F /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6504675423C9B894009F302F /* UrbitProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675323C9B894009F302F /* UrbitProcess.swift */; };
-		6504675623C9B8A0009F302F /* UrbitProcessCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675523C9B8A0009F302F /* UrbitProcessCommand.swift */; };
-		6504675823CBBA98009F302F /* UrbitProcessOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675723CBBA98009F302F /* UrbitProcessOption.swift */; };
+		6504675623C9B8A0009F302F /* UrbitCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675523C9B8A0009F302F /* UrbitCommand.swift */; };
+		6504675823CBBA98009F302F /* UrbitCommandOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675723CBBA98009F302F /* UrbitCommandOption.swift */; };
 		6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */; };
 		6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18B235AE8B40044886F /* AppDelegate.swift */; };
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
@@ -48,8 +48,8 @@
 		65045C9B23C95A07009F302F /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9"; sourceTree = "<group>"; };
 		6504674C23C963B4009F302F /* urbit-terminfo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "urbit-terminfo"; sourceTree = "<group>"; };
 		6504675323C9B894009F302F /* UrbitProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitProcess.swift; sourceTree = "<group>"; };
-		6504675523C9B8A0009F302F /* UrbitProcessCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitProcessCommand.swift; sourceTree = "<group>"; };
-		6504675723CBBA98009F302F /* UrbitProcessOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitProcessOption.swift; sourceTree = "<group>"; };
+		6504675523C9B8A0009F302F /* UrbitCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitCommand.swift; sourceTree = "<group>"; };
+		6504675723CBBA98009F302F /* UrbitCommandOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitCommandOption.swift; sourceTree = "<group>"; };
 		6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+Extensions.swift"; sourceTree = "<group>"; };
 		6592D188235AE8B40044886F /* Urbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592D18B235AE8B40044886F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				6504675323C9B894009F302F /* UrbitProcess.swift */,
-				6504675523C9B8A0009F302F /* UrbitProcessCommand.swift */,
-				6504675723CBBA98009F302F /* UrbitProcessOption.swift */,
+				6504675523C9B8A0009F302F /* UrbitCommand.swift */,
+				6504675723CBBA98009F302F /* UrbitCommandOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,10 +332,10 @@
 			files = (
 				6504675423C9B894009F302F /* UrbitProcess.swift in Sources */,
 				6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */,
-				6504675623C9B8A0009F302F /* UrbitProcessCommand.swift in Sources */,
+				6504675623C9B8A0009F302F /* UrbitCommand.swift in Sources */,
 				6592D18E235AE8B40044886F /* ViewController.swift in Sources */,
 				65D06081235C690E00B03823 /* Process+Extensions.swift in Sources */,
-				6504675823CBBA98009F302F /* UrbitProcessOption.swift in Sources */,
+				6504675823CBBA98009F302F /* UrbitCommandOption.swift in Sources */,
 				6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */,
 				65D0607F235C690100B03823 /* Bundle+Extensions.swift in Sources */,
 			);

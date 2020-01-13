@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum UrbitProcessCommand: CustomStringConvertible {
+enum UrbitCommand: CustomStringConvertible {
     
-    case new(UrbitProcessCommandNew, options: [UrbitProcessOption] = [])
-    case run(UrbitProcessCommandRun, options: [UrbitProcessOption] = [])
-    case debug(UrbitProcessCommandDebug)
-    case connect(UrbitProcessCommandConnect)
+    case new(UrbitCommandNew, options: [UrbitCommandOption] = [])
+    case run(UrbitCommandRun, options: [UrbitCommandOption] = [])
+    case debug(UrbitCommandDebug)
+    case connect(UrbitCommandConnect)
     
     var description: String {
         switch self {
@@ -38,7 +38,7 @@ enum UrbitProcessCommand: CustomStringConvertible {
     
 }
 
-struct UrbitProcessCommandNew: CustomStringConvertible {
+struct UrbitCommandNew: CustomStringConvertible {
     
     #warning("TODO: Finish UrbitProcessCommandNew")
     
@@ -115,7 +115,7 @@ struct UrbitProcessCommandNew: CustomStringConvertible {
     
 }
 
-struct UrbitProcessCommandRun: CustomStringConvertible {
+struct UrbitCommandRun: CustomStringConvertible {
     
     var pier: URL
     
@@ -125,7 +125,7 @@ struct UrbitProcessCommandRun: CustomStringConvertible {
     
 }
 
-enum UrbitProcessCommandDebug: CustomStringConvertible {
+enum UrbitCommandDebug: CustomStringConvertible {
     
     case validatePill(pill: URL, printPill: Bool = false, printBoot: Bool = false)
     case collectAllEffects(pier: URL)
@@ -177,7 +177,7 @@ enum UrbitProcessCommandDebug: CustomStringConvertible {
     
 }
 
-struct UrbitProcessCommandConnect: CustomStringConvertible {
+struct UrbitCommandConnect: CustomStringConvertible {
     
     var pier: URL
     

@@ -10,6 +10,6 @@ import Foundation
 
 struct UrbitProcess {
     
-    let arguments: UrbitProcessArguments
+    let command: UrbitCommand
     
 }
