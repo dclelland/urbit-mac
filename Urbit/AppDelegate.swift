@@ -14,7 +14,8 @@ import AppKit
         let outputPipe = Pipe()
         let errorPipe = Pipe()
         
-        let process = Process.restartFakeZod()
+        let process = UrbitCommandNew.startFakeZod().process
+//        let process = UrbitCommandRun.restartFakeZod().process
 //        process.standardOutput = outputPipe
 //        process.standardError = errorPipe
         outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
