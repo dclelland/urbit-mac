@@ -1,5 +1,5 @@
 //
-//  UrbitProcessArguments.swift
+//  UrbitProcessCommand.swift
 //  Urbit
 //
 //  Created by Daniel Clelland on 11/01/20.
@@ -8,19 +8,27 @@
 
 import Foundation
 
-enum UrbitProcessArguments: CustomStringConvertible {
+enum UrbitProcessCommand: CustomStringConvertible {
     
-    case new(UrbitProcessArgumentsNew, options: [UrbitProcessOption] = [])
-    case run(UrbitProcessArgumentsRun, options: [UrbitProcessOption] = [])
-    case debug(UrbitProcessArgumentsDebug)
-    case connect(UrbitProcessArgumentsConnect)
+    case new(UrbitProcessCommandNew, options: [UrbitProcessOption] = [])
+    case run(UrbitProcessCommandRun, options: [UrbitProcessOption] = [])
+    case debug(UrbitProcessCommandDebug)
+    case connect(UrbitProcessCommandConnect)
     
     var description: String {
         switch self {
         case .new(let new, let options):
-            return "new \(new) \(options.map({ $0.description }).joined(separator: " "))"
+            var arguments = "new \(new)"
+            for option in options {
+                arguments.append(contentsOf: " \(option)")
+            }
+            return arguments
         case .run(let run, let options):
-            return "run \(run) \(options.map({ $0.description }).joined(separator: " "))"
+            var arguments = "run \(run)"
+            for option in options {
+                arguments.append(contentsOf: " \(option)")
+            }
+            return arguments
         case .debug(let debug):
             return "bug \(debug)"
         case .connect(let pier):
@@ -30,9 +38,9 @@ enum UrbitProcessArguments: CustomStringConvertible {
     
 }
 
-struct UrbitProcessArgumentsNew: CustomStringConvertible {
+struct UrbitProcessCommandNew: CustomStringConvertible {
     
-    #warning("TODO: Finish UrbitProcessArgumentsNew")
+    #warning("TODO: Finish UrbitProcessCommandNew")
     
     enum BootType: CustomStringConvertible {
         
@@ -107,7 +115,7 @@ struct UrbitProcessArgumentsNew: CustomStringConvertible {
     
 }
 
-struct UrbitProcessArgumentsRun: CustomStringConvertible {
+struct UrbitProcessCommandRun: CustomStringConvertible {
     
     var pier: URL
     
@@ -117,9 +125,7 @@ struct UrbitProcessArgumentsRun: CustomStringConvertible {
     
 }
 
-enum UrbitProcessArgumentsDebug: CustomStringConvertible {
-    
-    #warning("TODO: Finish UrbitProcessArgumentsDebug")
+enum UrbitProcessCommandDebug: CustomStringConvertible {
     
     case validatePill(pill: URL, printPill: Bool = false, printBoot: Bool = false)
     case collectAllEffects(pier: URL)
@@ -132,15 +138,36 @@ enum UrbitProcessArgumentsDebug: CustomStringConvertible {
     var description: String {
         switch self {
         case .validatePill(let pill, let printPill, let printBoot):
-            return "validate-pill \(pill)"
+            var arguments = "validate-pill \(pill)"
+            if printPill == true {
+                arguments.append(contentsOf: " --print-pill")
+            }
+            if printBoot == true {
+                arguments.append(contentsOf: " --print-boot")
+            }
+            return arguments
         case .collectAllEffects(let pier):
             return "collect-all-fx \(pier)"
         case .eventBrowser(let pier):
             return "validate-events \(pier)"
         case .validateEvents(let pier, let first, let last):
-            return "event-browser \(pier)"
+            var arguments = "event-browser \(pier)"
+            if let first = first {
+                arguments.append(contentsOf: " --first \(first)")
+            }
+            if let last = last {
+                arguments.append(contentsOf: " --last \(last)")
+            }
+            return arguments
         case .validateEffects(let pier, let first, let last):
-            return "validate-effects \(pier)"
+            var arguments = "validate-effects \(pier)"
+            if let first = first {
+                arguments.append(contentsOf: " --first \(first)")
+            }
+            if let last = last {
+                arguments.append(contentsOf: " --last \(last)")
+            }
+            return arguments
         case .checkDawn(let keyfile):
             return "dawn \(keyfile)"
         case .checkComet:
@@ -150,7 +177,7 @@ enum UrbitProcessArgumentsDebug: CustomStringConvertible {
     
 }
 
-struct UrbitProcessArgumentsConnect: CustomStringConvertible {
+struct UrbitProcessCommandConnect: CustomStringConvertible {
     
     var pier: URL
     
