@@ -17,6 +17,7 @@
 		6504675C23CC1890009F302F /* UrbitCommandRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675B23CC1890009F302F /* UrbitCommandRun.swift */; };
 		6504675E23CC1899009F302F /* UrbitCommandDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675D23CC1899009F302F /* UrbitCommandDebug.swift */; };
 		6504676023CC18A4009F302F /* UrbitCommandConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675F23CC18A4009F302F /* UrbitCommandConnect.swift */; };
+		6504676323CFD93E009F302F /* Process+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504676223CFD93E009F302F /* Process+Extensions.swift */; };
 		6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */; };
 		6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18B235AE8B40044886F /* AppDelegate.swift */; };
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
@@ -54,6 +55,7 @@
 		6504675B23CC1890009F302F /* UrbitCommandRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitCommandRun.swift; sourceTree = "<group>"; };
 		6504675D23CC1899009F302F /* UrbitCommandDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitCommandDebug.swift; sourceTree = "<group>"; };
 		6504675F23CC18A4009F302F /* UrbitCommandConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitCommandConnect.swift; sourceTree = "<group>"; };
+		6504676223CFD93E009F302F /* Process+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+Extensions.swift"; sourceTree = "<group>"; };
 		6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+Extensions.swift"; sourceTree = "<group>"; };
 		6592D188235AE8B40044886F /* Urbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592D18B235AE8B40044886F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,14 @@
 				6504675723CBBA98009F302F /* UrbitCommandOption.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6504676123CFD926009F302F /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				6504676223CFD93E009F302F /* Process+Extensions.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		6517C258235E9CF500E43464 /* AppKit */ = {
@@ -189,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				6517C258235E9CF500E43464 /* AppKit */,
+				6504676123CFD926009F302F /* Foundation */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +343,7 @@
 				6592D18E235AE8B40044886F /* ViewController.swift in Sources */,
 				6504675823CBBA98009F302F /* UrbitCommandOption.swift in Sources */,
 				6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */,
+				6504676323CFD93E009F302F /* Process+Extensions.swift in Sources */,
 				6504675C23CC1890009F302F /* UrbitCommandRun.swift in Sources */,
 				6504675A23CC1881009F302F /* UrbitCommandNew.swift in Sources */,
 			);

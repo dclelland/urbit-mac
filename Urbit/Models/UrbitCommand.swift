@@ -17,10 +17,10 @@ protocol UrbitCommand {
 extension UrbitCommand {
     
     var process: Process {
-        let process = Process()
-        process.executableURL = Bundle.main.url(forAuxiliaryExecutable: "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9")!
-        process.arguments = arguments
-        return process
+        return Process(
+            executableURL: Bundle.main.url(forAuxiliaryExecutable: "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9")!,
+            arguments: arguments
+        )
     }
     
 }
@@ -40,6 +40,16 @@ extension UrbitCommandRun {
     
     static func restartFakeZod() -> UrbitCommandRun {
         return UrbitCommandRun(
+            pier: URL(string: "/Users/daniel/Code/Urbit/pier/zod")!
+        )
+    }
+    
+}
+
+extension UrbitCommandConnect {
+    
+    static func connectFakeZod() -> UrbitCommandConnect {
+        return UrbitCommandConnect(
             pier: URL(string: "/Users/daniel/Code/Urbit/pier/zod")!
         )
     }
