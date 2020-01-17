@@ -23,7 +23,7 @@ class UrbitCommandDebugValidatePill: UrbitCommandDebug {
     }
     
     convenience init(pill: URL, printPill: Bool = false, printBoot: Bool = false) {
-        var arguments: [String] = [pill.absoluteString]
+        var arguments: [String] = [pill.path]
         if printPill == true {
             arguments += ["--print-pill"]
         }
@@ -42,7 +42,7 @@ class UrbitCommandDebugCollectAllEffects: UrbitCommandDebug {
     }
     
     convenience init(pier: URL) {
-        self.init(arguments: [pier.absoluteString])
+        self.init(arguments: [pier.path])
     }
     
 }
@@ -54,7 +54,7 @@ class UrbitCommandDebugValidateEvents: UrbitCommandDebug {
     }
     
     convenience init(pier: URL, first: UInt64? = nil, last: UInt64? = nil) {
-        var arguments: [String] = [pier.absoluteString]
+        var arguments: [String] = [pier.path]
         if let first = first {
             arguments += ["--first", String(first)]
         }
@@ -73,7 +73,7 @@ class UrbitCommandDebugEventBrowser: UrbitCommandDebug {
     }
     
     convenience init(pier: URL) {
-        self.init(arguments: [pier.absoluteString])
+        self.init(arguments: [pier.path])
     }
     
 }
@@ -85,7 +85,7 @@ class UrbitCommandDebugValidateEffects: UrbitCommandDebug {
     }
     
     convenience init(pier: URL, first: UInt64? = nil, last: UInt64? = nil) {
-        var arguments: [String] = [pier.absoluteString]
+        var arguments: [String] = [pier.path]
         if let first = first {
             arguments += ["--first", String(first)]
         }
@@ -104,7 +104,7 @@ class UrbitCommandDebugCheckDawn: UrbitCommandDebug {
     }
     
     convenience init(keyfile: URL) {
-        self.init(arguments: [keyfile.absoluteString])
+        self.init(arguments: [keyfile.path])
     }
     
 }

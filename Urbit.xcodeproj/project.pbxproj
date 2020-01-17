@@ -19,6 +19,7 @@
 		6504676023CC18A4009F302F /* UrbitCommandConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504675F23CC18A4009F302F /* UrbitCommandConnect.swift */; };
 		6504676323CFD93E009F302F /* Process+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504676223CFD93E009F302F /* Process+Extensions.swift */; };
 		6504676523D15845009F302F /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504676423D15845009F302F /* AppConstants.swift */; };
+		6504676823D1632E009F302F /* urbit-v0.10.1.pill in Resources */ = {isa = PBXBuildFile; fileRef = 6504676723D1631F009F302F /* urbit-v0.10.1.pill */; };
 		6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */; };
 		6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18B235AE8B40044886F /* AppDelegate.swift */; };
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
@@ -58,6 +59,7 @@
 		6504675F23CC18A4009F302F /* UrbitCommandConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbitCommandConnect.swift; sourceTree = "<group>"; };
 		6504676223CFD93E009F302F /* Process+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+Extensions.swift"; sourceTree = "<group>"; };
 		6504676423D15845009F302F /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		6504676723D1631F009F302F /* urbit-v0.10.1.pill */ = {isa = PBXFileReference; lastKnownFileType = file; path = "urbit-v0.10.1.pill"; sourceTree = "<group>"; };
 		6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+Extensions.swift"; sourceTree = "<group>"; };
 		6592D188235AE8B40044886F /* Urbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592D18B235AE8B40044886F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,14 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
+		6504676623D16307009F302F /* Pills */ = {
+			isa = PBXGroup;
+			children = (
+				6504676723D1631F009F302F /* urbit-v0.10.1.pill */,
+			);
+			path = Pills;
+			sourceTree = "<group>";
+		};
 		6517C258235E9CF500E43464 /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 		651A3A88235C37AA008FF70E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6504676623D16307009F302F /* Pills */,
 				6556BA69235C7A9E0091EE19 /* Executables */,
 				6592D18F235AE8B60044886F /* Assets.xcassets */,
 			);
@@ -285,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6504676823D1632E009F302F /* urbit-v0.10.1.pill in Resources */,
 				6592D190235AE8B60044886F /* Assets.xcassets in Resources */,
 				6592D193235AE8B60044886F /* App.storyboard in Resources */,
 			);

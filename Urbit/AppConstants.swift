@@ -14,4 +14,8 @@ extension Bundle {
         return url(forAuxiliaryExecutable: "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9")!
     }
     
+    var urbitPillURL: URL {
+        return url(forResource: "urbit-v0.10.1", withExtension: "pill")!
+    }
+    
 }

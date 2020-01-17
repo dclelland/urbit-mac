@@ -15,7 +15,7 @@ class UrbitCommandRun: UrbitCommand {
     }
     
     convenience init(pier: URL, options: [UrbitCommandOption] = []) {
-        self.init(arguments: [pier.absoluteString] + options.flatMap { $0.arguments })
+        self.init(arguments: [pier.path] + options.flatMap { $0.arguments })
     }
     
 }

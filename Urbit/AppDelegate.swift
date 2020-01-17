@@ -10,7 +10,7 @@ import AppKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var command = UrbitCommandRun.fakeZod()
+    var command = UrbitCommandNew.fakeZod()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         command.process.run { result in

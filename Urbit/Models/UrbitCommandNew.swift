@@ -27,7 +27,7 @@ class UrbitCommandNew: UrbitCommand {
             case .newFakeship(let ship):
                 return ["--fake", ship]
             case .newFromKeyfile(let keyfile):
-                return ["--keyfile", keyfile.absoluteString]
+                return ["--keyfile", keyfile.path]
             }
         }
         
@@ -36,17 +36,17 @@ class UrbitCommandNew: UrbitCommand {
     convenience init(pier: URL? = nil, bootType: BootType, pill: URL? = nil, lite: Bool = false, arvo: URL? = nil, options: [UrbitCommandOption] = []) {
         var arguments: [String] = []
         if let pier = pier {
-            arguments += [pier.absoluteString]
+            arguments += [pier.path]
         }
         arguments += bootType.arguments
         if let pill = pill {
-            arguments += [pill.absoluteString]
+            arguments += ["--pill", pill.path]
         }
         if lite == true {
             arguments += ["--lite"]
         }
         if let arvo = arvo {
-            arguments += ["--arvo", arvo.absoluteString]
+            arguments += ["--arvo", arvo.path]
         }
         self.init(arguments: arguments + options.flatMap { $0.arguments })
     }
