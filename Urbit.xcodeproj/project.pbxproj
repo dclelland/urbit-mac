@@ -140,6 +140,7 @@
 		651A3A88235C37AA008FF70E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6556BA69235C7A9E0091EE19 /* Executables */,
 				6592D18F235AE8B60044886F /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -191,7 +192,6 @@
 				651A3A87235C37A0008FF70E /* Controllers */,
 				6504675223C9B817009F302F /* Models */,
 				65D0607D235C68EC00B03823 /* Extensions */,
-				6556BA69235C7A9E0091EE19 /* Executables */,
 				651A3A88235C37AA008FF70E /* Resources */,
 				651A3A89235C37BE008FF70E /* Supporting Files */,
 			);

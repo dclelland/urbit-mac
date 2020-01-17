@@ -762,7 +762,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4XN-Rb-4Fz">
-                                <rect key="frame" x="20" y="20" width="440" height="230"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -770,10 +770,10 @@
                             </wkWebView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="4XN-Rb-4Fz" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="NcY-XJ-eL2"/>
-                            <constraint firstAttribute="trailing" secondItem="4XN-Rb-4Fz" secondAttribute="trailing" constant="20" symbolic="YES" id="Ny4-PN-wnQ"/>
-                            <constraint firstAttribute="bottom" secondItem="4XN-Rb-4Fz" secondAttribute="bottom" constant="20" symbolic="YES" id="Rmh-42-KoJ"/>
-                            <constraint firstItem="4XN-Rb-4Fz" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="elQ-Of-QsQ"/>
+                            <constraint firstItem="4XN-Rb-4Fz" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="NcY-XJ-eL2"/>
+                            <constraint firstAttribute="trailing" secondItem="4XN-Rb-4Fz" secondAttribute="trailing" id="Ny4-PN-wnQ"/>
+                            <constraint firstAttribute="bottom" secondItem="4XN-Rb-4Fz" secondAttribute="bottom" id="Rmh-42-KoJ"/>
+                            <constraint firstItem="4XN-Rb-4Fz" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="elQ-Of-QsQ"/>
                         </constraints>
                     </view>
                     <connections>

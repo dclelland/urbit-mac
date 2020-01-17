@@ -18,5 +18,10 @@ class ViewController: NSViewController {
             
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        webView.load(URLRequest(url: URL(string: "http://localhost:8080/")!))
+    }
 
 }
