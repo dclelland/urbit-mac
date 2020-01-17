@@ -10,13 +10,9 @@ import Foundation
 
 class UrbitCommandNew: UrbitCommand {
     
-    override init(arguments: [String]) {
+    required init(arguments: [String] = []) {
         super.init(arguments: ["new"] + arguments)
     }
-    
-}
-
-extension UrbitCommandNew {
     
     enum BootType {
         

@@ -12,8 +12,16 @@ class UrbitCommand {
     
     let process: Process
     
-    init(arguments: [String] = []) {
+    required init(arguments: [String] = []) {
         self.process = Process(executableURL: Bundle.main.urbitExecutableURL, arguments: arguments)
+    }
+    
+}
+
+extension UrbitCommand {
+    
+    static func help() -> Self {
+        return Self.init(arguments: ["--help"])
     }
     
 }

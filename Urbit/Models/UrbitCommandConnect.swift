@@ -10,13 +10,9 @@ import Foundation
 
 class UrbitCommandConnect: UrbitCommand {
     
-    override init(arguments: [String]) {
+    required init(arguments: [String] = []) {
         super.init(arguments: ["con"] + arguments)
     }
-    
-}
-
-extension UrbitCommandConnect {
     
     convenience init(pier: URL) {
         self.init(arguments: [pier.absoluteString])

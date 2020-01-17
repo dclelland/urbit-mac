@@ -7,8 +7,11 @@
 //
 
 import AppKit
+import WebKit
 
 class ViewController: NSViewController {
+    
+    @IBOutlet var webView: WKWebView!
 
     override var representedObject: Any? {
         didSet {
