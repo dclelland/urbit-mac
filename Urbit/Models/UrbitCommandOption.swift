@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UrbitCommandOption: UrbitCommand {
+enum UrbitCommandOption {
     
     case ames(port: UInt16)
     case quiet

@@ -8,26 +8,53 @@
 
 import Foundation
 
-protocol UrbitCommand {
+class UrbitCommand {
     
-    var arguments: [String] { get }
+    let process: Process
+    
+    init(arguments: [String] = []) {
+        self.process = Process(executableURL: Bundle.main.urbitExecutableURL, arguments: arguments)
+    }
     
 }
 
 extension UrbitCommand {
     
-    var process: Process {
-        return Process(
-            executableURL: Bundle.main.url(forAuxiliaryExecutable: "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9")!,
-            arguments: arguments
-        )
-    }
+//        let outputPipe = Pipe()
+//        let errorPipe = Pipe()
+        
+//        process.standardOutput = outputPipe
+//        process.standardError = errorPipe
+//        outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
+//        errorPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
+//        outputPipe.fileHandleForReading.readabilityHandler = { file in
+//            let string = String(data: file.availableData, encoding: .utf8)!
+//            print("output (readabilityHandler):", string)
+//        }
+//        errorPipe.fileHandleForReading.readabilityHandler = { file in
+//            let string = String(data: file.availableData, encoding: .utf8)!
+//            print("error (readabilityHandler):", string)
+//        }
+
+//        NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: outputPipe.fileHandleForReading, queue: nil) { notification in
+//            let string = String(data: outputPipe.fileHandleForReading.availableData, encoding: .utf8)!
+//            print("OUTPUT:")
+//            print(string)
+//        }
+//
+//        NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: errorPipe.fileHandleForReading, queue: nil) { notification in
+//            let string = String(data: errorPipe.fileHandleForReading.availableData, encoding: .utf8)!
+//            print("ERROR:")
+//            print(string)
+//        }
+        
+//        outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
     
 }
 
 extension UrbitCommandNew {
     
-    static func startFakeZod() -> UrbitCommandNew {
+    static func fakeZod() -> UrbitCommandNew {
         return UrbitCommandNew(
             pier: URL(string: "/Users/daniel/Code/Urbit/pier/zod")!,
             bootType: .newFakeship(ship: "zod")
@@ -38,7 +65,7 @@ extension UrbitCommandNew {
 
 extension UrbitCommandRun {
     
-    static func restartFakeZod() -> UrbitCommandRun {
+    static func fakeZod() -> UrbitCommandRun {
         return UrbitCommandRun(
             pier: URL(string: "/Users/daniel/Code/Urbit/pier/zod")!
         )
@@ -48,7 +75,7 @@ extension UrbitCommandRun {
 
 extension UrbitCommandConnect {
     
-    static func connectFakeZod() -> UrbitCommandConnect {
+    static func fakeZod() -> UrbitCommandConnect {
         return UrbitCommandConnect(
             pier: URL(string: "/Users/daniel/Code/Urbit/pier/zod")!
         )

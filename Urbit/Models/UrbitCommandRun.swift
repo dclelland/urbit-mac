@@ -8,17 +8,18 @@
 
 import Foundation
 
-struct UrbitCommandRun: UrbitCommand {
+class UrbitCommandRun: UrbitCommand {
     
-    var pier: URL
-    var options: [UrbitCommandOption] = []
+    override init(arguments: [String]) {
+        super.init(arguments: ["run"] + arguments)
+    }
     
-    var arguments: [String] {
-        var arguments = ["run", pier.absoluteString]
-        for option in options {
-            arguments += option.arguments
-        }
-        return arguments
+}
+
+extension UrbitCommandRun {
+    
+    convenience init(pier: URL, options: [UrbitCommandOption] = []) {
+        self.init(arguments: [pier.absoluteString] + options.flatMap { $0.arguments })
     }
     
 }

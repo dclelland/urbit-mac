@@ -8,9 +8,17 @@
 
 import Foundation
 
-struct UrbitCommandNew: UrbitCommand {
+class UrbitCommandNew: UrbitCommand {
     
-    enum BootType: UrbitCommand {
+    override init(arguments: [String]) {
+        super.init(arguments: ["new"] + arguments)
+    }
+    
+}
+
+extension UrbitCommandNew {
+    
+    enum BootType {
         
         case newComet
         case newFakeship(ship: String)
@@ -29,15 +37,8 @@ struct UrbitCommandNew: UrbitCommand {
         
     }
     
-    var pier: URL? = nil
-    var bootType: BootType
-    var pill: URL? = nil
-    var lite: Bool = false
-    var arvo: URL? = nil
-    var options: [UrbitCommandOption] = []
-    
-    var arguments: [String] {
-        var arguments = ["new"]
+    convenience init(pier: URL? = nil, bootType: BootType, pill: URL? = nil, lite: Bool = false, arvo: URL? = nil, options: [UrbitCommandOption] = []) {
+        var arguments: [String] = []
         if let pier = pier {
             arguments += [pier.absoluteString]
         }
@@ -51,10 +52,7 @@ struct UrbitCommandNew: UrbitCommand {
         if let arvo = arvo {
             arguments += ["--arvo", arvo.absoluteString]
         }
-        for option in options {
-            arguments += option.arguments
-        }
-        return arguments
+        self.init(arguments: arguments + options.flatMap { $0.arguments })
     }
     
 }

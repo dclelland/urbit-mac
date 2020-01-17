@@ -8,12 +8,18 @@
 
 import Foundation
 
-struct UrbitCommandConnect: UrbitCommand {
+class UrbitCommandConnect: UrbitCommand {
     
-    var pier: URL
+    override init(arguments: [String]) {
+        super.init(arguments: ["con"] + arguments)
+    }
     
-    var arguments: [String] {
-        return ["con", pier.absoluteString]
+}
+
+extension UrbitCommandConnect {
+    
+    convenience init(pier: URL) {
+        self.init(arguments: [pier.absoluteString])
     }
     
 }
