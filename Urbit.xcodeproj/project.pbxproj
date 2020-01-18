@@ -21,6 +21,7 @@
 		6504676523D15845009F302F /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504676423D15845009F302F /* AppConstants.swift */; };
 		6504676823D1632E009F302F /* urbit-v0.10.1.pill in Resources */ = {isa = PBXBuildFile; fileRef = 6504676723D1631F009F302F /* urbit-v0.10.1.pill */; };
 		6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */; };
+		6554C71823D3D223007DDA59 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6554C71723D3D223007DDA59 /* NetworkExtension.framework */; };
 		6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18B235AE8B40044886F /* AppDelegate.swift */; };
 		6592D18E235AE8B40044886F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18D235AE8B40044886F /* ViewController.swift */; };
 		6592D190235AE8B60044886F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6592D18F235AE8B60044886F /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		6504676423D15845009F302F /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		6504676723D1631F009F302F /* urbit-v0.10.1.pill */ = {isa = PBXFileReference; lastKnownFileType = file; path = "urbit-v0.10.1.pill"; sourceTree = "<group>"; };
 		6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+Extensions.swift"; sourceTree = "<group>"; };
+		6554C71723D3D223007DDA59 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6592D188235AE8B40044886F /* Urbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592D18B235AE8B40044886F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6592D18D235AE8B40044886F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3895453CAC026B198D3FCD6 /* Pods_Urbit.framework in Frameworks */,
+				6554C71823D3D223007DDA59 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +233,7 @@
 		F7F0099AE43D2D93FBD790A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6554C71723D3D223007DDA59 /* NetworkExtension.framework */,
 				124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */,
 			);
 			name = Frameworks;

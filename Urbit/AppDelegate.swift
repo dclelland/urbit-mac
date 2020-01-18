@@ -10,12 +10,17 @@ import AppKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var command = UrbitCommandNew.fakeZod()
+    var command = UrbitCommandRun.fakeZod()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         command.process.run { result in
             print("PROCESS COMPLETED:", result)
         }
+    }
+    
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        command.process.interrupt()
+        return .terminateNow
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

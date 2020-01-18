@@ -767,16 +767,32 @@
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
+                                <connections>
+                                    <outlet property="navigationDelegate" destination="XfG-lQ-9wD" id="G2C-p4-6Ad"/>
+                                </connections>
                             </wkWebView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9HY-vH-dup">
+                                <rect key="frame" x="14" y="222" width="87" height="32"/>
+                                <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zEe-Vb-c5G">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="refresh:" target="XfG-lQ-9wD" id="ssI-cN-rfZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="4XN-Rb-4Fz" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="NcY-XJ-eL2"/>
                             <constraint firstAttribute="trailing" secondItem="4XN-Rb-4Fz" secondAttribute="trailing" id="Ny4-PN-wnQ"/>
                             <constraint firstAttribute="bottom" secondItem="4XN-Rb-4Fz" secondAttribute="bottom" id="Rmh-42-KoJ"/>
+                            <constraint firstItem="9HY-vH-dup" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="aLz-AJ-gqy"/>
                             <constraint firstItem="4XN-Rb-4Fz" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="elQ-Of-QsQ"/>
+                            <constraint firstItem="9HY-vH-dup" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="sju-uu-7qU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="refreshButton" destination="9HY-vH-dup" id="8Y9-bE-qvR"/>
                         <outlet property="webView" destination="4XN-Rb-4Fz" id="PdW-z1-c7I"/>
                     </connections>
                 </viewController>

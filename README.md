@@ -14,7 +14,6 @@ An Urbit client for macOS
 
 ### Now
 
-- Connect terminal
 - Open Landscape in browser window (http://localhost:8080)
 - See about pier location configuration (+ an 'open pier' dialog?)
 - Set up async tasks, pipe/pipe error handling and printing
