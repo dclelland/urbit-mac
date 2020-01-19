@@ -14,6 +14,11 @@ class ViewController: NSViewController {
     @IBOutlet var webView: WKWebView!
     
     @IBOutlet var refreshButton: NSButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        refresh(nil)
+    }
 
     @IBAction func refresh(_ sender: Any?) {
         webView.load(URLRequest(url: URL(string: "http://localhost:8080/")!))
@@ -23,12 +28,29 @@ class ViewController: NSViewController {
 
 extension ViewController: WKNavigationDelegate {
     
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("webView:didStartProvisionalNavigation:")
+    }
+    
+    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        print("webView:didReceiveServerRedirectForProvisionalNavigation:")
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print("webView:didFailProvisionalNavigation:", error)
+        _ = NSAlert(error: error).runModal()
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        print("webView:didCommit:")
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("webView:didFinish:", navigation!)
+        print("webView:didFinish:")
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("webView:didFail:", navigation!, error)
+        print("webView:didFail:", error)
         _ = NSAlert(error: error).runModal()
     }
     
