@@ -10,16 +10,14 @@ import AppKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var command = UrbitCommandRun.fakeZod()
+    var command: UrbitCommand? = nil
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        command.process.run { result in
-            print("PROCESS COMPLETED:", result)
-        }
+        
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
-        command.process.terminate()
+        command?.process.terminate()
     }
 
 }
@@ -43,7 +41,15 @@ extension AppDelegate {
 extension AppDelegate {
     
     @IBAction func runShip(_ sender: Any?) {
-        
+        NSOpenPanel().begin().done { url in
+            self.command = UrbitCommandRun(pier: url)
+            self.command?.process.run { result in
+                print("PROCESS COMPLETED:", result)
+            }
+            #warning("TODO: Display run output; open new window with web view on completion")
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
 }

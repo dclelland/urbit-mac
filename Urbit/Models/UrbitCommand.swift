@@ -71,23 +71,3 @@ extension UrbitCommandNew {
     }
     
 }
-
-extension UrbitCommandRun {
-    
-    static func fakeZod() -> UrbitCommandRun {
-        return UrbitCommandRun(
-            pier: URL(string: "/Users/daniel/Code/Urbit/pier/zod")!
-        )
-    }
-    
-}
-
-extension UrbitCommandConnect {
-    
-    static func fakeZod() -> UrbitCommandConnect {
-        return UrbitCommandConnect(
-            pier: URL(string: "/Users/daniel/Code/Urbit/pier/zod")!
-        )
-    }
-    
-}
