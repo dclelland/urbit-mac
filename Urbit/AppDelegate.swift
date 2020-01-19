@@ -41,12 +41,12 @@ extension AppDelegate {
 extension AppDelegate {
     
     @IBAction func runShip(_ sender: Any?) {
-        NSOpenPanel().begin().done { url in
+        NSOpenPanel(canChooseDirectories: true, canChooseFiles: false).begin().done { url in
             self.command = UrbitCommandRun(pier: url)
             self.command?.process.run { result in
                 print("PROCESS COMPLETED:", result)
             }
-            #warning("TODO: Display run output; open new window with web view on completion")
+            #warning("TODO: Display run output; catch and show error if invalid pier; open new window with web view on completion")
         }.catch { error in
             NSAlert(error: error).runModal()
         }
