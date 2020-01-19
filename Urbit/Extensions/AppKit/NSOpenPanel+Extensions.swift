@@ -10,8 +10,8 @@ import AppKit
 
 extension NSOpenPanel {
     
-    convenience init(canChooseDirectories: Bool, canChooseFiles: Bool) {
-        self.init()
+    convenience init(title: String = "", canChooseDirectories: Bool, canChooseFiles: Bool) {
+        self.init(title: title)
         self.canChooseDirectories = canChooseDirectories
         self.canChooseFiles = canChooseFiles
     }

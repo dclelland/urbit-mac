@@ -25,8 +25,10 @@ import AppKit
 extension AppDelegate {
     
     @IBAction func newShip(_ sender: Any?) {
-        #warning("TODO: Open keyfile first")
-        NSSavePanel().begin().done { url in
+        #warning("TODO: Remove '.key' from path component")
+        NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { url in
+            return NSSavePanel(title: "New Ship", fileName: url.lastPathComponent).begin()
+        }.done { url in
             print("NEW SHIP:", url)
         }.catch { error in
             NSAlert(error: error).runModal()
@@ -34,7 +36,8 @@ extension AppDelegate {
     }
     
     @IBAction func newFakeship(_ sender: Any?) {
-        NSSavePanel().begin().done { url in
+        NSSavePanel(title: "New Fakeship").begin().done { url in
+            #warning("TODO: Ship name required, e.g. 'zod'")
             print("NEW FAKESHIP:", url)
         }.catch { error in
             NSAlert(error: error).runModal()
@@ -42,7 +45,7 @@ extension AppDelegate {
     }
     
     @IBAction func newComet(_ sender: Any?) {
-        NSSavePanel().begin().done { url in
+        NSSavePanel(title: "New Comet").begin().done { url in
             print("NEW COMET:", url)
         }.catch { error in
             NSAlert(error: error).runModal()
@@ -54,7 +57,7 @@ extension AppDelegate {
 extension AppDelegate {
     
     @IBAction func runShip(_ sender: Any?) {
-        NSOpenPanel(canChooseDirectories: true, canChooseFiles: false).begin().done { url in
+        NSOpenPanel(title: "Run Ship", canChooseDirectories: true, canChooseFiles: false).begin().done { url in
             self.command = UrbitCommandRun(pier: url)
             self.command?.process.run { result in
                 print("PROCESS COMPLETED:", result)

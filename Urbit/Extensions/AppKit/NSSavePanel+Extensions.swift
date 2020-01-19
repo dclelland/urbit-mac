@@ -11,14 +11,12 @@ import PromiseKit
 
 extension NSSavePanel {
     
-    convenience init(fileName: String = "", fileType: String) {
-        self.init(fileName: fileName, fileTypes: [fileType])
-    }
-    
-    convenience init(fileName: String = "", fileTypes: [String] = []) {
+    convenience init(title: String = "", fileName: String = "", fileTypes: [String] = []) {
         self.init()
+        self.title = title
         self.nameFieldStringValue = fileName
         self.allowedFileTypes = fileTypes
+        self.showsTagField = false
     }
     
 }
