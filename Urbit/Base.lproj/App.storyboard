@@ -706,6 +706,22 @@
                                         </segmentedCell>
                                     </segmentedControl>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="37527C72-DD68-4B7B-83B2-BAB64D95379A" label="Refresh" paletteLabel="Refresh" image="NSTouchBarRefreshTemplate" id="3qQ-Gf-DE0">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="38" height="24"/>
+                                    <size key="maxSize" width="38" height="25"/>
+                                    <button key="view" verticalHuggingPriority="750" id="0mz-OA-dNZ">
+                                        <rect key="frame" x="5" y="14" width="38" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSTouchBarRefreshTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="L5y-eb-9Ff">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="refresh:" target="Oky-zY-oP4" id="Seu-JW-kBw"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="940EC740-D619-402C-9257-EE388101858F" label="Address" paletteLabel="Address" sizingBehavior="auto" id="upb-qI-PFG">
                                     <nil key="toolTip"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="FBg-Kc-o6i">
@@ -735,6 +751,7 @@
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="HOS-bO-0Sb"/>
+                                <toolbarItem reference="3qQ-Gf-DE0"/>
                                 <toolbarItem reference="y0W-5j-LYc"/>
                                 <toolbarItem reference="upb-qI-PFG"/>
                                 <toolbarItem reference="y0W-5j-LYc"/>
@@ -781,5 +798,6 @@
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSGoBackTemplate" width="9" height="12"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>
+        <image name="NSTouchBarRefreshTemplate" width="19" height="30"/>
     </resources>
 </document>
