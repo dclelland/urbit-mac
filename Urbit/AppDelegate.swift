@@ -9,11 +9,12 @@
 import AppKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
-    
+
+    #warning("TODO: Pool of commands required")
     var command: UrbitCommand? = nil
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+        #warning("TODO: Either show welcome window or restore state here")
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -26,27 +27,37 @@ extension AppDelegate {
     
     @IBAction func newShip(_ sender: Any?) {
         #warning("TODO: Remove '.key' from path component")
-        NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { url in
-            return NSSavePanel(title: "New Ship", fileName: url.lastPathComponent).begin()
-        }.done { url in
-            print("NEW SHIP:", url)
+        NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
+            return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().done { pier in
+                self.command = UrbitCommandNew(pier: pier, bootType: .newFromKeyfile(keyfile: keyfile), pill: Bundle.main.urbitPillURL)
+                self.command?.process.run { result in
+                    print("PROCESS COMPLETED:", result)
+                }
+            }
         }.catch { error in
             NSAlert(error: error).runModal()
         }
     }
     
     @IBAction func newFakeship(_ sender: Any?) {
-        NSSavePanel(title: "New Fakeship").begin().done { url in
+        NSSavePanel(title: "New Fakeship").begin().done { pier in
             #warning("TODO: Ship name required, e.g. 'zod'")
-            print("NEW FAKESHIP:", url)
+            print("NEW FAKESHIP:", pier)
+            self.command = UrbitCommandNew(pier: pier, bootType: .newFakeship(ship: "zod"), pill: Bundle.main.urbitPillURL)
+            self.command?.process.run { result in
+                print("PROCESS COMPLETED:", result)
+            }
         }.catch { error in
             NSAlert(error: error).runModal()
         }
     }
     
     @IBAction func newComet(_ sender: Any?) {
-        NSSavePanel(title: "New Comet").begin().done { url in
-            print("NEW COMET:", url)
+        NSSavePanel(title: "New Comet").begin().done { pier in
+            self.command = UrbitCommandNew(pier: pier, bootType: .newComet, pill: Bundle.main.urbitPillURL)
+            self.command?.process.run { result in
+                print("PROCESS COMPLETED:", result)
+            }
         }.catch { error in
             NSAlert(error: error).runModal()
         }
@@ -57,8 +68,8 @@ extension AppDelegate {
 extension AppDelegate {
     
     @IBAction func runShip(_ sender: Any?) {
-        NSOpenPanel(title: "Run Ship", canChooseDirectories: true, canChooseFiles: false).begin().done { url in
-            self.command = UrbitCommandRun(pier: url)
+        NSOpenPanel(title: "Run Ship", canChooseDirectories: true, canChooseFiles: false).begin().done { pier in
+            self.command = UrbitCommandRun(pier: pier)
             self.command?.process.run { result in
                 print("PROCESS COMPLETED:", result)
             }
