@@ -9,6 +9,9 @@ An Urbit client for macOS
     - Run: Should be able to run an existing planet (Existing menu items 'Open', 'Open Recent')
     - Connect: Should have a menu command to open a terminal connected to the current process
 
+- Simple welcome screen: new ship/fakeship/comet, run existing ship
+    - Don't show this at startup checkbox
+
 - Implement proper web browser + progress controls etc
     - Actually hook up back/forward buttons
     - Enable the gesture to go back

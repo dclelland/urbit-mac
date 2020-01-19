@@ -25,15 +25,28 @@ import AppKit
 extension AppDelegate {
     
     @IBAction func newShip(_ sender: Any?) {
-        
+        #warning("TODO: Open keyfile first")
+        NSSavePanel().begin().done { url in
+            print("NEW SHIP:", url)
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
     @IBAction func newFakeship(_ sender: Any?) {
-        
+        NSSavePanel().begin().done { url in
+            print("NEW FAKESHIP:", url)
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
     @IBAction func newComet(_ sender: Any?) {
-        
+        NSSavePanel().begin().done { url in
+            print("NEW COMET:", url)
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
 }
