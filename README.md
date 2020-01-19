@@ -2,6 +2,43 @@
 
 An Urbit client for macOS 
 
+## Paper notes
+
+- Menu commands:
+    - New: Should be able to create a new planet (with options for fake, comet, keyfile etc)
+    - Run: Should be able to run an existing planet
+    - Connect: Should have a menu command to open a terminal connected to the current process
+
+- Implement proper web browser + progress controls etc
+    - Note: Refresh button in window toolbar connected to first responder's `refresh:` action
+    - Design ideas: Should display ship name etc in address bar? Needs more thought, probably a custom address bar control
+
+- Authentication: as separate from Bridge - can we just pull the `+code` out of the client somehow/add to cookies(?)/modify request? Reverse engineer what the web client does
+
+- Persistence: How should this work; what should it store; what authentication (biometric?) is required?
+
+- Piping: Process should be able to print stdout/stderr
+
+- Sort out lock file issue; it's causing OODA loop problems. Does the process need to be interrupted correctly on program termination? Try the notification center
+    - Could have proper ship process pool; each ship should have at least one window; confirmation dialog on final window close (override `applicationShouldTerminate:`)
+
+- Web view needs to open only after planet has launched; Display port output while loading...?
+
+- Refactor Process handling to make run async
+
+- Ames port stuff
+ 
+- Tabbed window management
+    - One ship per window; should prevent tabs with ships from sharing same parent window
+    - Planet name in title...?
+    - Sigil in window...?
+ 
+- Bridge: Long term, but need to look into embedding bridge, or in the meantime redirecting the user to the official bridge so they can download their keyfile
+
+- Proper ames client interface
+
+- Proper clay desk mounting?
+
 ## Plan
 
 1. Embed the `urbit`, `urbit-worker` binaries and `urbit-terminfo` folder in the application. Call the binary using `NSTask` and `NSPipe`.
