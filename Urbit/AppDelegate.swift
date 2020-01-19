@@ -17,9 +17,9 @@ import AppKit
             print("PROCESS COMPLETED:", result)
         }
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
-        command.process.interrupt()
+        command.process.terminate()
     }
 
 }
