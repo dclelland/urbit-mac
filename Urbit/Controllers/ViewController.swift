@@ -17,7 +17,6 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refresh(nil)
     }
 
     @IBAction func refresh(_ sender: Any?) {

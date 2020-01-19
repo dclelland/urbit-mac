@@ -17,11 +17,6 @@ import AppKit
             print("PROCESS COMPLETED:", result)
         }
     }
-    
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
-        command.process.interrupt()
-        return .terminateNow
-    }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         command.process.interrupt()
