@@ -23,3 +23,27 @@ import AppKit
     }
 
 }
+
+extension AppDelegate {
+    
+    @IBAction func newShip(_ sender: Any?) {
+        
+    }
+    
+    @IBAction func newFakeship(_ sender: Any?) {
+        
+    }
+    
+    @IBAction func newComet(_ sender: Any?) {
+        
+    }
+    
+}
+
+extension AppDelegate {
+    
+    @IBAction func runShip(_ sender: Any?) {
+        
+    }
+    
+}

@@ -4,12 +4,14 @@ An Urbit client for macOS
 
 ## Paper notes
 
-- Menu commands:
+- Menu commands (which of these should also be in the toolbar?):
     - New: Should be able to create a new planet (with options for fake, comet, keyfile etc)
-    - Run: Should be able to run an existing planet
+    - Run: Should be able to run an existing planet (Existing menu items 'Open', 'Open Recent')
     - Connect: Should have a menu command to open a terminal connected to the current process
 
 - Implement proper web browser + progress controls etc
+    - Actually hook up back/forward buttons
+    - Enable the gesture to go back
     - Note: Refresh button in window toolbar connected to first responder's `refresh:` action
     - Design ideas: Should display ship name etc in address bar? Needs more thought, probably a custom address bar control
 
@@ -23,6 +25,8 @@ An Urbit client for macOS
     - Could have proper ship process pool; each ship should have at least one window; confirmation dialog on final window close (override `applicationShouldTerminate:`)
 
 - Web view needs to open only after planet has launched; Display port output while loading...?
+
+- Key commands don't work when the web view is focused...?
 
 - Refactor Process handling to make run async
 
@@ -67,7 +71,6 @@ An Urbit client for macOS
 
 ### Web view
 
-- Add web view
 - External links should open in Safari
 
 ### Console view
