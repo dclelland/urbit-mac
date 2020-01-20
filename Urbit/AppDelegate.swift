@@ -25,6 +25,9 @@ import AppKit
 
 extension AppDelegate {
     
+    #warning("TODO: Should run ship automatically after creating; refactor how `run` works; process should not be stored as an instance variable...?; add promise for chaining")
+    #warning("TODO: Perhaps worth looking into Combine")
+    
     @IBAction func newShip(_ sender: Any?) {
         #warning("TODO: Remove '.key' from path component")
         NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
