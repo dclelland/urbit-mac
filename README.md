@@ -1,68 +1,13 @@
 # urbit-mac
 
-An Urbit client for macOS 
+An Urbit client for macOS.
 
-## Paper notes
+## Todo
 
-- Menu commands (which of these should also be in the toolbar?):
-    - New: Should be able to create a new planet (with options for fake, comet, keyfile etc)
-    - Run: Should be able to run an existing planet (Existing menu items 'Open', 'Open Recent')
-    - Connect: Should have a menu command to open a terminal connected to the current process
-    - Successful start should open tabbed browser window
+### Readings
 
-- Simple welcome screen: new ship/fakeship/comet, run existing ship
-    - Don't show this at startup checkbox
-
-- Implement proper web browser + progress controls etc
-    - Actually hook up back/forward buttons
-    - Enable the gesture to go back
-    - Note: Refresh button in window toolbar connected to first responder's `refresh:` action
-    - Design ideas: Should display ship name etc in address bar? Needs more thought, probably a custom address bar control
-
-- Authentication: as separate from Bridge - can we just pull the `+code` out of the client somehow/add to cookies(?)/modify request? Reverse engineer what the web client does
-
-- Persistence: How should this work; what should it store; what authentication (biometric?) is required?
-
-- Piping: Process should be able to print stdout/stderr
-
-- Sort out lock file issue; it's causing OODA loop problems. Does the process need to be interrupted correctly on program termination? Try the notification center
-    - Could have proper ship process pool; each ship should have at least one window; confirmation dialog on final window close (override `applicationShouldTerminate:`)
-
-```
-If you want a workaround for this right away, you could do this start-up sequence:
-
-pier=$HOME/Code/Urbit/pier/zod
-lock="$pier/.vere.lock"
-
-if [ -e "$lock" ]
-then
-    kill $(cat "$lock") || true
-    rm -f "$lock"
-fi
-
-king run "$pier"
-```
-
-- Web view needs to open only after planet has launched; Display port output while loading...?
-
-- Key commands don't work when the web view is focused...?
-
-- Refactor Process handling to make run async
-
-- Ames port stuff
- 
-- Tabbed window management
-    - One ship per window; should prevent tabs with ships from sharing same parent window (tab delegate...?)
-    - Planet name in title...?
-    - Planet/address control; simple play and pause buttons?
-    - Show planet log button/control? (Similar to terminal button/control)
-    - Sigil in window...?
- 
-- Bridge: Long term, but need to look into embedding bridge, or in the meantime redirecting the user to the official bridge so they can download their keyfile
-
-- Proper ames client interface
-
-- Proper clay desk mounting?
+- [ ] https://urbit.org/docs/tutorials/arvo/ames/
+- [ ] https://developer.apple.com/documentation/combine
 
 ## Plan
 
