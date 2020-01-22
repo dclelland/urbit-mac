@@ -8,6 +8,7 @@ An Urbit client for macOS
     - New: Should be able to create a new planet (with options for fake, comet, keyfile etc)
     - Run: Should be able to run an existing planet (Existing menu items 'Open', 'Open Recent')
     - Connect: Should have a menu command to open a terminal connected to the current process
+    - Successful start should open tabbed browser window
 
 - Simple welcome screen: new ship/fakeship/comet, run existing ship
     - Don't show this at startup checkbox
@@ -37,7 +38,7 @@ An Urbit client for macOS
 - Ames port stuff
  
 - Tabbed window management
-    - One ship per window; should prevent tabs with ships from sharing same parent window
+    - One ship per window; should prevent tabs with ships from sharing same parent window (tab delegate...?)
     - Planet name in title...?
     - Planet/address control; simple play and pause buttons?
     - Show planet log button/control? (Similar to terminal button/control)
