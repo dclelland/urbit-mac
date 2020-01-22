@@ -39,6 +39,8 @@ An Urbit client for macOS
 - Tabbed window management
     - One ship per window; should prevent tabs with ships from sharing same parent window
     - Planet name in title...?
+    - Planet/address control; simple play and pause buttons?
+    - Show planet log button/control? (Similar to terminal button/control)
     - Sigil in window...?
  
 - Bridge: Long term, but need to look into embedding bridge, or in the meantime redirecting the user to the official bridge so they can download their keyfile
