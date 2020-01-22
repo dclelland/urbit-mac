@@ -27,7 +27,21 @@ An Urbit client for macOS
 
 - Sort out lock file issue; it's causing OODA loop problems. Does the process need to be interrupted correctly on program termination? Try the notification center
     - Could have proper ship process pool; each ship should have at least one window; confirmation dialog on final window close (override `applicationShouldTerminate:`)
-    - See email from Ben
+
+```
+If you want a workaround for this right away, you could do this start-up sequence:
+
+pier=$HOME/Code/Urbit/pier/zod
+lock="$pier/.vere.lock"
+
+if [ -e "$lock" ]
+then
+    kill $(cat "$lock") || true
+    rm -f "$lock"
+fi
+
+king run "$pier"
+```
 
 - Web view needs to open only after planet has launched; Display port output while loading...?
 
