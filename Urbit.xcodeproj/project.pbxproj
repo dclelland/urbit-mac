@@ -16,6 +16,7 @@
 		65A5C5D223D94A6000D422C6 /* NSMenu+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5C5D023D94A6000D422C6 /* NSMenu+Extensions.swift */; };
 		65A5C5D323D94A6000D422C6 /* NSMenuItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5C5D123D94A6000D422C6 /* NSMenuItem+Extensions.swift */; };
 		65A5C5D923D95E6600D422C6 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5C5D823D95E6600D422C6 /* Bundle+Extensions.swift */; };
+		65A5C5DB23D9AB0B00D422C6 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5C5DA23D9AB0B00D422C6 /* AppConstants.swift */; };
 		B3895453CAC026B198D3FCD6 /* Pods_Urbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		65A5C5D023D94A6000D422C6 /* NSMenu+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMenu+Extensions.swift"; sourceTree = "<group>"; };
 		65A5C5D123D94A6000D422C6 /* NSMenuItem+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMenuItem+Extensions.swift"; sourceTree = "<group>"; };
 		65A5C5D823D95E6600D422C6 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		65A5C5DA23D9AB0B00D422C6 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		E1BDB1AB75C1075AA9CD9D6F /* Pods-Urbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urbit.debug.xcconfig"; path = "Target Support Files/Pods-Urbit/Pods-Urbit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 			children = (
 				65A5AFC123D9340700D422C6 /* App.storyboard */,
 				6592D18B235AE8B40044886F /* AppDelegate.swift */,
+				65A5C5DA23D9AB0B00D422C6 /* AppConstants.swift */,
 				65D0607D235C68EC00B03823 /* Extensions */,
 				651A3A88235C37AA008FF70E /* Resources */,
 				651A3A89235C37BE008FF70E /* Supporting Files */,
@@ -276,6 +279,7 @@
 				6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */,
 				65A5C5D323D94A6000D422C6 /* NSMenuItem+Extensions.swift in Sources */,
 				656EE8C323D519B400B4B68F /* NSOpenPanel+Extensions.swift in Sources */,
+				65A5C5DB23D9AB0B00D422C6 /* AppConstants.swift in Sources */,
 				65A5C5D223D94A6000D422C6 /* NSMenu+Extensions.swift in Sources */,
 				65A5C5D923D95E6600D422C6 /* Bundle+Extensions.swift in Sources */,
 			);

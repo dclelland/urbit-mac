@@ -11,12 +11,6 @@ import UrbitClient
 import Defaults
 import LaunchAtLogin
 
-extension Defaults.Keys {
-    
-    static let piers = Key<[URL]>("piers", default: [])
-    
-}
-
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -103,7 +97,7 @@ extension AppDelegate {
     }
     
     @objc func openBridge(_ sender: Any?) {
-        
+        NSWorkspace.shared.open(.urbitBridgeURL)
     }
     
     @objc func close(_ sender: Any?) {
