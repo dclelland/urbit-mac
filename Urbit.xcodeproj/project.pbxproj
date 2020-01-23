@@ -13,6 +13,10 @@
 		6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592D18B235AE8B40044886F /* AppDelegate.swift */; };
 		6592D190235AE8B60044886F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6592D18F235AE8B60044886F /* Assets.xcassets */; };
 		65A5AFC223D9340700D422C6 /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A5AFC123D9340700D422C6 /* App.storyboard */; };
+		65A5C5D223D94A6000D422C6 /* NSMenu+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5C5D023D94A6000D422C6 /* NSMenu+Extensions.swift */; };
+		65A5C5D323D94A6000D422C6 /* NSMenuItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5C5D123D94A6000D422C6 /* NSMenuItem+Extensions.swift */; };
+		65A5C5D623D94B6900D422C6 /* Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5C5D523D94B6900D422C6 /* Persistent.swift */; };
+		65A5C5D923D95E6600D422C6 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5C5D823D95E6600D422C6 /* Bundle+Extensions.swift */; };
 		B3895453CAC026B198D3FCD6 /* Pods_Urbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +45,10 @@
 		6592D195235AE8B60044886F /* Urbit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Urbit.entitlements; sourceTree = "<group>"; };
 		6592D19B235AF0C20044886F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		65A5AFC123D9340700D422C6 /* App.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = App.storyboard; sourceTree = "<group>"; };
+		65A5C5D023D94A6000D422C6 /* NSMenu+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMenu+Extensions.swift"; sourceTree = "<group>"; };
+		65A5C5D123D94A6000D422C6 /* NSMenuItem+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMenuItem+Extensions.swift"; sourceTree = "<group>"; };
+		65A5C5D523D94B6900D422C6 /* Persistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistent.swift; sourceTree = "<group>"; };
+		65A5C5D823D95E6600D422C6 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E1BDB1AB75C1075AA9CD9D6F /* Pods-Urbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urbit.debug.xcconfig"; path = "Target Support Files/Pods-Urbit/Pods-Urbit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +68,8 @@
 		6517C258235E9CF500E43464 /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
+				65A5C5D023D94A6000D422C6 /* NSMenu+Extensions.swift */,
+				65A5C5D123D94A6000D422C6 /* NSMenuItem+Extensions.swift */,
 				656EE8C223D519B400B4B68F /* NSOpenPanel+Extensions.swift */,
 				6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */,
 			);
@@ -107,6 +117,7 @@
 			children = (
 				65A5AFC123D9340700D422C6 /* App.storyboard */,
 				6592D18B235AE8B40044886F /* AppDelegate.swift */,
+				65A5C5D423D94B5700D422C6 /* Models */,
 				65D0607D235C68EC00B03823 /* Extensions */,
 				651A3A88235C37AA008FF70E /* Resources */,
 				651A3A89235C37BE008FF70E /* Supporting Files */,
@@ -114,10 +125,27 @@
 			path = Urbit;
 			sourceTree = "<group>";
 		};
+		65A5C5D423D94B5700D422C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				65A5C5D523D94B6900D422C6 /* Persistent.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		65A5C5D723D95E5400D422C6 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				65A5C5D823D95E6600D422C6 /* Bundle+Extensions.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 		65D0607D235C68EC00B03823 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				6517C258235E9CF500E43464 /* AppKit */,
+				65A5C5D723D95E5400D422C6 /* Foundation */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -255,9 +283,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A5C5D623D94B6900D422C6 /* Persistent.swift in Sources */,
 				6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */,
 				6592D18C235AE8B40044886F /* AppDelegate.swift in Sources */,
+				65A5C5D323D94A6000D422C6 /* NSMenuItem+Extensions.swift in Sources */,
 				656EE8C323D519B400B4B68F /* NSOpenPanel+Extensions.swift in Sources */,
+				65A5C5D223D94A6000D422C6 /* NSMenu+Extensions.swift in Sources */,
+				65A5C5D923D95E6600D422C6 /* Bundle+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
