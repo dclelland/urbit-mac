@@ -5,4 +5,5 @@ use_frameworks!
 
 target 'Urbit' do
   pod 'PromiseKit'
+  pod 'LaunchAtLogin', '~> 2.5'
 end
