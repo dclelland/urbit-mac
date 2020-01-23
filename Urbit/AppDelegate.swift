@@ -29,8 +29,6 @@ import LaunchAtLogin
         statusItem.menu?.delegate = self
         
         refreshMenu()
-        
-        #warning("TODO: If there are no piers saved, show the welcome menu")
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -106,6 +104,10 @@ extension AppDelegate {
 //        }
     }
     
+    @objc func openBridge(_ sender: Any?) {
+        
+    }
+    
     @objc func close(_ sender: Any?) {
         
     }
@@ -135,6 +137,14 @@ extension AppDelegate {
     }
     
     @objc func unmountDesk(_ sender: Any?) {
+        
+    }
+    
+}
+
+extension AppDelegate {
+    
+    @objc func showLog(_ sender: Any?) {
         
     }
     
@@ -189,8 +199,14 @@ extension AppDelegate {
                         ),
                         .separator(),
                         NSMenuItem(
+                            title: "Show Log...",
+                            action: #selector(AppDelegate.showLog(_:)),
+                            representedObject: pier
+                        ),
+                        .separator(),
+                        NSMenuItem(
                             title: "Close",
-                            action: #selector(AppDelegate.close),
+                            action: #selector(AppDelegate.close(_:)),
                             representedObject: pier
                         )
                     ]
@@ -220,6 +236,10 @@ extension AppDelegate {
             NSMenuItem(
                 title: "Open...",
                 action: #selector(AppDelegate.open(_:))
+            ),
+            NSMenuItem(
+                title: "Open Bridge",
+                action: #selector(AppDelegate.openBridge(_:))
             ),
             .separator(),
             NSMenuItem(
