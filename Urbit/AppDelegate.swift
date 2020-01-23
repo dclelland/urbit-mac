@@ -102,7 +102,13 @@ extension AppDelegate {
     }
     
     @objc func close(_ sender: Any?) {
+        guard let pier = (sender as? NSMenuItem)?.representedObject as? URL else {
+            return
+        }
         
+        Defaults[.piers].removeAll { url in
+            return url == pier
+        }
     }
     
 }
