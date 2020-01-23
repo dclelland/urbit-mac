@@ -161,11 +161,13 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UrbitClient/UrbitClient.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UrbitClient/UrbitClient.framework"

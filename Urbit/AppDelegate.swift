@@ -8,18 +8,16 @@
 
 import AppKit
 import UrbitClient
+import Defaults
 import LaunchAtLogin
 
-@NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
-
-//    #warning("TODO: Pool of commands required")
-//    var command: UrbitCommand? = nil
+extension Defaults.Keys {
     
-    var piers = Persistent<[URL]>(key: "Piers", value: []) {
-        didSet {
-            refreshMenu()
-        }
-    }
+    static let piers = Key<[URL]>("piers", default: [])
+    
+}
+
+@NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
@@ -161,7 +159,7 @@ extension AppDelegate {
 extension AppDelegate {
     
     private func refreshMenu() {
-        self.statusItem.menu?.items = piers.value.map { pier in
+        self.statusItem.menu?.items = Defaults[.piers].map { pier in
             return NSMenuItem(
                 title: pier.path,
                 submenu: NSMenu(

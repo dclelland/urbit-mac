@@ -1,4 +1,5 @@
 PODS:
+  - Defaults (3.0.0)
   - LaunchAtLogin (2.5.0)
   - PromiseKit (6.11.0):
     - PromiseKit/CorePromise (= 6.11.0)
@@ -10,12 +11,14 @@ PODS:
   - UrbitClient (0.1.0)
 
 DEPENDENCIES:
+  - Defaults (~> 3.0)
   - LaunchAtLogin (~> 2.5)
-  - PromiseKit
+  - PromiseKit (~> 6.11)
   - UrbitClient (from `../UrbitClient`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Defaults
     - LaunchAtLogin
     - PromiseKit
 
@@ -24,10 +27,11 @@ EXTERNAL SOURCES:
     :path: "../UrbitClient"
 
 SPEC CHECKSUMS:
+  Defaults: d4b513fc893cbe3e16e252e90cbd53446b69077b
   LaunchAtLogin: 94138ff26baefa09a29f5e6679a6f4c41ca6b416
   PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   UrbitClient: 78eeba4af7ba4b0bff02ff0ee2bb8d9314cb8cd9
 
-PODFILE CHECKSUM: 6977be640d90f9c3023b344a3e586e5ac006a973
+PODFILE CHECKSUM: 869c624c6fd8e8715afaf537fa75f6468376c010
 
 COCOAPODS: 1.8.3

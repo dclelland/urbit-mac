@@ -7,7 +7,8 @@ target 'Urbit' do
   
   pod 'UrbitClient', path: '../UrbitClient'
   
-  pod 'PromiseKit'
+  pod 'Defaults', '~> 3.0'
   pod 'LaunchAtLogin', '~> 2.5'
+  pod 'PromiseKit', '~> 6.11'
   
 end
