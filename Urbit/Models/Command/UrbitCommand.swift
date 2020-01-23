@@ -59,3 +59,15 @@ extension UrbitCommand {
 //        outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
     
 }
+
+extension UrbitCommandNew {
+    
+    static func fakeZod() -> UrbitCommandNew {
+        return UrbitCommandNew(
+            pier: URL(string: "/Users/daniel/Code/Urbit/pier/zod")!,
+            bootType: .newFakeship(ship: "zod"),
+            pill: Bundle.main.urbitPillURL
+        )
+    }
+    
+}
