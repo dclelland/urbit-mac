@@ -2,9 +2,6 @@
 
 An Urbit client for macOS.
 
-## Todo
+### Dependencies
 
-### Readings
-
-- [ ] https://urbit.org/docs/tutorials/arvo/ames/
-- [ ] https://developer.apple.com/documentation/combine
+- [UrbitClient](https://github.com/dclelland/UrbitClient)
