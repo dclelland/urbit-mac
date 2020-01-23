@@ -12,8 +12,14 @@ import AppKit
 
     #warning("TODO: Pool of commands required")
     var command: UrbitCommand? = nil
+    
+    
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
+        statusItem.menu = NSMenu()
+        
         #warning("TODO: Either show welcome window or restore state here")
     }
     
