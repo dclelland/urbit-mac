@@ -1,0 +1,27 @@
+{
+  "name": "UrbitClient",
+  "version": "0.1.0",
+  "summary": "Swift client for Urbit.",
+  "homepage": "https://github.com/dclelland/UrbitClient",
+  "license": {
+    "type": "MIT"
+  },
+  "authors": {
+    "Daniel Clelland": "daniel.clelland@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/dclelland/UrbitClient.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "osx": "10.15"
+  },
+  "swift_versions": "5.0",
+  "osx": {
+    "source_files": "Sources/**/*.swift",
+    "resource_bundles": {
+      "UrbitClient": "Resources/*"
+    }
+  },
+  "swift_version": "5.0"
+}

@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import UrbitClient
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -19,6 +20,10 @@ import AppKit
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
         statusItem.menu = NSMenu()
+        
+//        print(Bundle.urbitClientBundle.resourceBundle.urbitExecutableURL)
+        
+        runShip(self)
         
         #warning("TODO: Either show welcome window or restore state here")
     }
@@ -38,7 +43,7 @@ extension AppDelegate {
         #warning("TODO: Remove '.key' from path component")
         NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
             return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().done { pier in
-                self.command = UrbitCommandNew(pier: pier, bootType: .newFromKeyfile(keyfile: keyfile), pill: Bundle.main.urbitPillURL)
+                self.command = UrbitCommandNew(pier: pier, bootType: .newFromKeyfile(keyfile: keyfile))
                 self.command?.process.run { result in
                     print("PROCESS COMPLETED:", result)
                 }
@@ -52,7 +57,7 @@ extension AppDelegate {
         NSSavePanel(title: "New Fakeship").begin().done { pier in
             #warning("TODO: Ship name required, e.g. 'zod'")
             print("NEW FAKESHIP:", pier)
-            self.command = UrbitCommandNew(pier: pier, bootType: .newFakeship(ship: "zod"), pill: Bundle.main.urbitPillURL)
+            self.command = UrbitCommandNew(pier: pier, bootType: .newFakeship(ship: "zod"))
             self.command?.process.run { result in
                 print("PROCESS COMPLETED:", result)
             }
@@ -63,7 +68,7 @@ extension AppDelegate {
     
     @IBAction func newComet(_ sender: Any?) {
         NSSavePanel(title: "New Comet").begin().done { pier in
-            self.command = UrbitCommandNew(pier: pier, bootType: .newComet, pill: Bundle.main.urbitPillURL)
+            self.command = UrbitCommandNew(pier: pier, bootType: .newComet)
             self.command?.process.run { result in
                 print("PROCESS COMPLETED:", result)
             }
