@@ -43,41 +43,41 @@ extension AppDelegate {
     //    #warning("TODO: Perhaps worth looking into Combine")
     
     @objc func newShip(_ sender: Any?) {
-//        #warning("TODO: Remove '.key' from path component")
-//        NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
-//            return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().done { pier in
-//                self.command = UrbitCommandNew(pier: pier, bootType: .newFromKeyfile(keyfile: keyfile))
-//                self.command?.process.run { result in
-//                    print("PROCESS COMPLETED:", result)
-//                }
-//            }
-//        }.catch { error in
-//            NSAlert(error: error).runModal()
-//        }
+        #warning("TODO: Remove '.key' from path component")
+        NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
+            return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().done { pier in
+                UrbitCommandNew(pier: pier, bootType: .newFromKeyfile(keyfile: keyfile)).process.run { result in
+                    Defaults[.piers].append(pier)
+                    print("PROCESS COMPLETED:", result)
+                }
+            }
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
     @objc func newFakeship(_ sender: Any?) {
-//        NSSavePanel(title: "New Fakeship").begin().done { pier in
-//            #warning("TODO: Ship name required, e.g. 'zod'")
-//            print("NEW FAKESHIP:", pier)
-//            self.command = UrbitCommandNew(pier: pier, bootType: .newFakeship(ship: "zod"))
-//            self.command?.process.run { result in
-//                print("PROCESS COMPLETED:", result)
-//            }
-//        }.catch { error in
-//            NSAlert(error: error).runModal()
-//        }
+        NSSavePanel(title: "New Fakeship").begin().done { pier in
+            #warning("TODO: Ship name required, e.g. 'zod'")
+            print("NEW FAKESHIP:", pier)
+            UrbitCommandNew(pier: pier, bootType: .newFakeship(ship: "zod")).process.run { result in
+                Defaults[.piers].append(pier)
+                print("PROCESS COMPLETED:", result)
+            }
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
     @objc func newComet(_ sender: Any?) {
-//        NSSavePanel(title: "New Comet").begin().done { pier in
-//            self.command = UrbitCommandNew(pier: pier, bootType: .newComet)
-//            self.command?.process.run { result in
-//                print("PROCESS COMPLETED:", result)
-//            }
-//        }.catch { error in
-//            NSAlert(error: error).runModal()
-//        }
+        NSSavePanel(title: "New Comet").begin().done { pier in
+            UrbitCommandNew(pier: pier, bootType: .newComet).process.run { result in
+                Defaults[.piers].append(pier)
+                print("PROCESS COMPLETED:", result)
+            }
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
 }
@@ -85,15 +85,16 @@ extension AppDelegate {
 extension AppDelegate {
     
     @objc func open(_ sender: Any?) {
-//        NSOpenPanel(title: "Run Ship", canChooseDirectories: true, canChooseFiles: false).begin().done { pier in
-//            self.command = UrbitCommandRun(pier: pier)
-//            self.command?.process.run { result in
-//                print("PROCESS COMPLETED:", result)
-//            }
-//            #warning("TODO: Display run output; catch and show error if invalid pier; open new window with web view on completion")
-//        }.catch { error in
-//            NSAlert(error: error).runModal()
-//        }
+        NSOpenPanel(title: "Run Ship", canChooseDirectories: true, canChooseFiles: false).begin().done { pier in
+            #warning("FIXME: This won't quite work")
+            UrbitCommandRun(pier: pier).process.run { result in
+                Defaults[.piers].append(pier)
+                print("PROCESS COMPLETED:", result)
+            }
+            #warning("TODO: Display run output; catch and show error if invalid pier; open new window with web view on completion")
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
     @objc func openBridge(_ sender: Any?) {
