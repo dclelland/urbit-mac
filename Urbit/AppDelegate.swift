@@ -135,10 +135,47 @@ extension AppDelegate {
         guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
             return
         }
+
+//        """Run a shell command in a new Terminal.app window."""
+//        termAddress = AE.AECreateDesc(typeApplicationBundleID, "com.apple.Terminal")
+//        theEvent = AE.AECreateAppleEvent(kAECoreSuite, kAEDoScript, termAddress,
+//                                         kAutoGenerateReturnID, kAnyTransactionID)
+//        commandDesc = AE.AECreateDesc(typeChar, command)
+//        theEvent.AEPutParamDesc(kAECommandClass, commandDesc)
+//
+//        try:
+//            theEvent.AESend(SEND_MODE, kAENormalPriority, kAEDefaultTimeout)
+//        except AE.Error, why:
+//            if why[0] != -600:  # Terminal.app not yet running
+//                raise
+//            os.system(START_TERMINAL)
+//            time.sleep(1)
+//            theEvent.AESend(SEND_MODE, kAENormalPriority, kAEDefaultTimeout)
+
+        let eventDescriptor = NSAppleEventDescriptor(
+            eventClass: AEEventClass(kAECoreSuite),
+            eventID: AEEventID(kAEDoScript),
+            targetDescriptor: NSAppleEventDescriptor(bundleIdentifier: "com.apple.Terminal"),
+            returnID: AEReturnID(kAutoGenerateReturnID),
+            transactionID: AETransactionID(kAnyTransactionID)
+        )
         
-        NSWorkspace.shared.open([pier.url], withAppBundleIdentifier: "com.apple.Terminal", options: NSWorkspace.LaunchOptions(), additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+        let commandDescriptor = NSAppleEventDescriptor(string: "ls")
         
-        #warning("Need to pass binary URL and arguments")
+        eventDescriptor.setParam(commandDescriptor, forKeyword: kAECommandClass)
+        
+        do {
+            try eventDescriptor.sendEvent(options: .defaultOptions, timeout: TimeInterval(kAEDefaultTimeout))
+        } catch let error {
+            print(error)
+        }
+        
+//        NSWorkspace.shared.open([pier.url], withAppBundleIdentifier: "com.apple.Terminal", options: NSWorkspace.LaunchOptions(), additionalEventParamDescriptor: eventDescriptor, launchIdentifiers: nil)
+        
+//        #warning("Need to pass binary URL and arguments")
+//        let command = UrbitCommandConnect(pier: pier.url)
+//        print(command.process.executableURL!.path, command.process.arguments!)
+        
     }
     
 }

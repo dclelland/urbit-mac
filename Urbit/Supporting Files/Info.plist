@@ -31,6 +31,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>AppleEvents are required in order to open the Terminal.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Protonome. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
