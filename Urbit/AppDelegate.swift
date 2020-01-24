@@ -135,12 +135,8 @@ extension AppDelegate {
         guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
             return
         }
-
-        NSWorkspace.shared.openInTerminal(pier.url, script: "say fart")
         
-        #warning("Need to pass binary URL and arguments")
-//        let command = UrbitCommandConnect(pier: pier.url)
-//        print(command.process.executableURL!.path, command.process.arguments!)
+        NSWorkspace.shared.openInTerminal(pier.url, script: UrbitCommandConnect(pier: pier.url).script!)
     }
     
 }
