@@ -7,16 +7,9 @@
 //
 
 import Foundation
-import Defaults
 
 extension URL {
     
     static let urbitBridgeURL = URL(string: "https://bridge.urbit.org/")!
-    
-}
-
-extension Defaults.Keys {
-    
-    static let piers = Key<[URL]>("piers", default: [])
     
 }
