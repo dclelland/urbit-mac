@@ -113,10 +113,6 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    @objc func openInBrowser(_ sender: Any?) {
-        
-    }
-    
     @objc func openInFinder(_ sender: Any?) {
         guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
             return
@@ -125,8 +121,24 @@ extension AppDelegate {
         NSWorkspace.shared.activateFileViewerSelecting([pier.url])
     }
     
-    @objc func openInTerminal(_ sender: Any?) {
+    @objc func openInBrowser(_ sender: Any?) {
+        guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
+            return
+        }
         
+        #warning("Get the real URL")
+        
+        NSWorkspace.shared.open(URL(string: "http://localhost:8080/")!)
+    }
+    
+    @objc func openInTerminal(_ sender: Any?) {
+        guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
+            return
+        }
+        
+        NSWorkspace.shared.open([pier.url], withAppBundleIdentifier: "com.apple.Terminal", options: NSWorkspace.LaunchOptions(), additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+        
+        #warning("Need to pass binary URL and arguments")
     }
     
 }
@@ -173,13 +185,13 @@ extension AppDelegate {
                         ),
                         .separator(),
                         NSMenuItem(
-                            title: "Open in Browser",
-                            action: #selector(AppDelegate.openInBrowser(_:)),
+                            title: "Open in Finder",
+                            action: #selector(AppDelegate.openInFinder(_:)),
                             representedObject: pier
                         ),
                         NSMenuItem(
-                            title: "Open in Finder",
-                            action: #selector(AppDelegate.openInFinder(_:)),
+                            title: "Open in Browser",
+                            action: #selector(AppDelegate.openInBrowser(_:)),
                             representedObject: pier
                         ),
                         NSMenuItem(
