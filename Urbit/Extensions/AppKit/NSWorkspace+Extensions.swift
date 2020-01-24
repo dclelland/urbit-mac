@@ -22,13 +22,13 @@ extension NSWorkspace {
         let source = """
         if application "Terminal" is running then
             tell application "Terminal"
-                activate
                 do script "cd \(url.path); \(script)"
+                activate
             end tell
         else
             tell application "Terminal"
-                activate
                 do script "cd \(url.path); \(script)" in front window
+                activate
             end tell
         end if
         """
