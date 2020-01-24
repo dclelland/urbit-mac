@@ -118,7 +118,11 @@ extension AppDelegate {
     }
     
     @objc func openInFinder(_ sender: Any?) {
+        guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
+            return
+        }
         
+        NSWorkspace.shared.activateFileViewerSelecting([pier.url])
     }
     
     @objc func openInTerminal(_ sender: Any?) {
