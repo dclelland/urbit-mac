@@ -8,6 +8,11 @@
 
 import Foundation
 
-struct Ship {
+enum Ship {
+    
+    case ready
+    case starting
+    case running(process: Process)
+    case failed(process: Process, error: Error)
     
 }
