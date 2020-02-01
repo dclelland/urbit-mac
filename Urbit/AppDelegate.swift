@@ -39,14 +39,11 @@ extension AppDelegate: NSMenuDelegate {
 
 extension AppDelegate {
     
-    //    #warning("TODO: Should run ship automatically after creating; refactor how `run` works; process should not be stored as an instance variable...?; add promise for chaining")
-    //    #warning("TODO: Perhaps worth looking into Combine")
-    
     @objc func newShip(_ sender: Any?) {
         #warning("TODO: Remove '.key' from path component")
         NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
             return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().done { url in
-                UrbitCommandNew(pier: url, bootType: .newFromKeyfile(keyfile: keyfile)).process.run { result in
+                UrbitCommandNew(pier: url, bootType: .newFromKeyfile(keyfile)).process.run { result in
                     Pier.all.append(Pier(url: url))
                     print("PROCESS COMPLETED:", result)
                 }
@@ -60,7 +57,7 @@ extension AppDelegate {
         NSSavePanel(title: "New Fakeship").begin().done { url in
             #warning("TODO: Ship name required, e.g. 'zod'")
             print("NEW FAKESHIP:", url)
-            UrbitCommandNew(pier: url, bootType: .newFakeship(ship: "zod")).process.run { result in
+            UrbitCommandNew(pier: url, bootType: .newFakeship("zod")).process.run { result in
                 Pier.all.append(Pier(url: url))
                 print("PROCESS COMPLETED:", result)
             }
@@ -84,29 +81,28 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    @objc func open(_ sender: Any?) {
-        NSOpenPanel(title: "Run Ship", canChooseDirectories: true, canChooseFiles: false).begin().done { url in
-            #warning("FIXME: This won't quite work")
-            UrbitCommandRun(pier: url).process.run { result in
-                Pier.all.append(Pier(url: url))
-                print("PROCESS COMPLETED:", result)
-            }
-            #warning("TODO: Display run output; catch and show error if invalid pier; open new window with web view on completion")
+    @objc func openPier(_ sender: Any?) {
+        NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin().done { url in
+            try Pier.open(Pier(url: url))
         }.catch { error in
             NSAlert(error: error).runModal()
         }
     }
     
-    @objc func openBridge(_ sender: Any?) {
-        NSWorkspace.shared.open(.urbitBridgeURL)
-    }
-    
-    @objc func close(_ sender: Any?) {
+    @objc func closePier(_ sender: Any?) {
         guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
             return
         }
         
-        Pier.all.removeAll(where: { $0 == pier })
+        Pier.close(pier)
+    }
+    
+}
+
+extension AppDelegate {
+    
+    @objc func openBridge(_ sender: Any?) {
+        NSWorkspace.shared.open(.urbitBridgeURL)
     }
     
 }
@@ -172,7 +168,7 @@ extension AppDelegate {
 extension AppDelegate {
     
     private func refreshMenu() {
-        self.statusItem.menu?.items = Defaults[.piers].map { pier in
+        self.statusItem.menu?.items = Defaults[.piers].sorted().map { pier in
             return NSMenuItem(
                 title: pier.name,
                 submenu: NSMenu(
@@ -217,7 +213,7 @@ extension AppDelegate {
                         .separator(),
                         NSMenuItem(
                             title: "Close",
-                            action: #selector(AppDelegate.close(_:)),
+                            action: #selector(AppDelegate.closePier(_:)),
                             representedObject: pier
                         )
                     ]
@@ -246,7 +242,7 @@ extension AppDelegate {
             ),
             NSMenuItem(
                 title: "Open...",
-                action: #selector(AppDelegate.open(_:))
+                action: #selector(AppDelegate.openPier(_:))
             ),
             NSMenuItem(
                 title: "Open Bridge",

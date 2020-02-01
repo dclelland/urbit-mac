@@ -41,6 +41,14 @@ extension Pier: Codable {
     
 }
 
+extension Pier: Comparable {
+    
+    static func < (lhs: Pier, rhs: Pier) -> Bool {
+        return lhs.name < lhs.name
+    }
+    
+}
+
 extension Pier: Equatable {
     
     static func == (lhs: Pier, rhs: Pier) -> Bool {
@@ -58,6 +66,24 @@ extension Pier {
         get {
             return Defaults[.piers]
         }
+    }
+    
+    enum OpenError: Error {
+        
+        case pierAlreadyOpen(_ pier: Pier)
+        
+    }
+    
+    static func open(_ pier: Pier) throws {
+        guard Pier.all.contains(pier) == false else {
+            throw OpenError.pierAlreadyOpen(pier)
+        }
+        
+        Pier.all.append(pier)
+    }
+    
+    static func close(_ pier: Pier) {
+        Pier.all.removeAll(where: { $0 == pier })
     }
     
 }
