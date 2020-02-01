@@ -68,9 +68,16 @@ extension Pier {
         }
     }
     
-    enum OpenError: Error {
+    enum OpenError: Error, LocalizedError {
         
         case pierAlreadyOpen(_ pier: Pier)
+        
+        var errorDescription: String? {
+            switch self {
+            case .pierAlreadyOpen(let pier):
+                return "A pier with url \"\(pier.url.path)\" is already opened."
+            }
+        }
         
     }
     

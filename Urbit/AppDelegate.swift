@@ -43,8 +43,8 @@ extension AppDelegate {
         #warning("TODO: Remove '.key' from path component")
         NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
             return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().done { url in
+                try Pier.open(Pier(url: url))
                 UrbitCommandNew(pier: url, bootType: .newFromKeyfile(keyfile)).process.run { result in
-                    Pier.all.append(Pier(url: url))
                     print("PROCESS COMPLETED:", result)
                 }
             }
@@ -57,8 +57,8 @@ extension AppDelegate {
         NSSavePanel(title: "New Fakeship").begin().done { url in
             #warning("TODO: Ship name required, e.g. 'zod'")
             print("NEW FAKESHIP:", url)
+            try Pier.open(Pier(url: url))
             UrbitCommandNew(pier: url, bootType: .newFakeship("zod")).process.run { result in
-                Pier.all.append(Pier(url: url))
                 print("PROCESS COMPLETED:", result)
             }
         }.catch { error in
@@ -68,8 +68,8 @@ extension AppDelegate {
     
     @objc func newComet(_ sender: Any?) {
         NSSavePanel(title: "New Comet").begin().done { url in
+            try Pier.open(Pier(url: url))
             UrbitCommandNew(pier: url, bootType: .newComet).process.run { result in
-                Pier.all.append(Pier(url: url))
                 print("PROCESS COMPLETED:", result)
             }
         }.catch { error in
