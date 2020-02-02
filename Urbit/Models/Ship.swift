@@ -19,6 +19,18 @@ enum Ship {
 
 extension Ship {
     
+    func start() {
+        
+    }
+    
+    func stop() {
+        
+    }
+    
+}
+
+extension Ship {
+    
     var process: Process? {
         switch self {
         case .ready:

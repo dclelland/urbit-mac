@@ -101,6 +101,26 @@ extension AppDelegate {
 
 extension AppDelegate {
     
+    @objc func startShip(_ sender: Any?) {
+        guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
+            return
+        }
+        
+        pier.ship.start()
+    }
+    
+    @objc func stopShip(_ sender: Any?) {
+        guard let pier = (sender as? NSMenuItem)?.representedObject as? Pier else {
+            return
+        }
+        
+        pier.ship.stop()
+    }
+    
+}
+
+extension AppDelegate {
+    
     @objc func openBridge(_ sender: Any?) {
         NSWorkspace.shared.open(.urbitBridgeURL)
     }
@@ -176,6 +196,17 @@ extension AppDelegate {
                         NSMenuItem(
                             title: pier.url.path,
                             enabled: false
+                        ),
+                        .separator(),
+                        NSMenuItem(
+                            title: "Start",
+                            action: #selector(AppDelegate.startShip(_:)),
+                            representedObject: pier
+                        ),
+                        NSMenuItem(
+                            title: "Stop",
+                            action: #selector(AppDelegate.stopShip(_:)),
+                            representedObject: pier
                         ),
                         .separator(),
                         NSMenuItem(
