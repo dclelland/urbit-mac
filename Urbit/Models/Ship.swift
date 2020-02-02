@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UrbitClient
+import PromiseKit
 
 enum Ship {
     
@@ -19,12 +21,14 @@ enum Ship {
 
 extension Ship {
     
-    func start() {
-        
+    func start() -> Promise<Ship> {
+        #warning("TODO: This")
+        return Promise.value(self)
     }
     
-    func stop() {
-        
+    func stop() -> Promise<Ship> {
+        #warning("TODO: This")
+        return Promise.value(self)
     }
     
 }

@@ -8,6 +8,8 @@
 
 import Foundation
 import Defaults
+import UrbitClient
+import PromiseKit
 
 extension Defaults.Keys {
     
@@ -68,6 +70,10 @@ extension Pier {
         }
     }
     
+}
+
+extension Pier {
+    
     enum OpenError: Error, LocalizedError {
         
         case pierAlreadyOpen(_ pier: Pier)
@@ -81,12 +87,31 @@ extension Pier {
         
     }
     
-    func open() throws {
-        guard Pier.all.contains(self) == false else {
-            throw OpenError.pierAlreadyOpen(self)
+    #warning("This `run` extension should be a Process extension supporting PromiseKit; then Process extension itself should switch from PromiseKit to Combine")
+    #warning("Should `new` call `open` on completion?")
+    
+    func new(bootType: UrbitCommandNew.BootType) -> Promise<Pier> {
+        return Promise { resolver in
+            UrbitCommandNew(pier: url, bootType: bootType).process.run { result in
+                switch result {
+                case .success(_):
+                    resolver.fulfill(self)
+                case .failure(let error):
+                    resolver.reject(error)
+                }
+            }
         }
-        
-        Pier.all.append(self)
+    }
+    
+    func open() -> Promise<Pier> {
+        return Promise { resolver in
+            if Pier.all.contains(self) {
+                resolver.reject(OpenError.pierAlreadyOpen(self))
+            } else {
+                Pier.all.append(self)
+                resolver.fulfill(self)
+            }
+        }
     }
     
     func close() {

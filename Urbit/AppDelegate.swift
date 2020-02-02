@@ -10,6 +10,7 @@ import AppKit
 import UrbitClient
 import Defaults
 import LaunchAtLogin
+import PromiseKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -51,12 +52,9 @@ extension NSMenu {
                                 title: "Ship...",
                                 action: {
                                     #warning("TODO: Remove '.key' from path component")
-                                    NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
-                                        return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().done { url in
-                                            try Pier(url: url).open()
-                                            UrbitCommandNew(pier: url, bootType: .newFromKeyfile(keyfile)).process.run { result in
-                                                print("PROCESS COMPLETED:", result)
-                                            }
+                                    NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile -> Promise<Pier> in
+                                        return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().then { url in
+                                            return Pier(url: url).new(bootType: .newFromKeyfile(keyfile))
                                         }
                                     }.catch { error in
                                         NSAlert(error: error).runModal()
@@ -66,13 +64,9 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
-                                    NSSavePanel(title: "New Fakeship").begin().done { url in
+                                    NSSavePanel(title: "New Fakeship").begin().then { url -> Promise<Pier> in
                                         #warning("TODO: Ship name required, e.g. 'zod'")
-                                        print("NEW FAKESHIP:", url)
-                                        try Pier(url: url).open()
-                                        UrbitCommandNew(pier: url, bootType: .newFakeship("zod")).process.run { result in
-                                            print("PROCESS COMPLETED:", result)
-                                        }
+                                        return Pier(url: url).new(bootType: .newFakeship("zod"))
                                     }.catch { error in
                                         NSAlert(error: error).runModal()
                                     }
@@ -81,11 +75,8 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
-                                    NSSavePanel(title: "New Comet").begin().done { url in
-                                        try Pier(url: url).open()
-                                        UrbitCommandNew(pier: url, bootType: .newComet).process.run { result in
-                                            print("PROCESS COMPLETED:", result)
-                                        }
+                                    NSSavePanel(title: "New Comet").begin().then { url -> Promise<Pier> in
+                                        return Pier(url: url).new(bootType: .newComet)
                                     }.catch { error in
                                         NSAlert(error: error).runModal()
                                     }
@@ -97,8 +88,8 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open...",
                     action: {
-                        NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin().done { url in
-                            try Pier(url: url).open()
+                        NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin().then { url in
+                            return Pier(url: url).open()
                         }.catch { error in
                             NSAlert(error: error).runModal()
                         }
@@ -138,13 +129,17 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Start",
                     action: {
-                        pier.ship.start()
+                        pier.ship.start().catch { error in
+                            NSAlert(error: error).runModal()
+                        }
                     }
                 ),
                 NSMenuItem(
                     title: "Stop",
                     action: {
-                        pier.ship.stop()
+                        pier.ship.stop().catch { error in
+                            NSAlert(error: error).runModal()
+                        }
                     }
                 ),
                 .separator(),
