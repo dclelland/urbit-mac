@@ -53,7 +53,7 @@ extension NSMenu {
                                     #warning("TODO: Remove '.key' from path component")
                                     NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile in
                                         return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().done { url in
-                                            try Pier.open(Pier(url: url))
+                                            try Pier(url: url).open()
                                             UrbitCommandNew(pier: url, bootType: .newFromKeyfile(keyfile)).process.run { result in
                                                 print("PROCESS COMPLETED:", result)
                                             }
@@ -69,7 +69,7 @@ extension NSMenu {
                                     NSSavePanel(title: "New Fakeship").begin().done { url in
                                         #warning("TODO: Ship name required, e.g. 'zod'")
                                         print("NEW FAKESHIP:", url)
-                                        try Pier.open(Pier(url: url))
+                                        try Pier(url: url).open()
                                         UrbitCommandNew(pier: url, bootType: .newFakeship("zod")).process.run { result in
                                             print("PROCESS COMPLETED:", result)
                                         }
@@ -82,7 +82,7 @@ extension NSMenu {
                                 title: "Comet...",
                                 action: {
                                     NSSavePanel(title: "New Comet").begin().done { url in
-                                        try Pier.open(Pier(url: url))
+                                        try Pier(url: url).open()
                                         UrbitCommandNew(pier: url, bootType: .newComet).process.run { result in
                                             print("PROCESS COMPLETED:", result)
                                         }
@@ -98,7 +98,7 @@ extension NSMenu {
                     title: "Open...",
                     action: {
                         NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin().done { url in
-                            try Pier.open(Pier(url: url))
+                            try Pier(url: url).open()
                         }.catch { error in
                             NSAlert(error: error).runModal()
                         }
@@ -185,7 +185,7 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Close",
                     action: {
-                        Pier.close(pier)
+                        pier.close()
                     }
                 )
             ]

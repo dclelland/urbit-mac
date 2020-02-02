@@ -81,16 +81,16 @@ extension Pier {
         
     }
     
-    static func open(_ pier: Pier) throws {
-        guard Pier.all.contains(pier) == false else {
-            throw OpenError.pierAlreadyOpen(pier)
+    func open() throws {
+        guard Pier.all.contains(self) == false else {
+            throw OpenError.pierAlreadyOpen(self)
         }
         
-        Pier.all.append(pier)
+        Pier.all.append(self)
     }
     
-    static func close(_ pier: Pier) {
-        Pier.all.removeAll(where: { $0 == pier })
+    func close() {
+        Pier.all.removeAll(where: { $0 == self })
     }
     
 }
