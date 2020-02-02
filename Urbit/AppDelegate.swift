@@ -64,9 +64,20 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
-                                    NSSavePanel(title: "New Fakeship").begin().then { url -> Promise<Pier> in
-                                        #warning("TODO: Ship name required, e.g. 'zod'")
-                                        return Pier(url: url).new(bootType: .newFakeship("zod"))
+                                    NSAlert.textField(
+                                        text: .init(
+                                            message: "Fakeship name"
+                                        ),
+                                        textField: .init(
+                                            placeholder: "zod"
+                                        ),
+                                        button: .init(
+                                            title: "Save"
+                                        )
+                                    ).then { name in
+                                        return NSSavePanel(title: "New Fakeship", fileName: name).begin().then { url -> Promise<Pier> in
+                                            return Pier(url: url).new(bootType: .newFakeship(name))
+                                        }
                                     }.catch { error in
                                         NSAlert(error: error).runModal()
                                     }

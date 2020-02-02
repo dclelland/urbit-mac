@@ -13,6 +13,7 @@ import PromiseKit
 enum Ship {
     
     case ready
+    case creating(process: Process)
     case starting(process: Process)
     case started(process: Process)
     case stopped(process: Process, error: Error)
