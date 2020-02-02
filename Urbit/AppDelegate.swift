@@ -52,8 +52,14 @@ extension NSMenu {
                                 title: "Ship...",
                                 action: {
                                     #warning("TODO: Remove '.key' from path component")
-                                    NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"]).begin().then { keyfile -> Promise<Pier> in
-                                        return NSSavePanel(title: "New Ship", fileName: keyfile.lastPathComponent).begin().then { url in
+                                    NSOpenPanel.open(
+                                        title: "Open Keyfile",
+                                        fileTypes: ["key"]
+                                    ).then { keyfile -> Promise<Pier> in
+                                        return NSSavePanel.save(
+                                            title: "New Ship",
+                                            fileName: keyfile.lastPathComponent
+                                        ).then { url in
                                             return Pier(url: url).new(bootType: .newFromKeyfile(keyfile))
                                         }
                                     }.catch { error in
@@ -75,7 +81,10 @@ extension NSMenu {
                                             title: "Save"
                                         )
                                     ).then { name in
-                                        return NSSavePanel(title: "New Fakeship", fileName: name).begin().then { url -> Promise<Pier> in
+                                        return NSSavePanel.save(
+                                            title: "New Fakeship",
+                                            fileName: name
+                                        ).then { url -> Promise<Pier> in
                                             return Pier(url: url).new(bootType: .newFakeship(name))
                                         }
                                     }.catch { error in
@@ -86,7 +95,9 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
-                                    NSSavePanel(title: "New Comet").begin().then { url -> Promise<Pier> in
+                                    NSSavePanel.save(
+                                        title: "New Comet"
+                                    ).then { url -> Promise<Pier> in
                                         return Pier(url: url).new(bootType: .newComet)
                                     }.catch { error in
                                         NSAlert(error: error).runModal()
@@ -99,7 +110,11 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open...",
                     action: {
-                        NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin().then { url in
+                        NSOpenPanel.open(
+                            title: "Open Pier",
+                            canChooseDirectories: true,
+                            canChooseFiles: false
+                        ).then { url in
                             return Pier(url: url).open()
                         }.catch { error in
                             NSAlert(error: error).runModal()

@@ -40,6 +40,8 @@ extension Ship {
         switch self {
         case .ready:
             return nil
+        case .creating(let process):
+            return process
         case .starting(let process):
             return process
         case .started(let process):

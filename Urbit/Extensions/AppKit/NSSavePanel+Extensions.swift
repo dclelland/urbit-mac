@@ -23,9 +23,18 @@ extension NSSavePanel {
 
 extension NSSavePanel {
     
-    func begin(ignoringOtherApps flag: Bool = true) -> Promise<URL> {
+    static func save(title: String = "", fileName: String = "", fileTypes: [String] = [], ignoringOtherApps flag: Bool = true) -> Promise<URL> {
+        NSApp.activate(ignoringOtherApps: flag)
+        let savePanel = NSSavePanel(title: title, fileName: fileName, fileTypes: fileTypes)
+        return savePanel.promise()
+    }
+    
+}
+
+extension NSSavePanel {
+    
+    func promise() -> Promise<URL> {
         return Promise { resolver in
-            NSApp.activate(ignoringOtherApps: flag)
             self.begin { response in
                 if let url = self.url, response == .OK {
                     resolver.fulfill(url)
