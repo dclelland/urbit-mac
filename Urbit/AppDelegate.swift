@@ -51,14 +51,13 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Ship...",
                                 action: {
-                                    #warning("TODO: Remove '.key' from path component")
                                     NSOpenPanel.open(
                                         title: "Open Keyfile",
                                         fileTypes: ["key"]
                                     ).then { keyfile -> Promise<Pier> in
                                         return NSSavePanel.save(
                                             title: "New Ship",
-                                            fileName: keyfile.lastPathComponent
+                                            fileName: keyfile.lastPathComponent.fileName
                                         ).then { url in
                                             return Pier(url: url).new(bootType: .newFromKeyfile(keyfile))
                                         }
