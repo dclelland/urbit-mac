@@ -19,3 +19,32 @@ extension NSMenuItem {
     }
     
 }
+
+extension NSMenuItem {
+    
+    convenience init(title: String, state: NSControl.StateValue = .off, enabled: Bool = true, action: @escaping () -> Void, keyEquivalent: String = "", representedObject: Any? = nil, submenu: NSMenu? = nil) {
+        self.init(
+            title: title,
+            state: state,
+            enabled: enabled,
+            action: #selector(performRepresentedObjectAction(_:)),
+            keyEquivalent: keyEquivalent,
+            representedObject: action,
+            submenu: submenu
+        )
+        self.target = self
+    }
+    
+}
+
+extension NSMenuItem {
+    
+    @objc func performRepresentedObjectAction(_ sender: Any?) {
+        guard let action = (sender as? NSMenuItem)?.representedObject as? () -> Void else {
+            return
+        }
+        
+        action()
+    }
+    
+}
