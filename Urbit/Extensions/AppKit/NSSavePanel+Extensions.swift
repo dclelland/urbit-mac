@@ -23,8 +23,9 @@ extension NSSavePanel {
 
 extension NSSavePanel {
     
-    func begin() -> Promise<URL> {
+    func begin(ignoringOtherApps flag: Bool = true) -> Promise<URL> {
         return Promise { resolver in
+            NSApp.activate(ignoringOtherApps: flag)
             self.begin { response in
                 if let url = self.url, response == .OK {
                     resolver.fulfill(url)
