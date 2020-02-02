@@ -11,8 +11,25 @@ import Foundation
 enum Ship {
     
     case ready
-    case starting
-    case running(process: Process)
-    case failed(process: Process, error: Error)
+    case starting(process: Process)
+    case started(process: Process)
+    case stopped(process: Process, error: Error)
+    
+}
+
+extension Ship {
+    
+    var process: Process? {
+        switch self {
+        case .ready:
+            return nil
+        case .starting(let process):
+            return process
+        case .started(let process):
+            return process
+        case .stopped(let process, _):
+            return process
+        }
+    }
     
 }
