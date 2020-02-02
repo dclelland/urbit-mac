@@ -22,20 +22,6 @@ enum Ship {
 
 extension Ship {
     
-    func start() -> Promise<Ship> {
-        #warning("TODO: This")
-        return Promise.value(self)
-    }
-    
-    func stop() -> Promise<Ship> {
-        #warning("TODO: This")
-        return Promise.value(self)
-    }
-    
-}
-
-extension Ship {
-    
     var process: Process? {
         switch self {
         case .ready:

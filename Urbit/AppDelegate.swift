@@ -17,6 +17,8 @@ import PromiseKit
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        NSUserNotificationCenter.default.delegate = self
+        
         statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
         statusItem.menu = NSMenu.piers(Defaults[.piers])
         statusItem.menu?.delegate = self
@@ -29,6 +31,14 @@ extension AppDelegate: NSMenuDelegate {
     func menuWillOpen(_ menu: NSMenu) {
         statusItem.menu = NSMenu.piers(Defaults[.piers])
         statusItem.menu?.delegate = self
+    }
+    
+}
+
+extension AppDelegate: NSUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
     }
     
 }
@@ -154,7 +164,7 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Start",
                     action: {
-                        pier.ship.start().catch { error in
+                        pier.start().catch { error in
                             NSAlert(error: error).runModal()
                         }
                     }
@@ -162,7 +172,7 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Stop",
                     action: {
-                        pier.ship.stop().catch { error in
+                        pier.stop().catch { error in
                             NSAlert(error: error).runModal()
                         }
                     }

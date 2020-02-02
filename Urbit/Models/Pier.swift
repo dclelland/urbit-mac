@@ -21,7 +21,44 @@ struct Pier {
     
     var url: URL
     
-    var ship: Ship = .ready
+    var ship: Ship = .ready {
+        didSet {
+            #warning("TODO: DRY this up")
+            switch ship {
+            case .ready:
+                NSUserNotificationCenter.default.deliver(
+                    NSUserNotification(
+                        title: "Pier \"\(name)\" is ready"
+                    )
+                )
+            case .creating:
+                NSUserNotificationCenter.default.deliver(
+                    NSUserNotification(
+                        title: "Pier \"\(name)\" is being created"
+                    )
+                )
+            case .starting:
+                NSUserNotificationCenter.default.deliver(
+                    NSUserNotification(
+                        title: "Pier \"\(name)\" is being started"
+                    )
+                )
+            case .started:
+                NSUserNotificationCenter.default.deliver(
+                    NSUserNotification(
+                        title: "Pier \"\(name)\" started"
+                    )
+                )
+            case .stopped(_, let error):
+                NSUserNotificationCenter.default.deliver(
+                    NSUserNotification(
+                        title: "Pier \"\(name)\" stopped",
+                        informativeText: error.localizedDescription
+                    )
+                )
+            }
+        }
+    }
     
 }
 
@@ -116,6 +153,20 @@ extension Pier {
     
     func close() {
         Pier.all.removeAll(where: { $0 == self })
+    }
+    
+}
+
+extension Pier {
+        
+    func start() -> Promise<Pier> {
+        #warning("TODO: This")
+        return Promise.value(self)
+    }
+    
+    func stop() -> Promise<Pier> {
+        #warning("TODO: This")
+        return Promise.value(self)
     }
     
 }
