@@ -38,3 +38,33 @@ extension Ship {
     }
     
 }
+
+extension Ship: UserNotification {
+    
+    var userNotification: NSUserNotification? {
+        switch self {
+        case .ready:
+            return NSUserNotification(
+                title: "Pier is ready"
+            )
+        case .creating:
+            return NSUserNotification(
+                title: "Pier is being created"
+            )
+        case .starting:
+            return NSUserNotification(
+                title: "Pier is being started"
+            )
+        case .started:
+            return NSUserNotification(
+                title: "Pier started"
+            )
+        case .stopped(_, let error):
+            return NSUserNotification(
+                title: "Pier stopped",
+                informativeText: error.localizedDescription
+            )
+        }
+    }
+    
+}
