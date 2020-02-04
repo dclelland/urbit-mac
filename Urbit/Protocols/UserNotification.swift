@@ -17,6 +17,10 @@ protocol UserNotification {
 extension UserNotification {
     
     func deliverUserNotification(with notificationCenter: NSUserNotificationCenter = .default) {
+        guard let userNotification = userNotification else {
+            return
+        }
+        
         notificationCenter.deliver(userNotification)
     }
     
