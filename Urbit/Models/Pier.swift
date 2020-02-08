@@ -97,7 +97,7 @@ extension Pier {
     func new(bootType: UrbitCommandNew.BootType) -> Promise<Pier> {
         let command = UrbitCommandNew(pier: url, bootType: bootType)
         
-        #warning("TODO: Tidy this up/make it unviersal/look into Combine")
+        #warning("TODO: Tidy this up/make it universal/look into Combine")
         
         command.process.standardOutputPipe = Pipe()
         command.process.standardOutputPipe?.fileHandleForReading.readabilityHandler = { handle in
