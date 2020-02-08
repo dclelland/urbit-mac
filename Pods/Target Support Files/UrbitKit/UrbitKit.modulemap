@@ -1,0 +1,6 @@
+framework module UrbitKit {
+  umbrella header "UrbitKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

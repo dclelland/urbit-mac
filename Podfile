@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'Urbit' do
   
-  pod 'UrbitClient', path: '../UrbitClient'
+  pod 'UrbitKit', path: '../UrbitKit'
   
   pod 'Defaults', '~> 3.0'
   pod 'LaunchAtLogin', '~> 2.5'

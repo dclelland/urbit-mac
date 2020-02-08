@@ -7,10 +7,10 @@
 //
 
 import AppKit
-import UrbitClient
 import Defaults
 import LaunchAtLogin
 import PromiseKit
+import UrbitKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     

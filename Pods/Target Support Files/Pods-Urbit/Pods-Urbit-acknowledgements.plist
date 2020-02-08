@@ -107,7 +107,7 @@ SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>UrbitClient</string>
+			<string>UrbitKit</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

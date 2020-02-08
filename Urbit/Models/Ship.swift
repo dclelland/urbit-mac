@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UrbitClient
 import PromiseKit
+import UrbitKit
 
 enum Ship {
     

@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double UrbitClientVersionNumber;
-FOUNDATION_EXPORT const unsigned char UrbitClientVersionString[];
+FOUNDATION_EXPORT double UrbitKitVersionNumber;
+FOUNDATION_EXPORT const unsigned char UrbitKitVersionString[];
 

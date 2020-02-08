@@ -164,13 +164,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/UrbitClient/UrbitClient.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UrbitKit/UrbitKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/UrbitClient/UrbitClient.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UrbitKit/UrbitKit.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

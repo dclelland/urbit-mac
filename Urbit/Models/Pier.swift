@@ -8,8 +8,8 @@
 
 import Foundation
 import Defaults
-import UrbitClient
 import PromiseKit
+import UrbitKit
 
 extension Defaults.Keys {
     
