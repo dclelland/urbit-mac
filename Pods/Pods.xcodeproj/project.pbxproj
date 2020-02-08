@@ -42,6 +42,8 @@
 		79C3A80951956964F8AA3AB53DDF34CF /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD270FE21ECF2A818BE2CDED75E308F /* LaunchAtLogin.swift */; };
 		8D670E33D2783B723354E3543F4A7E9C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E98C38AE9E1D07C6FD6C13B24FBC6 /* Error.swift */; };
 		90CC6D0D629B85B972D1D93450630C80 /* Thenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B97582C103F98A96DD113738DF9310 /* Thenable.swift */; };
+		94BC72D34CE6B64E2870C818C42730CD /* king-darwin-dynamic-faec933b56109c3dab05211df93bc9cb49fe28fc in Resources */ = {isa = PBXBuildFile; fileRef = 42C22FC57B06469C32520B6F5B1A6A13 /* king-darwin-dynamic-faec933b56109c3dab05211df93bc9cb49fe28fc */; };
+		9ACF302ED2CB35224AA0907DB862CBDB /* urbit-v0.10.1.pill in Resources */ = {isa = PBXBuildFile; fileRef = BCA5994744E03CC2FB6892C5AE38434D /* urbit-v0.10.1.pill */; };
 		9F17C14178AD0D3126346CE9C1503946 /* NSTask+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E0F9C11E678E7E3D21E630DAC5D9F3D /* NSTask+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A78BD98AEA53D7DAF0107863C99BFEE5 /* NSURLSession+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2C463E1B1710BC717E1481692F880F /* NSURLSession+Promise.swift */; };
 		B148A04C16104FABF8D673024EF9F878 /* LaunchAtLogin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54D2BCF503ADBF72DBCD5D667E7E91F2 /* LaunchAtLogin-dummy.m */; };
@@ -57,7 +59,6 @@
 		BFD989EF15D769F98AD4B9E535A48F74 /* UrbitCommandOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FBDAD8773E57C709760CAA55F9DC34 /* UrbitCommandOption.swift */; };
 		C07DE59E01BF647175DC2BE6CAE5A7B9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2A88BC9A09E22966FC557877A938E37 /* Cocoa.framework */; };
 		C1391C745A3DDC4F76569CB9A1AC3538 /* AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = F1646C185D924B2BEE62ED3BA5CE2DA1 /* AnyPromise.m */; };
-		C1A4FBD7B35367E4A7D5150E29F1876B /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 in Resources */ = {isa = PBXBuildFile; fileRef = 84101B9C3AF9093627670D81106FA40A /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 */; };
 		C588DB59A757C69766CDFFDCE4FBB6AF /* UrbitCommandNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683EF50B36C6E021EF78D2B47BED6C0 /* UrbitCommandNew.swift */; };
 		CACA3C083821A5BDA453B7D95C547F41 /* UrbitClient-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 23487498ACB92F33ACF816B989F87947 /* UrbitClient-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF72D49DA3CC0E7CF2D48A97F9415FE5 /* PromiseKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 907DFC08F3D6AAAD7ECC599D8E3B7C16 /* PromiseKit-dummy.m */; };
@@ -78,7 +79,6 @@
 		F63C5EB5A4527533CB5273920B3ED8F0 /* dispatch_promise.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23FD13F2CFDA3BEB1F445B01AF0ADB /* dispatch_promise.m */; };
 		F8C0B5853976AA836D6199C23944ECD8 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE5EE92A7112F73B4CF23011E0660BF /* Observation.swift */; };
 		FAFEF8E5690C53A3234536E832E168F1 /* join.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A770F5E05443F88EE31B32D778CA9 /* join.m */; };
-		FD031676AD9F3B132538093200CD0B79 /* urbit-v0.10.1.pill in Resources */ = {isa = PBXBuildFile; fileRef = 5B397638B7F35A3FBEE3BBA1FB7AB76F /* urbit-v0.10.1.pill */; };
 		FF3A850600819B6C1F9464CDE135A5E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2A88BC9A09E22966FC557877A938E37 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +149,7 @@
 		3066128CA8D9B16DE4194679D2CD940E /* Pods-Urbit-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Urbit-acknowledgements.plist"; sourceTree = "<group>"; };
 		4069EDBB674DF209916E53C56A01234C /* PromiseKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-prefix.pch"; sourceTree = "<group>"; };
 		41D77FACE0B60538B4DAC335F23571F3 /* AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AnyPromise.h; path = Sources/AnyPromise.h; sourceTree = "<group>"; };
+		42C22FC57B06469C32520B6F5B1A6A13 /* king-darwin-dynamic-faec933b56109c3dab05211df93bc9cb49fe28fc */ = {isa = PBXFileReference; includeInIndex = 1; name = "king-darwin-dynamic-faec933b56109c3dab05211df93bc9cb49fe28fc"; path = "Resources/king-darwin-dynamic-faec933b56109c3dab05211df93bc9cb49fe28fc"; sourceTree = "<group>"; };
 		42FA35454F6D1E739EC3E5E9CD50DD7C /* UrbitClient.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = UrbitClient.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		42FE53D4D841D443FF0539E1897F1AB7 /* Defaults.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Defaults.modulemap; sourceTree = "<group>"; };
 		45FBEBB642048DE13D1C2AE780BB2097 /* UrbitClient-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UrbitClient-dummy.m"; sourceTree = "<group>"; };
@@ -161,7 +162,6 @@
 		52E54FA4EEB476E0A8AE328143807CC5 /* NSNotificationCenter+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+AnyPromise.h"; path = "Extensions/Foundation/Sources/NSNotificationCenter+AnyPromise.h"; sourceTree = "<group>"; };
 		54D2BCF503ADBF72DBCD5D667E7E91F2 /* LaunchAtLogin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LaunchAtLogin-dummy.m"; sourceTree = "<group>"; };
 		55CEC0B6DFB11D34AE461306A3BE3F56 /* when.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = when.swift; path = Sources/when.swift; sourceTree = "<group>"; };
-		5B397638B7F35A3FBEE3BBA1FB7AB76F /* urbit-v0.10.1.pill */ = {isa = PBXFileReference; includeInIndex = 1; name = "urbit-v0.10.1.pill"; path = "Resources/urbit-v0.10.1.pill"; sourceTree = "<group>"; };
 		64735A976593F155F9461C58AD6FDEE2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		65D4D0158C4B7A1BEBA4BB553FDC2425 /* UrbitCommandRun.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UrbitCommandRun.swift; sourceTree = "<group>"; };
 		6731ADC819DF6858C5A6C9FF98555A8C /* NSNotificationCenter+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+AnyPromise.m"; path = "Extensions/Foundation/Sources/NSNotificationCenter+AnyPromise.m"; sourceTree = "<group>"; };
@@ -175,7 +175,6 @@
 		7DAC605201C80160D8FD748B0E1A9F74 /* Guarantee.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Guarantee.swift; path = Sources/Guarantee.swift; sourceTree = "<group>"; };
 		8147C391545228B08CB5899F913991C7 /* UrbitClient-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UrbitClient-Info.plist"; sourceTree = "<group>"; };
 		83251414A804C63231A330F13786FC28 /* hang.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = hang.m; path = Sources/hang.m; sourceTree = "<group>"; };
-		84101B9C3AF9093627670D81106FA40A /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 */ = {isa = PBXFileReference; includeInIndex = 1; name = "king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9"; path = "Resources/king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9"; sourceTree = "<group>"; };
 		84A5936CB658673A34B9F8F622102CB5 /* NSURLSession+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLSession+AnyPromise.m"; path = "Extensions/Foundation/Sources/NSURLSession+AnyPromise.m"; sourceTree = "<group>"; };
 		8765465F338F8FF4495443C87175DD03 /* race.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = race.m; path = Sources/race.m; sourceTree = "<group>"; };
 		88CA7529973952A7AAADE5720837BEAE /* Pods-Urbit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Urbit-umbrella.h"; sourceTree = "<group>"; };
@@ -194,6 +193,7 @@
 		B42A6B5E93B63BD3B80A700FBAE0838B /* Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = Sources/Promise.swift; sourceTree = "<group>"; };
 		B5783DA82EA3F9D483B183112B7E37D5 /* UrbitClient.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UrbitClient.xcconfig; sourceTree = "<group>"; };
 		B693910C90656B2A08079682D68080A5 /* Pods-Urbit-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Urbit-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BCA5994744E03CC2FB6892C5AE38434D /* urbit-v0.10.1.pill */ = {isa = PBXFileReference; includeInIndex = 1; name = "urbit-v0.10.1.pill"; path = "Resources/urbit-v0.10.1.pill"; sourceTree = "<group>"; };
 		C044944C87AD58EF9ADE831FD12B593A /* CustomStringConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomStringConvertible.swift; path = Sources/CustomStringConvertible.swift; sourceTree = "<group>"; };
 		C65CE831DA8D9BD11693DD0592DB2EFA /* LogEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogEvent.swift; path = Sources/LogEvent.swift; sourceTree = "<group>"; };
 		CDF1D37A350A312C4D1A2C082405F1DC /* LaunchAtLogin-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LaunchAtLogin-Info.plist"; sourceTree = "<group>"; };
@@ -301,6 +301,15 @@
 			name = Pod;
 			sourceTree = "<group>";
 		};
+		319E223F15AB662C3BB32051A600F70D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				42C22FC57B06469C32520B6F5B1A6A13 /* king-darwin-dynamic-faec933b56109c3dab05211df93bc9cb49fe28fc */,
+				BCA5994744E03CC2FB6892C5AE38434D /* urbit-v0.10.1.pill */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		3C61B86125F7B6575F174B86FD37BB6F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,15 +322,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/LaunchAtLogin";
-			sourceTree = "<group>";
-		};
-		3D84F7E5191A095ACA84A086B396DB75 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				84101B9C3AF9093627670D81106FA40A /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 */,
-				5B397638B7F35A3FBEE3BBA1FB7AB76F /* urbit-v0.10.1.pill */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		4127B944048C10747B1F1A180F5862C8 /* Support Files */ = {
@@ -389,7 +389,7 @@
 				5C83318B381306BEC3BC4C9FBEE4739A /* Extensions */,
 				039C68CD24853A183C4DBB72F249BECE /* Models */,
 				0F6B5FDFA4879583D93138B2AA9D8010 /* Pod */,
-				3D84F7E5191A095ACA84A086B396DB75 /* Resources */,
+				319E223F15AB662C3BB32051A600F70D /* Resources */,
 				923D1F0856FC403F3193724064E177AF /* Support Files */,
 			);
 			name = UrbitClient;
@@ -687,7 +687,7 @@
 			buildPhases = (
 				E32C7767743F9D0F095B889480FAA31B /* Sources */,
 				FB5DE07CAD801885357A12B979162C91 /* Frameworks */,
-				525186D5474B1CC5DDEAC4FAEFB8D467 /* Resources */,
+				C561B21454AA2C69EC6339168F55CE82 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -785,15 +785,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		525186D5474B1CC5DDEAC4FAEFB8D467 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1A4FBD7B35367E4A7D5150E29F1876B /* king-darwin-dynamic-06934959caa286c2778f034fca346a7b790c12e9 in Resources */,
-				FD031676AD9F3B132538093200CD0B79 /* urbit-v0.10.1.pill in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		75AEDF80BAC244B43544E556DCBD76A8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -813,6 +804,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C10AECA8C9ADFC25775B0A570192A3 /* copy-helper.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C561B21454AA2C69EC6339168F55CE82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BC72D34CE6B64E2870C818C42730CD /* king-darwin-dynamic-faec933b56109c3dab05211df93bc9cb49fe28fc in Resources */,
+				9ACF302ED2CB35224AA0907DB862CBDB /* urbit-v0.10.1.pill in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

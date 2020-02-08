@@ -95,8 +95,29 @@ extension Pier {
     #warning("Should `new` call `open` on completion?")
     
     func new(bootType: UrbitCommandNew.BootType) -> Promise<Pier> {
+        let command = UrbitCommandNew(pier: url, bootType: bootType)
+//        command.process.standardOutputPipe = Pipe()
+//        command.process.standardOutputPipe?.fileHandleForReading.readabilityHandler = { handle in
+//            guard let line = String(bytes: handle.availableData, encoding: .utf8) else {
+//                return
+//            }
+//
+//            print("<<<[STDOUT]>>>")
+//            print(line)
+//        }
+//
+//        command.process.standardErrorPipe = Pipe()
+//        command.process.standardErrorPipe?.fileHandleForReading.readabilityHandler = { handle in
+//            guard let line = String(bytes: handle.availableData, encoding: .utf8) else {
+//                return
+//            }
+//
+//            print("<<<[STDERR]>>>")
+//            print(line)
+//        }
+        
         return Promise { resolver in
-            UrbitCommandNew(pier: url, bootType: bootType).process.run { result in
+            command.process.run { result in
                 switch result {
                 case .success(_):
                     resolver.fulfill(self)
