@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 import Defaults
 import PromiseKit
 import UrbitKit
@@ -76,6 +77,10 @@ extension Pier {
     
 }
 
+#warning("TODO: Remove these")
+
+private var cancellable: AnyCancellable?
+
 extension Pier {
     
     enum OpenError: Error, LocalizedError {
@@ -91,43 +96,24 @@ extension Pier {
         
     }
     
-    #warning("This `run` extension should be a Process extension supporting PromiseKit; then Process extension itself should switch from PromiseKit to Combine")
-    #warning("Should `new` call `open` on completion?")
-    
     func new(bootType: UrbitCommandNew.BootType) -> Promise<Pier> {
-        let command = UrbitCommandNew(pier: url, bootType: bootType)
-        
-        #warning("TODO: Tidy this up/make it universal/look into Combine")
-        
-        command.process.standardOutputPipe = Pipe()
-        command.process.standardOutputPipe?.fileHandleForReading.readabilityHandler = { handle in
-            guard let line = String(bytes: handle.availableData, encoding: .utf8) else {
-                return
-            }
-
-            print("<<<[STDOUT]>>>")
-            print(line)
-        }
-
-        command.process.standardErrorPipe = Pipe()
-        command.process.standardErrorPipe?.fileHandleForReading.readabilityHandler = { handle in
-            guard let line = String(bytes: handle.availableData, encoding: .utf8) else {
-                return
-            }
-
-            print("<<<[STDERR]>>>")
-            print(line)
-        }
-        
         return Promise { resolver in
-            command.process.run { result in
-                switch result {
-                case .success(_):
-                    resolver.fulfill(self)
-                case .failure(let error):
-                    resolver.reject(error)
+            UrbitCommandNew(pier: url, bootType: bootType).process.publisher().conn
+            
+            cancellable = UrbitCommandNew(pier: url, bootType: bootType).process.publisher().sink(
+                receiveCompletion: { completion in
+                    print(completion)
+                    switch completion {
+                    case .finished:
+                        resolver.fulfill(self)
+                    case .failure(let error):
+                        resolver.reject(error)
+                    }
+                },
+                receiveValue: { message in
+                    print(message)
                 }
-            }
+            )
         }
     }
     
