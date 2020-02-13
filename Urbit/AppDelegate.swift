@@ -61,18 +61,21 @@ extension NSMenu {
                                 title: "Ship...",
                                 action: {
                                     NSWindowController(window: NSWindow(title: "New Ship", rootView: NewShipView())).showWindow(nil)
+                                    NSApp.activate(ignoringOtherApps: true)
                                 }
                             ),
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
                                     NSWindowController(window: NSWindow(title: "New Fakeship", rootView: NewFakeshipView())).showWindow(nil)
+                                    NSApp.activate(ignoringOtherApps: true)
                                 }
                             ),
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
                                     NSWindowController(window: NSWindow(title: "New Comet", rootView: NewCometView())).showWindow(nil)
+                                    NSApp.activate(ignoringOtherApps: true)
                                 }
                             )
                         ]
