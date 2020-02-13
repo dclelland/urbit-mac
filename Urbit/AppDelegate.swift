@@ -9,7 +9,6 @@
 import AppKit
 import Defaults
 import LaunchAtLogin
-import PromiseKit
 import UrbitKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
@@ -61,56 +60,19 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Ship...",
                                 action: {
-                                    NSOpenPanel.open(
-                                        title: "Open Keyfile",
-                                        fileTypes: ["key"]
-                                    ).then { keyfile -> Promise<Pier> in
-                                        return NSSavePanel.save(
-                                            title: "New Ship",
-                                            fileName: keyfile.lastPathComponent.fileName
-                                        ).then { url in
-                                            return Pier(url: url).new(bootType: .newFromKeyfile(keyfile))
-                                        }
-                                    }.catch { error in
-                                        NSAlert(error: error).runModal()
-                                    }
+                                    NSWindowController(window: NSWindow(title: "New Ship", rootView: NewShipView())).showWindow(self)
                                 }
                             ),
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
-                                    NSAlert.textField(
-                                        text: .init(
-                                            message: "Fakeship name"
-                                        ),
-                                        textField: .init(
-                                            placeholder: "zod"
-                                        ),
-                                        button: .init(
-                                            title: "Save"
-                                        )
-                                    ).then { name in
-                                        return NSSavePanel.save(
-                                            title: "New Fakeship",
-                                            fileName: name
-                                        ).then { url -> Promise<Pier> in
-                                            return Pier(url: url).new(bootType: .newFakeship(name))
-                                        }
-                                    }.catch { error in
-                                        NSAlert(error: error).runModal()
-                                    }
+                                    NSWindowController(window: NSWindow(title: "New Fakeship", rootView: NewFakeshipView())).showWindow(self)
                                 }
                             ),
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
-                                    NSSavePanel.save(
-                                        title: "New Comet"
-                                    ).then { url -> Promise<Pier> in
-                                        return Pier(url: url).new(bootType: .newComet)
-                                    }.catch { error in
-                                        NSAlert(error: error).runModal()
-                                    }
+                                    NSWindowController(window: NSWindow(title: "New Comet", rootView: NewCometView())).showWindow(self)
                                 }
                             )
                         ]
