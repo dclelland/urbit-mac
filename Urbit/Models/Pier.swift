@@ -96,10 +96,12 @@ extension Pier {
         
     }
     
+    func new(bootType: UrbitCommandNew.BootType) -> ProcessPublisher {
+        return UrbitCommandNew(pier: url, bootType: bootType).process.publisher()
+    }
+    
     func new(bootType: UrbitCommandNew.BootType) -> Promise<Pier> {
         return Promise { resolver in
-            UrbitCommandNew(pier: url, bootType: bootType).process.publisher().conn
-            
             cancellable = UrbitCommandNew(pier: url, bootType: bootType).process.publisher().sink(
                 receiveCompletion: { completion in
                     print(completion)

@@ -8,6 +8,7 @@
 
 import AppKit
 import PromiseKit
+import Combine
 
 extension NSSavePanel {
     
@@ -45,4 +46,19 @@ extension NSSavePanel {
         }
     }
     
+}
+
+extension NSSavePanel {
+
+    func publisher(ignoringOtherApps flag: Bool = true) -> AnyPublisher<URL, Never> {
+        return Future { promise in
+            NSApp.activate(ignoringOtherApps: flag)
+            self.begin { response in
+                if let url = self.url, response == .OK {
+                    promise(.success(url))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+
 }

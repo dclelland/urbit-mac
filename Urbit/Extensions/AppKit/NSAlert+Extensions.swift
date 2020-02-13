@@ -7,7 +7,19 @@
 //
 
 import AppKit
+import Combine
 import PromiseKit
+
+extension NSAlert {
+    
+    convenience init(style: NSAlert.Style = .informational, messageText: String = "", informativeText: String = "") {
+        self.init()
+        self.alertStyle = style
+        self.messageText = messageText
+        self.informativeText = informativeText
+    }
+    
+}
 
 extension NSAlert {
     
@@ -117,6 +129,27 @@ extension NSAlert {
                 throw PMKError.cancelled
             }
         }
+    }
+    
+}
+
+extension NSAlert {
+    
+    func publisher(forButtonWithTitle buttonTitle: String) -> AnyPublisher<Void, Never> {
+        self.addButton(withTitle: buttonTitle)
+        self.addButton(withTitle: "Cancel")
+        return Future { promise in
+            if self.runModal() == .alertFirstButtonReturn {
+                promise(.success(()))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func publisher(forButtonWithTitle buttonTitle: String, withTextField textField: NSTextField) -> AnyPublisher<String, Never> {
+        self.textField = textField
+        return publisher(forButtonWithTitle: buttonTitle).compactMap { _ in
+            return self.textField?.stringValue
+        }.eraseToAnyPublisher()
     }
     
 }
