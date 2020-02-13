@@ -60,21 +60,27 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Ship...",
                                 action: {
-                                    NSWindowController(window: NSWindow(title: "New Ship", rootView: NewShipView())).showWindow(nil)
+                                    let windowController = NSWindowController(window: NSWindow(title: "New Ship", rootView: NewShipView()))
+                                    windowController.window?.center()
+                                    windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)
                                 }
                             ),
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
-                                    NSWindowController(window: NSWindow(title: "New Fakeship", rootView: NewFakeshipView())).showWindow(nil)
+                                    let windowController = NSWindowController(window: NSWindow(title: "New Fakeship", rootView: NewFakeshipView()))
+                                    windowController.window?.center()
+                                    windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)
                                 }
                             ),
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
-                                    NSWindowController(window: NSWindow(title: "New Comet", rootView: NewCometView())).showWindow(nil)
+                                    let windowController = NSWindowController(window: NSWindow(title: "New Comet", rootView: NewCometView()))
+                                    windowController.window?.center()
+                                    windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)
                                 }
                             )
