@@ -60,19 +60,19 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Ship...",
                                 action: {
-                                    NSWindowController(window: NSWindow(title: "New Ship", rootView: NewShipView())).showWindow(self)
+                                    NSWindowController(window: NSWindow(title: "New Ship", rootView: NewShipView())).showWindow(nil)
                                 }
                             ),
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
-                                    NSWindowController(window: NSWindow(title: "New Fakeship", rootView: NewFakeshipView())).showWindow(self)
+                                    NSWindowController(window: NSWindow(title: "New Fakeship", rootView: NewFakeshipView())).showWindow(nil)
                                 }
                             ),
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
-                                    NSWindowController(window: NSWindow(title: "New Comet", rootView: NewCometView())).showWindow(self)
+                                    NSWindowController(window: NSWindow(title: "New Comet", rootView: NewCometView())).showWindow(nil)
                                 }
                             )
                         ]
