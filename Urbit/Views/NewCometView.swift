@@ -10,9 +10,27 @@ import SwiftUI
 
 struct NewCometView: View {
     
+    @State private var url: URL = URL(fileURLWithPath: "/~", isDirectory: true)
+    
     var body: some View {
-        Text("New Comet View")
-            .frame(width: 400.0, height: 200.0)
+        VStack(alignment: .trailing) {
+            HStack(alignment: .firstTextBaseline) {
+                Text("Directory:").frame(minWidth: 80.0, alignment: .trailing)
+                TextField("/~", value: $url, formatter: URLFormatter())
+            }
+            Divider()
+            HStack {
+                Button(
+                    action: {
+                        // Create comet
+                    }
+                ) {
+                    Text("Create Comet")
+                }
+            }
+        }
+        .padding()
+        .frame(width: 400.0)
     }
     
 //    NSSavePanel.save(

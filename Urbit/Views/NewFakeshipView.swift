@@ -8,34 +8,24 @@
 
 import SwiftUI
 
-class URLFormatter: Formatter {
-    
-    let directory: Bool = false
-    
-    override func string(for object: Any?) -> String? {
-        return (object as? URL)?.path
-    }
-    
-    override func getObjectValue(_ object: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
-        object?.pointee = URL(fileURLWithPath: string, isDirectory: directory) as AnyObject
-        return true
-    }
-    
-}
-
 struct NewFakeshipView: View {
     
     @State private var name: String = "zod"
     
-    @State private var url: URL = URL(fileURLWithPath: "~", isDirectory: true)
+    @State private var url: URL = URL(fileURLWithPath: "/~", isDirectory: true)
     
     var body: some View {
-        Form {
-            Section {
-                TextField("Name", text: $name)
-                TextField("URL", value: $url, formatter: URLFormatter())
+        VStack(alignment: .trailing) {
+            HStack(alignment: .firstTextBaseline) {
+                Text("Name:").frame(minWidth: 80.0, alignment: .trailing)
+                TextField("zod", text: $name)
             }
-            Section {
+            HStack(alignment: .firstTextBaseline) {
+                Text("Directory:").frame(minWidth: 80.0, alignment: .trailing)
+                TextField("/~", value: $url, formatter: URLFormatter())
+            }
+            Divider()
+            HStack {
                 Button(
                     action: {
                         // Create fakeship
@@ -43,7 +33,6 @@ struct NewFakeshipView: View {
                 ) {
                     Text("Create Fakeship")
                 }
-                .frame(alignment: .leading)
             }
         }
         .padding()
