@@ -10,7 +10,12 @@ import Foundation
 
 class URLFormatter: Formatter {
     
-    let directory: Bool = false
+    var directory: Bool = false
+    
+    convenience init(directory: Bool = false) {
+        self.init()
+        self.directory = directory
+    }
     
     override func string(for object: Any?) -> String? {
         return (object as? URL)?.path

@@ -22,7 +22,7 @@ struct NewFakeshipView: View {
             }
             HStack(alignment: .firstTextBaseline) {
                 Text("Directory:").frame(minWidth: 80.0, alignment: .trailing)
-                TextField("/~", value: $url, formatter: URLFormatter())
+                TextField("/~", value: $url, formatter: URLFormatter(directory: true))
             }
             Divider()
             HStack {
