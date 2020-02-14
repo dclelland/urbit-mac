@@ -28,7 +28,7 @@ struct NewCometView: View {
 struct NewCometView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NewShipView()
+        NewCometView()
     }
     
 }

@@ -8,11 +8,46 @@
 
 import SwiftUI
 
+class URLFormatter: Formatter {
+    
+    let directory: Bool = false
+    
+    override func string(for object: Any?) -> String? {
+        return (object as? URL)?.path
+    }
+    
+    override func getObjectValue(_ object: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
+        object?.pointee = URL(fileURLWithPath: string, isDirectory: directory) as AnyObject
+        return true
+    }
+    
+}
+
 struct NewFakeshipView: View {
     
+    @State private var name: String = "zod"
+    
+    @State private var url: URL = URL(fileURLWithPath: "~", isDirectory: true)
+    
     var body: some View {
-        Text("New Fakeship View")
-            .frame(width: 400.0, height: 200.0)
+        Form {
+            Section {
+                TextField("Name", text: $name)
+                TextField("URL", value: $url, formatter: URLFormatter())
+            }
+            Section {
+                Button(
+                    action: {
+                        // Create fakeship
+                    }
+                ) {
+                    Text("Create Fakeship")
+                }
+                .frame(alignment: .leading)
+            }
+        }
+        .padding()
+        .frame(width: 400.0)
     }
     
 //    NSAlert.textField(
@@ -41,7 +76,7 @@ struct NewFakeshipView: View {
 struct NewFakeshipView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NewShipView()
+        NewFakeshipView()
     }
     
 }
