@@ -17,11 +17,13 @@ struct NewFakeshipView: View {
     var body: some View {
         VStack(alignment: .trailing) {
             HStack(alignment: .firstTextBaseline) {
-                Text("Name:").frame(minWidth: 80.0, alignment: .trailing)
+                Text("Name:")
+                    .frame(minWidth: 80.0, alignment: .trailing)
                 TextField("zod", text: $name)
             }
             HStack(alignment: .firstTextBaseline) {
-                Text("Directory:").frame(minWidth: 80.0, alignment: .trailing)
+                Text("Directory:")
+                    .frame(minWidth: 80.0, alignment: .trailing)
                 TextField("/~", value: $url, formatter: URLFormatter(directory: true))
             }
             Divider()

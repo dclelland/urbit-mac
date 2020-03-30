@@ -17,11 +17,13 @@ struct NewShipView: View {
     var body: some View {
         VStack(alignment: .trailing) {
             HStack(alignment: .firstTextBaseline) {
-                Text("Keyfile:").frame(minWidth: 80.0, alignment: .trailing)
+                Text("Keyfile:")
+                    .frame(minWidth: 80.0, alignment: .trailing)
                 TextField("/~", value: $keyfileURL, formatter: URLFormatter())
             }
             HStack(alignment: .firstTextBaseline) {
-                Text("Directory:").frame(minWidth: 80.0, alignment: .trailing)
+                Text("Directory:")
+                    .frame(minWidth: 80.0, alignment: .trailing)
                 TextField("/~", value: $url, formatter: URLFormatter(directory: true))
             }
             Divider()
