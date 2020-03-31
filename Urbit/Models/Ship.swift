@@ -20,28 +20,28 @@ extension Ship {
     
 }
 
-struct Ship {
+class Ship {
     
     enum State {
         
         case ready
-        case creating(process: Process)
-        case starting(process: Process)
-        case started(process: Process)
-        case stopped(process: Process, error: Error)
+        case creating(publisher: AnyCancellable)
+        case starting(publisher: AnyCancellable)
+        case started(publisher: AnyCancellable)
+        case stopped(error: Error)
         
-        var process: Process? {
+        var publisher: AnyCancellable? {
             switch self {
             case .ready:
                 return nil
-            case .creating(let process):
-                return process
-            case .starting(let process):
-                return process
-            case .started(let process):
-                return process
-            case .stopped(let process, _):
-                return process
+            case .creating(let publisher):
+                return publisher
+            case .starting(let publisher):
+                return publisher
+            case .started(let publisher):
+                return publisher
+            case .stopped:
+                return nil
             }
         }
         
@@ -53,6 +53,113 @@ struct Ship {
         didSet {
             deliverUserNotification()
         }
+    }
+    
+    init(pier: Pier) {
+        self.pier = pier
+    }
+    
+    convenience init(url: URL) {
+        self.init(pier: Pier(url: url))
+    }
+    
+}
+
+extension Ship {
+    
+    enum OpenError: Error, LocalizedError {
+        
+        case shipAlreadyOpen(_ ship: Ship)
+        
+        var errorDescription: String? {
+            switch self {
+            case .shipAlreadyOpen(let ship):
+                return "A ship with url \"\(ship.url.abbreviatedPath)\" is already opened."
+            }
+        }
+        
+    }
+    
+    func new(bootType: UrbitCommandNew.BootType) throws {
+        guard Ship.all.contains(self) == false else {
+            throw OpenError.shipAlreadyOpen(self)
+        }
+        
+        state = .starting(
+            publisher: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        self.state = .ready
+                    case .failure(let error):
+                        self.state = .stopped(error: error)
+                    }
+                },
+                receiveValue: { message in
+                    switch message {
+                    case .standardOutput(let message):
+                        print(message, terminator: "")
+                    case .standardError(let message):
+                        print(message, terminator: "")
+                    }
+                }
+            )
+        )
+    }
+    
+    func open() throws {
+        guard Ship.all.contains(self) == false else {
+            throw OpenError.shipAlreadyOpen(self)
+        }
+        
+        Ship.all.append(self)
+    }
+    
+    func close() {
+        Ship.all.removeAll(where: { $0 == self })
+    }
+    
+}
+
+extension Ship {
+        
+    func start() {
+        state = .starting(
+            publisher: UrbitCommandRun(pier: url).process.publisher().sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        self.state = .ready
+                    case .failure(let error):
+                        self.state = .stopped(error: error)
+                    }
+                },
+                receiveValue: { message in
+                    switch message {
+                    case .standardOutput(let message):
+                        print(message, terminator: "")
+                    case .standardError(let message):
+                        print(message, terminator: "")
+                    }
+                }
+            )
+        )
+    }
+    
+    func stop() {
+        state.publisher?.cancel()
+    }
+    
+}
+
+extension Ship {
+    
+    var url: URL {
+        return pier.url
+    }
+    
+    var name: String {
+        return pier.url.lastPathComponent
     }
     
 }
@@ -68,7 +175,7 @@ extension Ship: Comparable {
 extension Ship: Equatable {
     
     static func == (lhs: Ship, rhs: Ship) -> Bool {
-        return lhs.pier.url == rhs.pier.url
+        return lhs.url == rhs.url
     }
     
 }
@@ -79,117 +186,26 @@ extension Ship: UserNotification {
         switch state {
         case .ready:
             return NSUserNotification(
-                title: "Ship is ready: \(pier.url.abbreviatedPath)"
+                title: "Ship is ready: \(url.abbreviatedPath)"
             )
         case .creating:
             return NSUserNotification(
-                title: "Ship is being created: \(pier.url.abbreviatedPath)"
+                title: "Ship is being created: \(url.abbreviatedPath)"
             )
         case .starting:
             return NSUserNotification(
-                title: "Ship is being started: \(pier.url.abbreviatedPath)"
+                title: "Ship is being started: \(url.abbreviatedPath)"
             )
         case .started:
             return NSUserNotification(
-                title: "Ship started: \(pier.url.abbreviatedPath)"
+                title: "Ship started: \(url.abbreviatedPath)"
             )
-        case .stopped(_, let error):
+        case .stopped(let error):
             return NSUserNotification(
-                title: "Ship stopped: \(pier.url.abbreviatedPath)",
+                title: "Ship stopped: \(url.abbreviatedPath)",
                 informativeText: error.localizedDescription
             )
         }
-    }
-    
-}
-
-extension Ship {
-    
-    var name: String {
-        return pier.url.lastPathComponent
-    }
-    
-}
-
-#warning("TODO: Remove these")
-
-private var cancellable: AnyCancellable?
-
-extension Ship {
-    
-    enum OpenError: Error, LocalizedError {
-        
-        case shipAlreadyOpen(_ ship: Ship)
-        
-        var errorDescription: String? {
-            switch self {
-            case .shipAlreadyOpen(let ship):
-                return "A ship with url \"\(ship.pier.url.abbreviatedPath)\" is already opened."
-            }
-        }
-        
-    }
-    
-    func new(bootType: UrbitCommandNew.BootType) {
-        cancellable = UrbitCommandNew(pier: pier.url, bootType: bootType).process.publisher().sink(
-            receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    print("FINISHED")
-                case .failure(let error):
-                    print("FAILURE", error)
-                }
-            },
-            receiveValue: { message in
-                switch message {
-                case .standardOutput(let message):
-                    print(message, terminator: "")
-                case .standardError(let message):
-                    print(message, terminator: "")
-                }
-            }
-        )
-    }
-    
-    func open() throws {
-        if Ship.all.contains(self) {
-            throw OpenError.shipAlreadyOpen(self)
-        } else {
-            Ship.all.append(self)
-        }
-    }
-    
-    func close() {
-        Ship.all.removeAll(where: { $0 == self })
-    }
-    
-}
-
-extension Ship {
-        
-    func start() {
-        cancellable = UrbitCommandRun(pier: pier.url).process.publisher().sink(
-            receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    print("FINISHED")
-                case .failure(let error):
-                    print("FAILURE", error)
-                }
-            },
-            receiveValue: { message in
-                switch message {
-                case .standardOutput(let message):
-                    print(message, terminator: "")
-                case .standardError(let message):
-                    print(message, terminator: "")
-                }
-            }
-        )
-    }
-    
-    func stop() {
-        cancellable?.cancel()
     }
     
 }

@@ -65,7 +65,11 @@ extension NSMenu {
                                         rootView: NewShipView(
                                             create: { [weak window] url, keyfileURL in
                                                 window?.close()
-                                                Ship(pier: Pier(url: url)).new(bootType: .newFromKeyfile(keyfileURL))
+                                                do {
+                                                    try Ship(url: url).new(bootType: .newFromKeyfile(keyfileURL))
+                                                } catch let error {
+                                                    NSAlert(error: error).runModal()
+                                                }
                                             }
                                         )
                                     )
@@ -83,7 +87,11 @@ extension NSMenu {
                                         rootView: NewFakeshipView(
                                             create: { [weak window] name, url in
                                                 window?.close()
-                                                Ship(pier: Pier(url: url)).new(bootType: .newFakeship(name))
+                                                do {
+                                                    try Ship(url: url).new(bootType: .newFakeship(name))
+                                                } catch let error {
+                                                    NSAlert(error: error).runModal()
+                                                }
                                             }
                                         )
                                     )
@@ -101,7 +109,11 @@ extension NSMenu {
                                         rootView: NewCometView(
                                             create: { [weak window] url in
                                                 window?.close()
-                                                Ship(pier: Pier(url: url)).new(bootType: .newComet)
+                                                do {
+                                                    try Ship(url: url).new(bootType: .newComet)
+                                                } catch let error {
+                                                    NSAlert(error: error).runModal()
+                                                }
                                             }
                                         )
                                     )
@@ -119,7 +131,7 @@ extension NSMenu {
                     action: {
                         NSOpenPanel(title: "Open Ship", canChooseDirectories: true, canChooseFiles: false).begin { (url: URL) in
                             do {
-                                try Ship(pier: Pier(url: url)).open()
+                                try Ship(url: url).open()
                             } catch let error {
                                 NSAlert(error: error).runModal()
                             }
@@ -153,7 +165,7 @@ extension NSMenu {
         return NSMenu(
             items: [
                 NSMenuItem(
-                    title: ship.pier.url.abbreviatedPath,
+                    title: ship.url.abbreviatedPath,
                     enabled: false
                 ),
                 .separator(),
@@ -173,7 +185,7 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open in Finder",
                     action: {
-                        NSWorkspace.shared.openInFinder(ship.pier.url)
+                        NSWorkspace.shared.openInFinder(ship.url)
                     }
                 ),
                 NSMenuItem(
@@ -186,7 +198,7 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open in Terminal",
                     action: {
-                        NSWorkspace.shared.openInTerminal(ship.pier.url, script: UrbitCommandConnect(pier: ship.pier.url).script!)
+                        NSWorkspace.shared.openInTerminal(ship.url, script: UrbitCommandConnect(pier: ship.url).script!)
                     }
                 ),
                 .separator(),
