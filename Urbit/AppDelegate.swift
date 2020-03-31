@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import SwiftUI
 import Defaults
 import LaunchAtLogin
 import UrbitKit
@@ -60,18 +61,18 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Ship...",
                                 action: {
-                                    let windowController = NSWindowController()
-                                    windowController.window = NSWindow(
-                                        title: "New Ship",
+                                    let window = NSWindow(title: "New Ship")
+                                    window.contentView = NSHostingView(
                                         rootView: NewShipView(
-                                            create: { [weak windowController] url, keyfileURL in
-                                                windowController?.dismissController(nil)
-//                                                Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL)).catch { error in
-//                                                    NSAlert(error: error).runModal()
-//                                                }
+                                            create: { [weak window] url, keyfileURL in
+                                                window?.close()
+                                                Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL)).catch { error in
+                                                    NSAlert(error: error).runModal()
+                                                }
                                             }
                                         )
                                     )
+                                    let windowController = NSWindowController(window: window)
                                     windowController.window?.center()
                                     windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)
@@ -80,18 +81,18 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
-                                    let windowController = NSWindowController()
-                                    windowController.window = NSWindow(
-                                        title: "New Fakeship",
+                                    let window = NSWindow(title: "New Fakeship")
+                                    window.contentView = NSHostingView(
                                         rootView: NewFakeshipView(
-                                            create: { [weak windowController] name, url in
-                                                windowController?.dismissController(nil)
-//                                                Pier(url: url).new(bootType: .newFakeship(name)).catch { error in
-//                                                    NSAlert(error: error).runModal()
-//                                                }
+                                            create: { [weak window] name, url in
+                                                window?.close()
+                                                Pier(url: url).new(bootType: .newFakeship(name)).catch { error in
+                                                    NSAlert(error: error).runModal()
+                                                }
                                             }
                                         )
                                     )
+                                    let windowController = NSWindowController(window: window)
                                     windowController.window?.center()
                                     windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)
@@ -100,18 +101,18 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
-                                    let windowController = NSWindowController()
-                                    windowController.window = NSWindow(
-                                        title: "New Comet",
+                                    let window = NSWindow(title: "New Comet")
+                                    window.contentView = NSHostingView(
                                         rootView: NewCometView(
-                                            create: { [weak windowController] url in
-                                                windowController?.dismissController(nil)
-//                                                Pier(url: url).new(bootType: .newComet).catch { error in
-//                                                    NSAlert(error: error).runModal()
-//                                                }
+                                            create: { [weak window] url in
+                                                window?.close()
+                                                Pier(url: url).new(bootType: .newComet).catch { error in
+                                                    NSAlert(error: error).runModal()
+                                                }
                                             }
                                         )
                                     )
+                                    let windowController = NSWindowController(window: window)
                                     windowController.window?.center()
                                     windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)
