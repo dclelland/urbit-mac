@@ -8,7 +8,6 @@
 
 import AppKit
 import SwiftUI
-import Defaults
 import LaunchAtLogin
 import UrbitKit
 
@@ -20,7 +19,7 @@ import UrbitKit
         NSUserNotificationCenter.default.delegate = self
         
         statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
-        statusItem.menu = NSMenu.piers(Pier.all)
+        statusItem.menu = NSMenu.ships(Ship.all)
         statusItem.menu?.delegate = self
     }
 
@@ -29,7 +28,7 @@ import UrbitKit
 extension AppDelegate: NSMenuDelegate {
     
     func menuWillOpen(_ menu: NSMenu) {
-        statusItem.menu = NSMenu.piers(Pier.all)
+        statusItem.menu = NSMenu.ships(Ship.all)
         statusItem.menu?.delegate = self
     }
     
@@ -45,12 +44,12 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
 
 extension NSMenu {
     
-    static func piers(_ piers: [Pier]) -> NSMenu {
+    static func ships(_ ships: [Ship]) -> NSMenu {
         return NSMenu(
-            items: piers.sorted().map { pier in
+            items: ships.sorted().map { ship in
                 return NSMenuItem(
-                    title: pier.name,
-                    submenu: NSMenu.pier(pier)
+                    title: ship.name,
+                    submenu: NSMenu.ship(ship)
                 )
             } + [
                 .separator(),
@@ -66,7 +65,7 @@ extension NSMenu {
                                         rootView: NewShipView(
                                             create: { [weak window] url, keyfileURL in
                                                 window?.close()
-                                                Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL))
+                                                Ship(pier: Pier(url: url)).new(bootType: .newFromKeyfile(keyfileURL))
                                             }
                                         )
                                     )
@@ -84,7 +83,7 @@ extension NSMenu {
                                         rootView: NewFakeshipView(
                                             create: { [weak window] name, url in
                                                 window?.close()
-                                                Pier(url: url).new(bootType: .newFakeship(name))
+                                                Ship(pier: Pier(url: url)).new(bootType: .newFakeship(name))
                                             }
                                         )
                                     )
@@ -102,7 +101,7 @@ extension NSMenu {
                                         rootView: NewCometView(
                                             create: { [weak window] url in
                                                 window?.close()
-                                                Pier(url: url).new(bootType: .newComet)
+                                                Ship(pier: Pier(url: url)).new(bootType: .newComet)
                                             }
                                         )
                                     )
@@ -118,9 +117,9 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open...",
                     action: {
-                        NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin { (url: URL) in
+                        NSOpenPanel(title: "Open Ship", canChooseDirectories: true, canChooseFiles: false).begin { (url: URL) in
                             do {
-                                try Pier(url: url).open()
+                                try Ship(pier: Pier(url: url)).open()
                             } catch let error {
                                 NSAlert(error: error).runModal()
                             }
@@ -150,31 +149,31 @@ extension NSMenu {
         )
     }
     
-    static func pier(_ pier: Pier) -> NSMenu {
+    static func ship(_ ship: Ship) -> NSMenu {
         return NSMenu(
             items: [
                 NSMenuItem(
-                    title: pier.url.abbreviatedPath,
+                    title: ship.pier.url.abbreviatedPath,
                     enabled: false
                 ),
                 .separator(),
                 NSMenuItem(
                     title: "Start",
                     action: {
-                        pier.start()
+                        ship.start()
                     }
                 ),
                 NSMenuItem(
                     title: "Stop",
                     action: {
-                        pier.stop()
+                        ship.stop()
                     }
                 ),
                 .separator(),
                 NSMenuItem(
                     title: "Open in Finder",
                     action: {
-                        NSWorkspace.shared.openInFinder(pier.url)
+                        NSWorkspace.shared.openInFinder(ship.pier.url)
                     }
                 ),
                 NSMenuItem(
@@ -187,7 +186,7 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open in Terminal",
                     action: {
-                        NSWorkspace.shared.openInTerminal(pier.url, script: UrbitCommandConnect(pier: pier.url).script!)
+                        NSWorkspace.shared.openInTerminal(ship.pier.url, script: UrbitCommandConnect(pier: ship.pier.url).script!)
                     }
                 ),
                 .separator(),
@@ -208,7 +207,7 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Close",
                     action: {
-                        pier.close()
+                        ship.close()
                     }
                 )
             ]

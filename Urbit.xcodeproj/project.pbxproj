@@ -191,8 +191,8 @@
 		65A5C5DC23DA412F00D422C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				65A5C5DD23DA413E00D422C6 /* Pier.swift */,
 				65A5C5DF23DA414600D422C6 /* Ship.swift */,
+				65A5C5DD23DA413E00D422C6 /* Pier.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
