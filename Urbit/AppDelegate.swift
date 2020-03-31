@@ -128,7 +128,7 @@ extension NSMenu {
         return NSMenu(
             items: [
                 NSMenuItem(
-                    title: pier.url.path,
+                    title: pier.url.abbreviatedPath,
                     enabled: false
                 ),
                 .separator(),

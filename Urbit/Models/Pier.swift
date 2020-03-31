@@ -90,7 +90,7 @@ extension Pier {
         var errorDescription: String? {
             switch self {
             case .pierAlreadyOpen(let pier):
-                return "A pier with url \"\(pier.url.path)\" is already opened."
+                return "A pier with url \"\(pier.url.abbreviatedPath)\" is already opened."
             }
         }
         
