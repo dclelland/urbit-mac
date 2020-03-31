@@ -8,7 +8,6 @@
 
 import AppKit
 import Combine
-import PromiseKit
 
 extension NSAlert {
     
@@ -92,64 +91,6 @@ extension NSAlert {
         set {
             accessoryView = newValue
         }
-    }
-    
-}
-
-extension NSAlert {
-    
-    static func action(style: NSAlert.Style = .informational, text: Text, button: Button) -> Promise<Void> {
-        let alert = NSAlert(text: text, button: button)
-        return alert.promise()
-    }
-    
-    static func textField(style: NSAlert.Style = .informational, text: Text, textField: TextField, button: Button) -> Promise<String> {
-        let alert = NSAlert(text: text, textField: textField, button: button)
-        return alert.promise().compactMap {
-            return alert.textField?.stringValue
-        }
-    }
-    
-}
-
-extension NSAlert {
-    
-    func guarantee() -> Guarantee<NSApplication.ModalResponse> {
-        return Guarantee { resolver in
-            resolver(runModal())
-        }
-    }
-    
-    func promise() -> Promise<Void> {
-        return guarantee().map { response in
-            switch response {
-            case .alertFirstButtonReturn:
-                return
-            default:
-                throw PMKError.cancelled
-            }
-        }
-    }
-    
-}
-
-extension NSAlert {
-    
-    func publisher(forButtonWithTitle buttonTitle: String) -> AnyPublisher<Void, Never> {
-        self.addButton(withTitle: buttonTitle)
-        self.addButton(withTitle: "Cancel")
-        return Future { promise in
-            if self.runModal() == .alertFirstButtonReturn {
-                promise(.success(()))
-            }
-        }.eraseToAnyPublisher()
-    }
-    
-    func publisher(forButtonWithTitle buttonTitle: String, withTextField textField: NSTextField) -> AnyPublisher<String, Never> {
-        self.textField = textField
-        return publisher(forButtonWithTitle: buttonTitle).compactMap { _ in
-            return self.textField?.stringValue
-        }.eraseToAnyPublisher()
     }
     
 }

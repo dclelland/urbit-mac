@@ -7,7 +7,6 @@
 //
 
 import AppKit
-import PromiseKit
 
 extension NSOpenPanel {
     
