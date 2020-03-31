@@ -14,33 +14,44 @@ struct NewCometView: View {
     
     var body: some View {
         VStack(alignment: .trailing) {
-            HStack(alignment: .firstTextBaseline) {
+            HStack {
                 Text("Directory:")
                     .frame(minWidth: 80.0, alignment: .trailing)
-//                PathControl(pathStyle: .popUp, url: $directoryURL)
+                TextField("", value: $directoryURL, formatter: URLFormatter(directory: true))
+                    .disabled(true)
+                    .foregroundColor(.secondary)
+                Button(action: openDirectoryURL) {
+                    Text("Open...")
+                }
             }
             Divider()
             HStack {
-                Button(
-                    action: {
-                        // Create comet
-                    }
-                ) {
+                Button(action: createComet) {
                     Text("Create Comet")
                 }
             }
         }
         .padding()
-        .frame(width: 400.0)
+        .frame(minWidth: 480.0)
     }
     
-//    NSSavePanel.save(
-//        title: "New Comet"
-//    ).then { url -> Promise<Pier> in
-//        return Pier(url: url).new(bootType: .newComet)
-//    }.catch { error in
-//        NSAlert(error: error).runModal()
-//    }
+    private var fileName: String {
+        return directoryURL?.lastPathComponent.fileName ?? ""
+    }
+    
+    private func openDirectoryURL() {
+        NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
+            self.directoryURL = url
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
+    }
+            
+    private func createComet() {
+//        Pier(url: directoryURL).new(bootType: .newComet).catch { error in
+//            NSAlert(error: error).runModal()
+//        }
+    }
     
 }
 

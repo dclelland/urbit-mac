@@ -47,7 +47,11 @@ struct NewShipView: View {
         .frame(minWidth: 480.0)
     }
     
-    func openKeyfileURL() {
+    private var fileName: String {
+        return directoryURL?.lastPathComponent.fileName ?? keyfileURL?.lastPathComponent.fileName ?? ""
+    }
+    
+    private func openKeyfileURL() {
         NSOpenPanel.open(title: "Open Keyfile", fileTypes: ["key"], canChooseDirectories: false).done { url in
             self.keyfileURL = url
         }.catch { error in
@@ -55,15 +59,15 @@ struct NewShipView: View {
         }
     }
     
-    func openDirectoryURL() {
-        NSSavePanel.save(title: "Open Directory", fileName: directoryURL?.lastPathComponent.fileName ?? keyfileURL?.lastPathComponent.fileName ?? "").done { url in
+    private func openDirectoryURL() {
+        NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
             self.directoryURL = url
         }.catch { error in
             NSAlert(error: error).runModal()
         }
     }
     
-    func createShip() {
+    private func createShip() {
 //        Pier(url: directoryURL).new(bootType: .newFromKeyfile(keyfile)).catch { error in
 //            NSAlert(error: error).runModal()
 //        }
