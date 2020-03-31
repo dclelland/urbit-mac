@@ -115,9 +115,9 @@ extension Pier {
                 receiveValue: { message in
                     switch message {
                     case .standardOutput(let message):
-                        print("STDOUT:", message)
+                        print(message, terminator: "")
                     case .standardError(let message):
-                        print("STDERR:", message)
+                        print(message, terminator: "")
                     }
                 }
             )
