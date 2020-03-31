@@ -60,16 +60,16 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Ship...",
                                 action: {
-                                    let windowController = NSWindowController(
-                                        window: NSWindow(
-                                            title: "New Ship",
-                                            rootView: NewShipView(
-                                                create: { url, keyfileURL in
-                                                    Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL)).catch { error in
-                                                        NSAlert(error: error).runModal()
-                                                    }
-                                                }
-                                            )
+                                    let windowController = NSWindowController()
+                                    windowController.window = NSWindow(
+                                        title: "New Ship",
+                                        rootView: NewShipView(
+                                            create: { [weak windowController] url, keyfileURL in
+                                                windowController?.dismissController(nil)
+//                                                Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL)).catch { error in
+//                                                    NSAlert(error: error).runModal()
+//                                                }
+                                            }
                                         )
                                     )
                                     windowController.window?.center()
@@ -80,16 +80,16 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
-                                    let windowController = NSWindowController(
-                                        window: NSWindow(
-                                            title: "New Fakeship",
-                                            rootView: NewFakeshipView(
-                                                create: { name, url in
-                                                     Pier(url: url).new(bootType: .newFakeship(name)).catch { error in
-                                                         NSAlert(error: error).runModal()
-                                                     }
-                                                }
-                                            )
+                                    let windowController = NSWindowController()
+                                    windowController.window = NSWindow(
+                                        title: "New Fakeship",
+                                        rootView: NewFakeshipView(
+                                            create: { [weak windowController] name, url in
+                                                windowController?.dismissController(nil)
+//                                                Pier(url: url).new(bootType: .newFakeship(name)).catch { error in
+//                                                    NSAlert(error: error).runModal()
+//                                                }
+                                            }
                                         )
                                     )
                                     windowController.window?.center()
@@ -100,16 +100,16 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
-                                    let windowController = NSWindowController(
-                                        window: NSWindow(
-                                            title: "New Comet",
-                                            rootView: NewCometView(
-                                                create: { url in
-                                                    Pier(url: url).new(bootType: .newComet).catch { error in
-                                                        NSAlert(error: error).runModal()
-                                                    }
-                                                }
-                                            )
+                                    let windowController = NSWindowController()
+                                    windowController.window = NSWindow(
+                                        title: "New Comet",
+                                        rootView: NewCometView(
+                                            create: { [weak windowController] url in
+                                                windowController?.dismissController(nil)
+//                                                Pier(url: url).new(bootType: .newComet).catch { error in
+//                                                    NSAlert(error: error).runModal()
+//                                                }
+                                            }
                                         )
                                     )
                                     windowController.window?.center()
