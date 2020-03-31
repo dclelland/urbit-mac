@@ -19,8 +19,9 @@ struct NewShipView: View {
             HStack {
                 Text("Keyfile:")
                     .frame(minWidth: 80.0, alignment: .trailing)
-                TextField("/~", value: $keyfileURL, formatter: URLFormatter())
+                TextField("", value: $keyfileURL, formatter: URLFormatter())
                     .disabled(true)
+                    .foregroundColor(.secondary)
                 Button(action: openKeyfileURL) {
                     Text("Open...")
                 }
@@ -28,8 +29,9 @@ struct NewShipView: View {
             HStack {
                 Text("Directory:")
                     .frame(minWidth: 80.0, alignment: .trailing)
-                TextField("/~", value: $directoryURL, formatter: URLFormatter(directory: true))
+                TextField("", value: $directoryURL, formatter: URLFormatter(directory: true))
                     .disabled(true)
+                    .foregroundColor(.secondary)
                 Button(action: openDirectoryURL) {
                     Text("Open...")
                 }
@@ -54,7 +56,7 @@ struct NewShipView: View {
     }
     
     func openDirectoryURL() {
-        NSSavePanel.save(title: "Open Directory", fileName: keyfileURL?.lastPathComponent.fileName ?? "").done { url in
+        NSSavePanel.save(title: "Open Directory", fileName: directoryURL?.lastPathComponent.fileName ?? keyfileURL?.lastPathComponent.fileName ?? "").done { url in
             self.directoryURL = url
         }.catch { error in
             NSAlert(error: error).runModal()
