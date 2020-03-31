@@ -9,7 +9,6 @@
 import Foundation
 import Combine
 import Defaults
-import PromiseKit
 import UrbitKit
 
 extension Defaults.Keys {
@@ -96,42 +95,32 @@ extension Pier {
         
     }
     
-    func new(bootType: UrbitCommandNew.BootType) -> ProcessPublisher {
-        return UrbitCommandNew(pier: url, bootType: bootType).process.publisher()
-    }
-    
-    func new(bootType: UrbitCommandNew.BootType) -> Promise<Pier> {
-        return Promise { resolver in
-            cancellable = UrbitCommandNew(pier: url, bootType: bootType).process.publisher().sink(
-                receiveCompletion: { completion in
-                    print(completion)
-                    switch completion {
-                    case .finished:
-                        resolver.fulfill(self)
-                    case .failure(let error):
-                        resolver.reject(error)
-                    }
-                },
-                receiveValue: { message in
-                    switch message {
-                    case .standardOutput(let message):
-                        print(message, terminator: "")
-                    case .standardError(let message):
-                        print(message, terminator: "")
-                    }
+    func new(bootType: UrbitCommandNew.BootType) {
+        cancellable = UrbitCommandNew(pier: url, bootType: bootType).process.publisher().sink(
+            receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("FINISHED")
+                case .failure(let error):
+                    print("FAILURE", error)
                 }
-            )
-        }
+            },
+            receiveValue: { message in
+                switch message {
+                case .standardOutput(let message):
+                    print(message, terminator: "")
+                case .standardError(let message):
+                    print(message, terminator: "")
+                }
+            }
+        )
     }
     
-    func open() -> Promise<Pier> {
-        return Promise { resolver in
-            if Pier.all.contains(self) {
-                resolver.reject(OpenError.pierAlreadyOpen(self))
-            } else {
-                Pier.all.append(self)
-                resolver.fulfill(self)
-            }
+    func open() throws {
+        if Pier.all.contains(self) {
+            throw OpenError.pierAlreadyOpen(self)
+        } else {
+            Pier.all.append(self)
         }
     }
     
@@ -143,14 +132,12 @@ extension Pier {
 
 extension Pier {
         
-    func start() -> Promise<Pier> {
+    func start() {
         #warning("TODO: This")
-        return Promise.value(self)
     }
     
-    func stop() -> Promise<Pier> {
+    func stop() {
         #warning("TODO: This")
-        return Promise.value(self)
     }
     
 }

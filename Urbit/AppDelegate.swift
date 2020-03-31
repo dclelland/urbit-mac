@@ -66,9 +66,7 @@ extension NSMenu {
                                         rootView: NewShipView(
                                             create: { [weak window] url, keyfileURL in
                                                 window?.close()
-                                                Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL)).catch { error in
-                                                    NSAlert(error: error).runModal()
-                                                }
+                                                Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL))
                                             }
                                         )
                                     )
@@ -86,9 +84,7 @@ extension NSMenu {
                                         rootView: NewFakeshipView(
                                             create: { [weak window] name, url in
                                                 window?.close()
-                                                Pier(url: url).new(bootType: .newFakeship(name)).catch { error in
-                                                    NSAlert(error: error).runModal()
-                                                }
+                                                Pier(url: url).new(bootType: .newFakeship(name))
                                             }
                                         )
                                     )
@@ -106,9 +102,7 @@ extension NSMenu {
                                         rootView: NewCometView(
                                             create: { [weak window] url in
                                                 window?.close()
-                                                Pier(url: url).new(bootType: .newComet).catch { error in
-                                                    NSAlert(error: error).runModal()
-                                                }
+                                                Pier(url: url).new(bootType: .newComet)
                                             }
                                         )
                                     )
@@ -124,8 +118,12 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open...",
                     action: {
-                        NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin { url in
-                            Pier(url: url).open()
+                        NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin { (url: URL) in
+                            do {
+                                try Pier(url: url).open()
+                            } catch let error {
+                                NSAlert(error: error).runModal()
+                            }
                         }
                     }
                 ),
@@ -163,17 +161,13 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Start",
                     action: {
-                        pier.start().catch { error in
-                            NSAlert(error: error).runModal()
-                        }
+                        pier.start()
                     }
                 ),
                 NSMenuItem(
                     title: "Stop",
                     action: {
-                        pier.stop().catch { error in
-                            NSAlert(error: error).runModal()
-                        }
+                        pier.stop()
                     }
                 ),
                 .separator(),

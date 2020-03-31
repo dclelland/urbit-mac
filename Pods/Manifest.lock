@@ -1,26 +1,17 @@
 PODS:
   - Defaults (3.0.0)
   - LaunchAtLogin (2.5.0)
-  - PromiseKit (6.11.0):
-    - PromiseKit/CorePromise (= 6.11.0)
-    - PromiseKit/Foundation (= 6.11.0)
-    - PromiseKit/UIKit (= 6.11.0)
-  - PromiseKit/CorePromise (6.11.0)
-  - PromiseKit/Foundation (6.11.0):
-    - PromiseKit/CorePromise
   - UrbitKit (0.1.0)
 
 DEPENDENCIES:
   - Defaults (~> 3.0)
   - LaunchAtLogin (~> 2.5)
-  - PromiseKit (~> 6.11)
   - UrbitKit (from `../UrbitKit`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Defaults
     - LaunchAtLogin
-    - PromiseKit
 
 EXTERNAL SOURCES:
   UrbitKit:
@@ -29,9 +20,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Defaults: d4b513fc893cbe3e16e252e90cbd53446b69077b
   LaunchAtLogin: 94138ff26baefa09a29f5e6679a6f4c41ca6b416
-  PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   UrbitKit: 8da487929926bae1fe2b4567406851a47830c336
 
-PODFILE CHECKSUM: 69a592c1bf00241ecfbfcc63b4e039f3792956f1
+PODFILE CHECKSUM: 1979114d50cba40e8aeeef7f783a02b9e10bf104
 
 COCOAPODS: 1.8.3
