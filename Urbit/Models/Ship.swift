@@ -25,21 +25,21 @@ class Ship {
     enum State {
         
         case ready
-        case creating(publisher: AnyCancellable)
-        case starting(publisher: AnyCancellable)
-        case started(publisher: AnyCancellable)
+        case creating(subscriber: AnyCancellable)
+        case starting(subscriber: AnyCancellable)
+        case started(subscriber: AnyCancellable)
         case stopped(error: Error)
         
-        var publisher: AnyCancellable? {
+        var subscriber: AnyCancellable? {
             switch self {
             case .ready:
                 return nil
-            case .creating(let publisher):
-                return publisher
-            case .starting(let publisher):
-                return publisher
-            case .started(let publisher):
-                return publisher
+            case .creating(let subscriber):
+                return subscriber
+            case .starting(let subscriber):
+                return subscriber
+            case .started(let subscriber):
+                return subscriber
             case .stopped:
                 return nil
             }
@@ -129,7 +129,7 @@ extension Ship {
     func start() {
         #warning("TODO: Check state")
         state = .starting(
-            publisher: UrbitCommandRun(pier: url).process.publisher().sink(
+            subscriber: UrbitCommandRun(pier: url).process.publisher().sink(
                 receiveCompletion: { completion in
                     switch completion {
                     case .finished:
@@ -152,7 +152,7 @@ extension Ship {
     
     func stop() {
         #warning("TODO: Check state")
-        state.publisher?.cancel()
+        state.subscriber?.cancel()
     }
     
 }
