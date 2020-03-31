@@ -20,7 +20,7 @@ import UrbitKit
         NSUserNotificationCenter.default.delegate = self
         
         statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
-        statusItem.menu = NSMenu.piers(Defaults[.piers])
+        statusItem.menu = NSMenu.piers(Pier.all)
         statusItem.menu?.delegate = self
     }
 
@@ -29,7 +29,7 @@ import UrbitKit
 extension AppDelegate: NSMenuDelegate {
     
     func menuWillOpen(_ menu: NSMenu) {
-        statusItem.menu = NSMenu.piers(Defaults[.piers])
+        statusItem.menu = NSMenu.piers(Pier.all)
         statusItem.menu?.delegate = self
     }
     

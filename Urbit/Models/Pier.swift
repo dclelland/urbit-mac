@@ -13,7 +13,17 @@ import UrbitKit
 
 extension Defaults.Keys {
     
-    static let piers = Key<[Pier]>("piers", default: [])
+    static let piers = Key<[URL]>("piers", default: [])
+    
+}
+
+extension Pier {
+    
+    static var all: [Pier] = Defaults[.piers].map { Pier(url: $0) } {
+        didSet {
+            Defaults[.piers] = all.map { $0.url }
+        }
+    }
     
 }
 
@@ -25,24 +35,6 @@ struct Pier {
         didSet {
             ship.deliverUserNotification()
         }
-    }
-    
-}
-
-extension Pier: Codable {
-    
-    enum CodingKeys: CodingKey {
-        case url
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.url = try container.decode(URL.self, forKey: .url)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(url, forKey: .url)
     }
     
 }
@@ -59,19 +51,6 @@ extension Pier: Equatable {
     
     static func == (lhs: Pier, rhs: Pier) -> Bool {
         return lhs.url == rhs.url
-    }
-    
-}
-
-extension Pier {
-    
-    static var all: [Pier] {
-        set {
-            Defaults[.piers] = newValue
-        }
-        get {
-            return Defaults[.piers]
-        }
     }
     
 }
@@ -133,11 +112,28 @@ extension Pier {
 extension Pier {
         
     func start() {
-        #warning("TODO: This")
+        cancellable = UrbitCommandRun(pier: url).process.publisher().sink(
+            receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("FINISHED")
+                case .failure(let error):
+                    print("FAILURE", error)
+                }
+            },
+            receiveValue: { message in
+                switch message {
+                case .standardOutput(let message):
+                    print(message, terminator: "")
+                case .standardError(let message):
+                    print(message, terminator: "")
+                }
+            }
+        )
     }
     
     func stop() {
-        #warning("TODO: This")
+        cancellable?.cancel()
     }
     
 }
