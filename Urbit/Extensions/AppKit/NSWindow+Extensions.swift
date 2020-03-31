@@ -11,7 +11,7 @@ import SwiftUI
 
 extension NSWindow {
     
-    convenience init<Content>(styleMask: NSWindow.StyleMask = [.titled, .closable], title: String, rootView: Content) where Content : View {
+    convenience init<Content>(styleMask: NSWindow.StyleMask = [.titled, .closable, .resizable], title: String, rootView: Content) where Content : View {
         self.init()
         self.styleMask = styleMask
         self.title = title

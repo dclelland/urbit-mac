@@ -42,7 +42,7 @@ struct NewShipView: View {
             }
         }
         .padding()
-        .frame(width: 480.0)
+        .frame(minWidth: 480.0)
     }
     
     func openKeyfileURL() {
