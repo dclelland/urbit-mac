@@ -36,6 +36,7 @@ struct NewFakeshipView: View {
                 Button(action: createFakeship) {
                     Text("Create Fakeship")
                 }
+                .disabled(directoryURL == nil)
             }
         }
         .padding()

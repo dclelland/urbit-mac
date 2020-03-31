@@ -41,6 +41,7 @@ struct NewShipView: View {
                 Button(action: createShip) {
                     Text("Create Ship")
                 }
+                .disabled(keyfileURL == nil || directoryURL == nil)
             }
         }
         .padding()

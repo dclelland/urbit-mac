@@ -29,6 +29,7 @@ struct NewCometView: View {
                 Button(action: createComet) {
                     Text("Create Comet")
                 }
+                .disabled(directoryURL == nil)
             }
         }
         .padding()
