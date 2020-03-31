@@ -165,6 +165,23 @@ extension NSMenu {
         return NSMenu(
             items: [
                 NSMenuItem(
+                    title: {
+                        switch ship.state {
+                        case .ready:
+                            return "Ready"
+                        case .creating:
+                            return "Creating..."
+                        case .starting:
+                            return "Starting..."
+                        case .started:
+                            return "Started"
+                        case .stopped(let error):
+                            return "Stopped: \(error.localizedDescription)"
+                        }
+                    }(),
+                    enabled: false
+                ),
+                NSMenuItem(
                     title: ship.url.abbreviatedPath,
                     enabled: false
                 ),

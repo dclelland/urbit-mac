@@ -81,6 +81,7 @@ extension Ship {
     }
     
     func new(bootType: UrbitCommandNew.BootType) throws {
+        #warning("TODO: Check state")
         guard Ship.all.contains(self) == false else {
             throw OpenError.shipAlreadyOpen(self)
         }
@@ -105,6 +106,8 @@ extension Ship {
                 }
             )
         )
+        
+        Ship.all.append(self)
     }
     
     func open() throws {
@@ -124,6 +127,7 @@ extension Ship {
 extension Ship {
         
     func start() {
+        #warning("TODO: Check state")
         state = .starting(
             publisher: UrbitCommandRun(pier: url).process.publisher().sink(
                 receiveCompletion: { completion in
@@ -147,6 +151,7 @@ extension Ship {
     }
     
     func stop() {
+        #warning("TODO: Check state")
         state.publisher?.cancel()
     }
     
