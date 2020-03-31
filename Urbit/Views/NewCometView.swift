@@ -43,7 +43,7 @@ struct NewCometView: View {
     }
     
     private func openDirectoryURL() {
-        _ = NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
+        NSSavePanel(title: "Open Directory", fileName: fileName).begin { url in
             self.directoryURL = url
         }
     }

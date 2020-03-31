@@ -24,41 +24,13 @@ extension NSSavePanel {
 
 extension NSSavePanel {
     
-    static func save(title: String = "", fileName: String = "", fileTypes: [String] = [], ignoringOtherApps flag: Bool = true) -> Promise<URL> {
+    func begin(ignoringOtherApps flag: Bool = true, completionHandler handler: @escaping (URL) -> Void) {
         NSApp.activate(ignoringOtherApps: flag)
-        let savePanel = NSSavePanel(title: title, fileName: fileName, fileTypes: fileTypes)
-        return savePanel.promise()
-    }
-    
-}
-
-extension NSSavePanel {
-    
-    func promise() -> Promise<URL> {
-        return Promise { resolver in
-            self.begin { response in
-                if let url = self.url, response == .OK {
-                    resolver.fulfill(url)
-                } else {
-                    resolver.reject(PMKError.cancelled)
-                }
+        begin { response in
+            if let url = self.url, response == .OK {
+                handler(url)
             }
         }
-    }
-    
-}
-
-extension NSSavePanel {
-
-    func publisher(ignoringOtherApps flag: Bool = true) -> AnyPublisher<URL, Never> {
-        return Future { promise in
-            NSApp.activate(ignoringOtherApps: flag)
-            self.begin { response in
-                if let url = self.url, response == .OK {
-                    promise(.success(url))
-                }
-            }
-        }.eraseToAnyPublisher()
     }
 
 }

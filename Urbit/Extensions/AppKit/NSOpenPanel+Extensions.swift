@@ -18,13 +18,3 @@ extension NSOpenPanel {
     }
     
 }
-
-extension NSOpenPanel {
-    
-    static func open(title: String = "", fileName: String = "", fileTypes: [String] = [], canChooseDirectories: Bool = true, canChooseFiles: Bool = true, ignoringOtherApps flag: Bool = true) -> Promise<URL> {
-        NSApp.activate(ignoringOtherApps: flag)
-        let openPanel = NSOpenPanel(title: title, fileName: fileName, fileTypes: fileTypes, canChooseDirectories: canChooseDirectories, canChooseFiles: canChooseFiles)
-        return openPanel.promise()
-    }
-    
-}

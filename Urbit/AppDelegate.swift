@@ -124,14 +124,8 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open...",
                     action: {
-                        NSOpenPanel.open(
-                            title: "Open Pier",
-                            canChooseDirectories: true,
-                            canChooseFiles: false
-                        ).then { url in
-                            return Pier(url: url).open()
-                        }.catch { error in
-                            NSAlert(error: error).runModal()
+                        NSOpenPanel(title: "Open Pier", canChooseDirectories: true, canChooseFiles: false).begin { url in
+                            Pier(url: url).open()
                         }
                     }
                 ),

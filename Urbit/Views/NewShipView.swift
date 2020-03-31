@@ -55,13 +55,13 @@ struct NewShipView: View {
     }
     
     private func openKeyfileURL() {
-        _ = NSOpenPanel.open(title: "Open Keyfile", fileTypes: ["key"], canChooseDirectories: false).done { url in
+        NSOpenPanel(title: "Open Keyfile", fileTypes: ["key"], canChooseDirectories: false).begin { url in
             self.keyfileURL = url
         }
     }
     
     private func openDirectoryURL() {
-        _ = NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
+        NSSavePanel(title: "Open Directory", fileName: fileName).begin { url in
             self.directoryURL = url
         }
     }
