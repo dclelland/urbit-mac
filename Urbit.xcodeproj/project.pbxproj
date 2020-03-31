@@ -30,6 +30,7 @@
 		65F42D5623F5F6C500895E82 /* NewFakeshipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F42D5523F5F6C500895E82 /* NewFakeshipView.swift */; };
 		65F42D5823F5F6D700895E82 /* NewCometView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F42D5723F5F6D700895E82 /* NewCometView.swift */; };
 		65F42D5A23F5FA3300895E82 /* NSWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F42D5923F5FA3300895E82 /* NSWindow+Extensions.swift */; };
+		65F9ECCB2432DAE90003DA57 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9ECCA2432DAE90003DA57 /* URL+Extensions.swift */; };
 		B3895453CAC026B198D3FCD6 /* Pods_Urbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124EA3947F7029437B4E6F14 /* Pods_Urbit.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		65F42D5523F5F6C500895E82 /* NewFakeshipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFakeshipView.swift; sourceTree = "<group>"; };
 		65F42D5723F5F6D700895E82 /* NewCometView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCometView.swift; sourceTree = "<group>"; };
 		65F42D5923F5FA3300895E82 /* NSWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extensions.swift"; sourceTree = "<group>"; };
+		65F9ECCA2432DAE90003DA57 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		E1BDB1AB75C1075AA9CD9D6F /* Pods-Urbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urbit.debug.xcconfig"; path = "Target Support Files/Pods-Urbit/Pods-Urbit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 			children = (
 				65A5C5D823D95E6600D422C6 /* Bundle+Extensions.swift */,
 				656CA46323E790630083D198 /* String+Extensions.swift */,
+				65F9ECCA2432DAE90003DA57 /* URL+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				656CA46223E789120083D198 /* NSAlert+Extensions.swift in Sources */,
+				65F9ECCB2432DAE90003DA57 /* URL+Extensions.swift in Sources */,
 				656CA46923EA0D8F0083D198 /* UserNotification.swift in Sources */,
 				65F42D5623F5F6C500895E82 /* NewFakeshipView.swift in Sources */,
 				6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */,

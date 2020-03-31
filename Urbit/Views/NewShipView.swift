@@ -10,50 +10,62 @@ import SwiftUI
 
 struct NewShipView: View {
     
-    @State private var keyfileURL: URL = URL(fileURLWithPath: "/~", isDirectory: true)
+    @State private var keyfileURL: URL? = nil
     
-    @State private var url: URL = URL(fileURLWithPath: "/~", isDirectory: true)
+    @State private var directoryURL: URL? = nil
     
     var body: some View {
         VStack(alignment: .trailing) {
-            HStack(alignment: .firstTextBaseline) {
+            HStack {
                 Text("Keyfile:")
                     .frame(minWidth: 80.0, alignment: .trailing)
                 TextField("/~", value: $keyfileURL, formatter: URLFormatter())
+                    .disabled(true)
+                Button(action: openKeyfileURL) {
+                    Text("Open...")
+                }
             }
-            HStack(alignment: .firstTextBaseline) {
+            HStack {
                 Text("Directory:")
                     .frame(minWidth: 80.0, alignment: .trailing)
-                TextField("/~", value: $url, formatter: URLFormatter(directory: true))
+                TextField("/~", value: $directoryURL, formatter: URLFormatter(directory: true))
+                    .disabled(true)
+                Button(action: openDirectoryURL) {
+                    Text("Open...")
+                }
             }
             Divider()
             HStack {
-                Button(
-                    action: {
-                        // Create fakeship
-                    }
-                ) {
-                    Text("Create Fakeship")
+                Button(action: createShip) {
+                    Text("Create Ship")
                 }
             }
         }
         .padding()
-        .frame(width: 400.0)
+        .frame(width: 480.0)
     }
     
-//    NSOpenPanel.open(
-//        title: "Open Keyfile",
-//        fileTypes: ["key"]
-//    ).then { keyfile -> Promise<Pier> in
-//        return NSSavePanel.save(
-//            title: "New Ship",
-//            fileName: keyfile.lastPathComponent.fileName
-//        ).then { url in
-//            return Pier(url: url).new(bootType: .newFromKeyfile(keyfile))
+    func openKeyfileURL() {
+        NSOpenPanel.open(title: "Open Keyfile", fileTypes: ["key"], canChooseDirectories: false).done { url in
+            self.keyfileURL = url
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
+    }
+    
+    func openDirectoryURL() {
+        NSSavePanel.save(title: "Open Directory", fileName: keyfileURL?.lastPathComponent.fileName ?? "").done { url in
+            self.directoryURL = url
+        }.catch { error in
+            NSAlert(error: error).runModal()
+        }
+    }
+    
+    func createShip() {
+//        Pier(url: directoryURL).new(bootType: .newFromKeyfile(keyfile)).catch { error in
+//            NSAlert(error: error).runModal()
 //        }
-//    }.catch { error in
-//        NSAlert(error: error).runModal()
-//    }
+    }
     
 }
 

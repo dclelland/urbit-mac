@@ -12,7 +12,7 @@ struct NewFakeshipView: View {
     
     @State private var name: String = "zod"
     
-    @State private var url: URL = URL(fileURLWithPath: "/~", isDirectory: true)
+    @State private var directoryURL: URL = URL(fileURLWithPath: "/~", isDirectory: true)
     
     var body: some View {
         VStack(alignment: .trailing) {
@@ -24,7 +24,7 @@ struct NewFakeshipView: View {
             HStack(alignment: .firstTextBaseline) {
                 Text("Directory:")
                     .frame(minWidth: 80.0, alignment: .trailing)
-                TextField("/~", value: $url, formatter: URLFormatter(directory: true))
+                TextField("/~", value: $directoryURL, formatter: URLFormatter(directory: true))
             }
             Divider()
             HStack {
