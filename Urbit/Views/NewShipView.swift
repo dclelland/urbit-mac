@@ -69,9 +69,13 @@ struct NewShipView: View {
     }
     
     private func createShip() {
-//        Pier(url: directoryURL).new(bootType: .newFromKeyfile(keyfile)).catch { error in
-//            NSAlert(error: error).runModal()
-//        }
+        guard let url = directoryURL, let keyfileURL = keyfileURL else {
+            return
+        }
+        
+        Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL)).catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
 }

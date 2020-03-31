@@ -56,9 +56,13 @@ struct NewFakeshipView: View {
     }
         
     private func createFakeship() {
-//        Pier(url: directoryURL).new(bootType: .newFakeship(name)).catch { error in
-//            NSAlert(error: error).runModal()
-//        }
+        guard let url = directoryURL else {
+            return
+        }
+        
+        Pier(url: url).new(bootType: .newFakeship(name)).catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
 }

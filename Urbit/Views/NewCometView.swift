@@ -49,9 +49,13 @@ struct NewCometView: View {
     }
             
     private func createComet() {
-//        Pier(url: directoryURL).new(bootType: .newComet).catch { error in
-//            NSAlert(error: error).runModal()
-//        }
+        guard let url = directoryURL else {
+            return
+        }
+        
+        Pier(url: url).new(bootType: .newComet).catch { error in
+            NSAlert(error: error).runModal()
+        }
     }
     
 }
