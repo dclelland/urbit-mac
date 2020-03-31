@@ -113,7 +113,12 @@ extension Pier {
                     }
                 },
                 receiveValue: { message in
-                    print(message)
+                    switch message {
+                    case .standardOutput(let message):
+                        print("STDOUT:", message)
+                    case .standardError(let message):
+                        print("STDERR:", message)
+                    }
                 }
             )
         }

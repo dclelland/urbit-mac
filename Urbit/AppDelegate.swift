@@ -60,7 +60,18 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Ship...",
                                 action: {
-                                    let windowController = NSWindowController(window: NSWindow(title: "New Ship", rootView: NewShipView()))
+                                    let windowController = NSWindowController(
+                                        window: NSWindow(
+                                            title: "New Ship",
+                                            rootView: NewShipView(
+                                                create: { url, keyfileURL in
+                                                    Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL)).catch { error in
+                                                        NSAlert(error: error).runModal()
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
                                     windowController.window?.center()
                                     windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)
@@ -69,7 +80,18 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Fakeship...",
                                 action: {
-                                    let windowController = NSWindowController(window: NSWindow(title: "New Fakeship", rootView: NewFakeshipView()))
+                                    let windowController = NSWindowController(
+                                        window: NSWindow(
+                                            title: "New Fakeship",
+                                            rootView: NewFakeshipView(
+                                                create: { name, url in
+                                                     Pier(url: url).new(bootType: .newFakeship(name)).catch { error in
+                                                         NSAlert(error: error).runModal()
+                                                     }
+                                                }
+                                            )
+                                        )
+                                    )
                                     windowController.window?.center()
                                     windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)
@@ -78,7 +100,18 @@ extension NSMenu {
                             NSMenuItem(
                                 title: "Comet...",
                                 action: {
-                                    let windowController = NSWindowController(window: NSWindow(title: "New Comet", rootView: NewCometView()))
+                                    let windowController = NSWindowController(
+                                        window: NSWindow(
+                                            title: "New Comet",
+                                            rootView: NewCometView(
+                                                create: { url in
+                                                    Pier(url: url).new(bootType: .newComet).catch { error in
+                                                        NSAlert(error: error).runModal()
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
                                     windowController.window?.center()
                                     windowController.showWindow(nil)
                                     NSApp.activate(ignoringOtherApps: true)

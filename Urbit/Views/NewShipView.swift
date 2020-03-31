@@ -14,6 +14,8 @@ struct NewShipView: View {
     
     @State private var directoryURL: URL? = nil
     
+    var create: (_ url: URL, _ keyfileURL: URL) -> Void
+    
     var body: some View {
         VStack(alignment: .trailing) {
             HStack {
@@ -53,18 +55,14 @@ struct NewShipView: View {
     }
     
     private func openKeyfileURL() {
-        NSOpenPanel.open(title: "Open Keyfile", fileTypes: ["key"], canChooseDirectories: false).done { url in
+        _ = NSOpenPanel.open(title: "Open Keyfile", fileTypes: ["key"], canChooseDirectories: false).done { url in
             self.keyfileURL = url
-        }.catch { error in
-            NSAlert(error: error).runModal()
         }
     }
     
     private func openDirectoryURL() {
-        NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
+        _ = NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
             self.directoryURL = url
-        }.catch { error in
-            NSAlert(error: error).runModal()
         }
     }
     
@@ -73,9 +71,7 @@ struct NewShipView: View {
             return
         }
         
-        Pier(url: url).new(bootType: .newFromKeyfile(keyfileURL)).catch { error in
-            NSAlert(error: error).runModal()
-        }
+        create(url, keyfileURL)
     }
     
 }
@@ -83,7 +79,7 @@ struct NewShipView: View {
 struct NewShipView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NewShipView()
+        NewShipView(create: { _, _ in })
     }
     
 }

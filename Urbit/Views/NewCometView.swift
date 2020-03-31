@@ -12,6 +12,8 @@ struct NewCometView: View {
     
     @State private var directoryURL: URL? = nil
     
+    var create: (_ url: URL) -> Void
+    
     var body: some View {
         VStack(alignment: .trailing) {
             HStack {
@@ -41,10 +43,8 @@ struct NewCometView: View {
     }
     
     private func openDirectoryURL() {
-        NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
+        _ = NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
             self.directoryURL = url
-        }.catch { error in
-            NSAlert(error: error).runModal()
         }
     }
             
@@ -53,9 +53,7 @@ struct NewCometView: View {
             return
         }
         
-        Pier(url: url).new(bootType: .newComet).catch { error in
-            NSAlert(error: error).runModal()
-        }
+        create(url)
     }
     
 }
@@ -63,7 +61,7 @@ struct NewCometView: View {
 struct NewCometView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NewCometView()
+        NewCometView(create: { _ in })
     }
     
 }

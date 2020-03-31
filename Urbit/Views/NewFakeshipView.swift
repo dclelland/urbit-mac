@@ -14,6 +14,8 @@ struct NewFakeshipView: View {
     
     @State private var directoryURL: URL? = nil
     
+    var create: (_ name: String, _ url: URL) -> Void
+    
     var body: some View {
         VStack(alignment: .trailing) {
             HStack {
@@ -48,10 +50,8 @@ struct NewFakeshipView: View {
     }
     
     private func openDirectoryURL() {
-        NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
+        _ = NSSavePanel.save(title: "Open Directory", fileName: fileName).done { url in
             self.directoryURL = url
-        }.catch { error in
-            NSAlert(error: error).runModal()
         }
     }
         
@@ -60,9 +60,7 @@ struct NewFakeshipView: View {
             return
         }
         
-        Pier(url: url).new(bootType: .newFakeship(name)).catch { error in
-            NSAlert(error: error).runModal()
-        }
+        create(name, url)
     }
     
 }
@@ -70,7 +68,7 @@ struct NewFakeshipView: View {
 struct NewFakeshipView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NewFakeshipView()
+        NewFakeshipView(create: { _, _ in })
     }
     
 }
