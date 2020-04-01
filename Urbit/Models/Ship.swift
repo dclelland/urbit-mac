@@ -87,7 +87,7 @@ extension Ship {
         }
         
         state = .starting(
-            publisher: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().sink(
+            subscriber: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().sink(
                 receiveCompletion: { completion in
                     switch completion {
                     case .finished:
