@@ -112,10 +112,10 @@ extension Ship {
                     },
                     receiveValue: { message in
                         switch message {
-                        case .standardOutput(let message):
-                            print(message, terminator: "")
-                        case .standardError(let message):
-                            print(message, terminator: "")
+                        case .standardOutput(let data):
+                            FileHandle.standardOutput.write(data)
+                        case .standardError(let data):
+                            FileHandle.standardError.write(data)
                         }
                     }
                 )
@@ -163,10 +163,10 @@ extension Ship {
                     },
                     receiveValue: { message in
                         switch message {
-                        case .standardOutput(let message):
-                            print(message, terminator: "")
-                        case .standardError(let message):
-                            print(message, terminator: "")
+                        case .standardOutput(let data):
+                            FileHandle.standardOutput.write(data)
+                        case .standardError(let data):
+                            FileHandle.standardError.write(data)
                         }
                     }
                 )
