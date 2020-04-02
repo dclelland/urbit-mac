@@ -51,6 +51,7 @@ class Ship {
     
     var state: State = .ready {
         didSet {
+            print("STATE UPDATED", state)
             deliverUserNotification()
         }
     }
@@ -87,7 +88,11 @@ extension Ship {
         }
         
         state = .starting(
-            subscriber: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().sink(
+            subscriber: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().handleEvents(
+                receiveCancel: {
+                    self.state = .ready
+                }
+            ).sink(
                 receiveCompletion: { completion in
                     switch completion {
                     case .finished:
@@ -129,7 +134,11 @@ extension Ship {
     func start() {
         #warning("TODO: Check state")
         state = .starting(
-            subscriber: UrbitCommandRun(pier: url).process.publisher().sink(
+            subscriber: UrbitCommandRun(pier: url).process.publisher().handleEvents(
+                receiveCancel: {
+                    self.state = .ready
+                }
+            ).sink(
                 receiveCompletion: { completion in
                     switch completion {
                     case .finished:
