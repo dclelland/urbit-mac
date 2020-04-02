@@ -26,8 +26,7 @@ class Ship {
         
         case ready
         case creating(subscriber: AnyCancellable)
-        case starting(subscriber: AnyCancellable)
-        case started(subscriber: AnyCancellable)
+        case running(subscriber: AnyCancellable)
         case stopped(error: Error)
         
         var subscriber: AnyCancellable? {
@@ -36,9 +35,7 @@ class Ship {
                 return nil
             case .creating(let subscriber):
                 return subscriber
-            case .starting(let subscriber):
-                return subscriber
-            case .started(let subscriber):
+            case .running(let subscriber):
                 return subscriber
             case .stopped:
                 return nil
@@ -51,7 +48,6 @@ class Ship {
     
     var state: State = .ready {
         didSet {
-            print("STATE UPDATED", state)
             deliverUserNotification()
         }
     }
@@ -87,7 +83,7 @@ extension Ship {
             throw OpenError.shipAlreadyOpen(self)
         }
         
-        state = .starting(
+        state = .creating(
             subscriber: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().handleEvents(
                 receiveCancel: {
                     self.state = .ready
@@ -133,7 +129,7 @@ extension Ship {
         
     func start() {
         #warning("TODO: Check state")
-        state = .starting(
+        state = .running(
             subscriber: UrbitCommandRun(pier: url).process.publisher().handleEvents(
                 receiveCancel: {
                     self.state = .ready
@@ -199,24 +195,20 @@ extension Ship: UserNotification {
     var userNotification: NSUserNotification? {
         switch state {
         case .ready:
-            return NSUserNotification(
-                title: "Ship is ready: \(url.abbreviatedPath)"
-            )
+            return nil
         case .creating:
             return NSUserNotification(
-                title: "Ship is being created: \(url.abbreviatedPath)"
+                title: "Creating ship \"\(name)\"",
+                informativeText: url.abbreviatedPath
             )
-        case .starting:
+        case .running:
             return NSUserNotification(
-                title: "Ship is being started: \(url.abbreviatedPath)"
-            )
-        case .started:
-            return NSUserNotification(
-                title: "Ship started: \(url.abbreviatedPath)"
+                title: "Running ship \"\(name)\"",
+                informativeText: url.abbreviatedPath
             )
         case .stopped(let error):
             return NSUserNotification(
-                title: "Ship stopped: \(url.abbreviatedPath)",
+                title: "Stopped ship \"\(name)\"",
                 informativeText: error.localizedDescription
             )
         }

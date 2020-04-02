@@ -170,11 +170,9 @@ extension NSMenu {
                         case .ready:
                             return "Ready"
                         case .creating:
-                            return "Creating..."
-                        case .starting:
-                            return "Starting..."
-                        case .started:
-                            return "Started"
+                            return "Creating"
+                        case .running:
+                            return "Running"
                         case .stopped(let error):
                             return "Stopped: \(error.localizedDescription)"
                         }
