@@ -36,21 +36,19 @@ class Ship {
             case creating(subscriber: AnyCancellable)
             case running(subscriber: AnyCancellable)
             
+            var subscriber: AnyCancellable {
+                switch self {
+                case .creating(let subscriber):
+                    return subscriber
+                case .running(let subscriber):
+                    return subscriber
+                }
+            }
+            
         }
         
         case stopped(_ state: StoppedState)
         case started(_ state: StartedState)
-        
-        var subscriber: AnyCancellable? {
-            switch self {
-            case .stopped:
-                return nil
-            case .started(.creating(let subscriber)):
-                return subscriber
-            case .started(.running(let subscriber)):
-                return subscriber
-            }
-        }
         
     }
     
@@ -89,7 +87,10 @@ extension Ship {
     }
     
     func new(bootType: UrbitCommandNew.BootType) throws {
-        #warning("TODO: Check state")
+        guard case .stopped = state else {
+            return
+        }
+        
         guard Ship.all.contains(self) == false else {
             throw OpenError.shipAlreadyOpen(self)
         }
@@ -141,7 +142,10 @@ extension Ship {
 extension Ship {
         
     func start() {
-        #warning("TODO: Check state")
+        guard case .stopped = state else {
+            return
+        }
+        
         state = .started(
             .running(
                 subscriber: UrbitCommandRun(pier: url).process.publisher().handleEvents(
@@ -171,8 +175,11 @@ extension Ship {
     }
     
     func stop() {
-        #warning("TODO: Check state")
-        state.subscriber?.cancel()
+        guard case .started(let state) = state else {
+            return
+        }
+        
+        state.subscriber.cancel()
     }
     
 }
