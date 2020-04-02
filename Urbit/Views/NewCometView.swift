@@ -22,16 +22,12 @@ struct NewCometView: View {
                 TextField("", value: $directoryURL, formatter: URLFormatter(directory: true))
                     .disabled(true)
                     .foregroundColor(.secondary)
-                Button(action: openDirectoryURL) {
-                    Text("Open...")
-                }
+                Button("Open...", action: openDirectoryURL)
             }
             Divider()
             HStack {
-                Button(action: createComet) {
-                    Text("Create Comet")
-                }
-                .disabled(directoryURL == nil)
+                Button("Create Comet", action: createComet)
+                    .disabled(directoryURL == nil)
             }
         }
         .padding()

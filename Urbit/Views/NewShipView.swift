@@ -24,9 +24,7 @@ struct NewShipView: View {
                 TextField("", value: $keyfileURL, formatter: URLFormatter())
                     .disabled(true)
                     .foregroundColor(.secondary)
-                Button(action: openKeyfileURL) {
-                    Text("Open...")
-                }
+                Button("Open...", action: openKeyfileURL)
             }
             HStack {
                 Text("Directory:")
@@ -34,16 +32,12 @@ struct NewShipView: View {
                 TextField("", value: $directoryURL, formatter: URLFormatter(directory: true))
                     .disabled(true)
                     .foregroundColor(.secondary)
-                Button(action: openDirectoryURL) {
-                    Text("Open...")
-                }
+                Button("Open...", action: openDirectoryURL)
             }
             Divider()
             HStack {
-                Button(action: createShip) {
-                    Text("Create Ship")
-                }
-                .disabled(keyfileURL == nil || directoryURL == nil)
+                Button("Create Ship", action: createShip)
+                    .disabled(keyfileURL == nil || directoryURL == nil)
             }
         }
         .padding()

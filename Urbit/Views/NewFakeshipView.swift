@@ -29,16 +29,12 @@ struct NewFakeshipView: View {
                 TextField("", value: $directoryURL, formatter: URLFormatter(directory: true))
                     .disabled(true)
                     .foregroundColor(.secondary)
-                Button(action: openDirectoryURL) {
-                    Text("Open...")
-                }
+                Button("Open...", action: openDirectoryURL)
             }
             Divider()
             HStack {
-                Button(action: createFakeship) {
-                    Text("Create Fakeship")
-                }
-                .disabled(directoryURL == nil)
+                Button("Create Fakeship", action: createFakeship)
+                    .disabled(directoryURL == nil)
             }
         }
         .padding()
