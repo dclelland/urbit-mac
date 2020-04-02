@@ -24,21 +24,31 @@ class Ship {
     
     enum State {
         
-        case ready
-        case creating(subscriber: AnyCancellable)
-        case running(subscriber: AnyCancellable)
-        case stopped(error: Error)
+        enum StoppedState {
+            
+            case finished
+            case failure(_ error: Error)
+            
+        }
+        
+        enum StartedState {
+            
+            case creating(subscriber: AnyCancellable)
+            case running(subscriber: AnyCancellable)
+            
+        }
+        
+        case stopped(_ state: StoppedState)
+        case started(_ state: StartedState)
         
         var subscriber: AnyCancellable? {
             switch self {
-            case .ready:
-                return nil
-            case .creating(let subscriber):
-                return subscriber
-            case .running(let subscriber):
-                return subscriber
             case .stopped:
                 return nil
+            case .started(.creating(let subscriber)):
+                return subscriber
+            case .started(.running(let subscriber)):
+                return subscriber
             }
         }
         
@@ -46,8 +56,9 @@ class Ship {
     
     var pier: Pier
     
-    var state: State = .ready {
+    var state: State = .stopped(.finished) {
         didSet {
+            #warning("TODO: Move `handleEvents` and `sink` in here")
             deliverUserNotification()
         }
     }
@@ -83,28 +94,30 @@ extension Ship {
             throw OpenError.shipAlreadyOpen(self)
         }
         
-        state = .creating(
-            subscriber: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().handleEvents(
-                receiveCancel: {
-                    self.state = .ready
-                }
-            ).sink(
-                receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        self.state = .ready
-                    case .failure(let error):
-                        self.state = .stopped(error: error)
+        state = .started(
+            .creating(
+                subscriber: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().handleEvents(
+                    receiveCancel: {
+                        self.state = .stopped(.finished)
                     }
-                },
-                receiveValue: { message in
-                    switch message {
-                    case .standardOutput(let message):
-                        print(message, terminator: "")
-                    case .standardError(let message):
-                        print(message, terminator: "")
+                ).sink(
+                    receiveCompletion: { completion in
+                        switch completion {
+                        case .finished:
+                            self.state = .stopped(.finished)
+                        case .failure(let error):
+                            self.state = .stopped(.failure(error))
+                        }
+                    },
+                    receiveValue: { message in
+                        switch message {
+                        case .standardOutput(let message):
+                            print(message, terminator: "")
+                        case .standardError(let message):
+                            print(message, terminator: "")
+                        }
                     }
-                }
+                )
             )
         )
         
@@ -129,28 +142,30 @@ extension Ship {
         
     func start() {
         #warning("TODO: Check state")
-        state = .running(
-            subscriber: UrbitCommandRun(pier: url).process.publisher().handleEvents(
-                receiveCancel: {
-                    self.state = .ready
-                }
-            ).sink(
-                receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        self.state = .ready
-                    case .failure(let error):
-                        self.state = .stopped(error: error)
+        state = .started(
+            .running(
+                subscriber: UrbitCommandRun(pier: url).process.publisher().handleEvents(
+                    receiveCancel: {
+                        self.state = .stopped(.finished)
                     }
-                },
-                receiveValue: { message in
-                    switch message {
-                    case .standardOutput(let message):
-                        print(message, terminator: "")
-                    case .standardError(let message):
-                        print(message, terminator: "")
+                ).sink(
+                    receiveCompletion: { completion in
+                        switch completion {
+                        case .finished:
+                            self.state = .stopped(.finished)
+                        case .failure(let error):
+                            self.state = .stopped(.failure(error))
+                        }
+                    },
+                    receiveValue: { message in
+                        switch message {
+                        case .standardOutput(let message):
+                            print(message, terminator: "")
+                        case .standardError(let message):
+                            print(message, terminator: "")
+                        }
                     }
-                }
+                )
             )
         )
     }
@@ -194,22 +209,22 @@ extension Ship: UserNotification {
     
     var userNotification: NSUserNotification? {
         switch state {
-        case .ready:
+        case .stopped(.finished):
             return nil
-        case .creating:
+        case .stopped(.failure(let error)):
+            return NSUserNotification(
+                title: "Stopped ship \"\(name)\"",
+                informativeText: error.localizedDescription
+            )
+        case .started(.creating):
             return NSUserNotification(
                 title: "Creating ship \"\(name)\"",
                 informativeText: url.abbreviatedPath
             )
-        case .running:
+        case .started(.running):
             return NSUserNotification(
                 title: "Running ship \"\(name)\"",
                 informativeText: url.abbreviatedPath
-            )
-        case .stopped(let error):
-            return NSUserNotification(
-                title: "Stopped ship \"\(name)\"",
-                informativeText: error.localizedDescription
             )
         }
     }

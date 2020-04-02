@@ -167,14 +167,14 @@ extension NSMenu {
                 NSMenuItem(
                     title: {
                         switch ship.state {
-                        case .ready:
+                        case .stopped(.finished):
                             return "Ready"
-                        case .creating:
-                            return "Creating"
-                        case .running:
-                            return "Running"
-                        case .stopped(let error):
+                        case .stopped(.failure(let error)):
                             return "Stopped: \(error.localizedDescription)"
+                        case .started(.creating):
+                            return "Creating"
+                        case .started(.running):
+                            return "Running"
                         }
                     }(),
                     enabled: false
