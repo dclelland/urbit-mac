@@ -148,10 +148,12 @@ extension Ship {
         }
         
         Ship.all.append(self)
+        start()
     }
     
     func close() {
         Ship.all.removeAll(where: { $0 == self })
+        stop()
     }
     
 }
