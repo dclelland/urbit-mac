@@ -61,6 +61,15 @@ class Ship {
         case stopped(_ state: StoppedState)
         case started(_ state: StartedState)
         
+        var subscriber: AnyCancellable? {
+            switch self {
+            case .stopped:
+                return nil
+            case .started(let state):
+                return state.subscriber
+            }
+        }
+        
     }
     
     var pier: Pier
@@ -194,11 +203,11 @@ extension Ship {
     }
     
     func stop() {
-        guard case .started(let state) = state else {
+        guard case .started = state else {
             return
         }
         
-        state.subscriber.cancel()
+        state.subscriber?.cancel()
     }
     
 }
