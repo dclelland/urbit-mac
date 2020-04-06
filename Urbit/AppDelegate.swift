@@ -134,11 +134,7 @@ extension NSMenu {
                                         rootView: NewShipView(
                                             create: { [weak window] url, keyfileURL in
                                                 window?.close()
-                                                do {
-                                                    try Ship(url: url).new(bootType: .newFromKeyfile(keyfileURL))
-                                                } catch let error {
-                                                    NSAlert(error: error).runModal()
-                                                }
+                                                try Ship(url: url).new(bootType: .newFromKeyfile(keyfileURL))
                                             }
                                         )
                                     )
@@ -156,11 +152,7 @@ extension NSMenu {
                                         rootView: NewFakeshipView(
                                             create: { [weak window] name, url in
                                                 window?.close()
-                                                do {
-                                                    try Ship(url: url).new(bootType: .newFakeship(name))
-                                                } catch let error {
-                                                    NSAlert(error: error).runModal()
-                                                }
+                                                try Ship(url: url).new(bootType: .newFakeship(name))
                                             }
                                         )
                                     )
@@ -178,11 +170,7 @@ extension NSMenu {
                                         rootView: NewCometView(
                                             create: { [weak window] url in
                                                 window?.close()
-                                                do {
-                                                    try Ship(url: url).new(bootType: .newComet)
-                                                } catch let error {
-                                                    NSAlert(error: error).runModal()
-                                                }
+                                                try Ship(url: url).new(bootType: .newComet)
                                             }
                                         )
                                     )
@@ -198,12 +186,8 @@ extension NSMenu {
                 NSMenuItem(
                     title: "Open...",
                     action: {
-                        NSOpenPanel(title: "Open Ship", canChooseDirectories: true, canChooseFiles: false).begin { (url: URL) in
-                            do {
-                                try Ship(url: url).open()
-                            } catch let error {
-                                NSAlert(error: error).runModal()
-                            }
+                        NSOpenPanel(title: "Open Ship", canChooseDirectories: true, canChooseFiles: false).begin { url in
+                            try Ship(url: url).open()
                         }
                     }
                 ),
@@ -256,16 +240,12 @@ extension NSMenu {
                 ),
                 .separator(),
                 NSMenuItem(
-                    title: "Start",
-                    action: {
-                        ship.start()
-                    }
+                    title: "Start Running",
+                    action: ship.start
                 ),
                 NSMenuItem(
-                    title: "Stop",
-                    action: {
-                        ship.stop()
-                    }
+                    title: "Stop Running",
+                    action: ship.stop
                 ),
                 .separator(),
                 NSMenuItem(
@@ -304,9 +284,7 @@ extension NSMenu {
                 .separator(),
                 NSMenuItem(
                     title: "Close",
-                    action: {
-                        ship.close()
-                    }
+                    action: ship.close
                 )
             ]
         )

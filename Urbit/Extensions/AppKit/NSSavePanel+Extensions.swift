@@ -31,5 +31,15 @@ extension NSSavePanel {
             }
         }
     }
+    
+    func begin(ignoringOtherApps flag: Bool = true, completionHandler handler: @escaping (URL) throws -> Void) {
+        begin(ignoringOtherApps: flag) { url in
+            do {
+                try handler(url)
+            } catch let error {
+                NSAlert(error: error).runModal()
+            }
+        }
+    }
 
 }

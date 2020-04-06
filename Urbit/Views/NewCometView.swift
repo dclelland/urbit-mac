@@ -12,7 +12,7 @@ struct NewCometView: View {
     
     @State private var directoryURL: URL? = nil
     
-    var create: (_ url: URL) -> Void
+    var create: (_ url: URL) throws -> Void
     
     var body: some View {
         VStack(alignment: .trailing) {
@@ -49,7 +49,11 @@ struct NewCometView: View {
             return
         }
         
-        create(url)
+        do {
+            try create(url)
+        } catch let error {
+            NSAlert(error: error).runModal()
+        }
     }
     
 }

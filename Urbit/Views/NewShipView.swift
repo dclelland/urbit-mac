@@ -14,7 +14,7 @@ struct NewShipView: View {
     
     @State private var directoryURL: URL? = nil
     
-    var create: (_ url: URL, _ keyfileURL: URL) -> Void
+    var create: (_ url: URL, _ keyfileURL: URL) throws -> Void
     
     var body: some View {
         VStack(alignment: .trailing) {
@@ -65,7 +65,11 @@ struct NewShipView: View {
             return
         }
         
-        create(url, keyfileURL)
+        do {
+            try create(url, keyfileURL)
+        } catch let error {
+            NSAlert(error: error).runModal()
+        }
     }
     
 }
