@@ -11,7 +11,17 @@ import Defaults
 
 extension Defaults.Keys {
     
-    static let piers = Key<[Pier]>("piers", default: [])
+    fileprivate static let piers = Key<[Pier]>("piers", default: [])
+    
+}
+
+extension Pier {
+    
+    static let didUpdateNotification = NSNotification.Name("piersDidUpdate")
+    
+    static let oldPiersNotificationUserInfoKey = "oldPiers"
+    
+    static let newPiersNotificationUserInfoKey = "newPiers"
     
 }
 
@@ -22,6 +32,16 @@ extension Pier {
             return Defaults[.piers]
         }
         set {
+            defer {
+                NotificationCenter.default.post(
+                    name: Pier.didUpdateNotification,
+                    object: self,
+                    userInfo: [
+                        Pier.oldPiersNotificationUserInfoKey: all,
+                        Pier.newPiersNotificationUserInfoKey: newValue
+                    ]
+                )
+            }
             Defaults[.piers] = newValue
         }
     }

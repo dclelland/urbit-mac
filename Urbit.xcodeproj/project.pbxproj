@@ -10,6 +10,8 @@
 		6511B43E23F639EB00D9DF16 /* URLFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6511B43D23F639EB00D9DF16 /* URLFormatter.swift */; };
 		6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */; };
 		6554C71823D3D223007DDA59 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6554C71723D3D223007DDA59 /* NetworkExtension.framework */; };
+		65647F26243AE228001F554E /* ShipObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65647F25243AE228001F554E /* ShipObserver.swift */; };
+		65647F28243AE236001F554E /* PierObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65647F27243AE236001F554E /* PierObserver.swift */; };
 		656CA46223E789120083D198 /* NSAlert+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CA46123E789120083D198 /* NSAlert+Extensions.swift */; };
 		656CA46423E790630083D198 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CA46323E790630083D198 /* String+Extensions.swift */; };
 		656CA46B23EA0E850083D198 /* NSUserNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CA46A23EA0E850083D198 /* NSUserNotification+Extensions.swift */; };
@@ -51,6 +53,8 @@
 		6511B43D23F639EB00D9DF16 /* URLFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFormatter.swift; sourceTree = "<group>"; };
 		6517C259235E9D0800E43464 /* NSSavePanel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSavePanel+Extensions.swift"; sourceTree = "<group>"; };
 		6554C71723D3D223007DDA59 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		65647F25243AE228001F554E /* ShipObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipObserver.swift; sourceTree = "<group>"; };
+		65647F27243AE236001F554E /* PierObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PierObserver.swift; sourceTree = "<group>"; };
 		656CA46123E789120083D198 /* NSAlert+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Extensions.swift"; sourceTree = "<group>"; };
 		656CA46323E790630083D198 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		656CA46A23EA0E850083D198 /* NSUserNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserNotification+Extensions.swift"; sourceTree = "<group>"; };
@@ -181,7 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				65A5C5DF23DA414600D422C6 /* Ship.swift */,
+				65647F25243AE228001F554E /* ShipObserver.swift */,
 				65A5C5DD23DA413E00D422C6 /* Pier.swift */,
+				65647F27243AE236001F554E /* PierObserver.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				656CA46223E789120083D198 /* NSAlert+Extensions.swift in Sources */,
+				65647F26243AE228001F554E /* ShipObserver.swift in Sources */,
 				65F9ECCB2432DAE90003DA57 /* URL+Extensions.swift in Sources */,
 				65F42D5623F5F6C500895E82 /* NewFakeshipView.swift in Sources */,
 				6517C25A235E9D0800E43464 /* NSSavePanel+Extensions.swift in Sources */,
@@ -346,6 +353,7 @@
 				65A5C5E223DAD22300D422C6 /* NSWorkspace+Extensions.swift in Sources */,
 				65F42D5423F5F6BC00895E82 /* NewShipView.swift in Sources */,
 				656CA46423E790630083D198 /* String+Extensions.swift in Sources */,
+				65647F28243AE236001F554E /* PierObserver.swift in Sources */,
 				6511B43E23F639EB00D9DF16 /* URLFormatter.swift in Sources */,
 				65F42D5823F5F6D700895E82 /* NewCometView.swift in Sources */,
 				656CA46B23EA0E850083D198 /* NSUserNotification+Extensions.swift in Sources */,

@@ -13,42 +13,36 @@ import UrbitKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     
+    internal var pierObserverToken: NSObjectProtocol?
     internal var shipObserverToken: NSObjectProtocol?
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        Pier.addObserver(self)
         Ship.addObserver(self)
         
         NSUserNotificationCenter.default.delegate = self
         
         statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
         statusItem.menu = NSMenu.ships(Ship.all)
-        statusItem.menu?.delegate = self
     }
 
 }
 
-extension AppDelegate: NSMenuDelegate {
+extension AppDelegate: PierObserver {
     
-    func menuWillOpen(_ menu: NSMenu) {
+    func pierDidUpdate(from oldPiers: [Pier], to newPiers: [Pier]) {
         statusItem.menu = NSMenu.ships(Ship.all)
-        statusItem.menu?.delegate = self
-    }
-    
-}
-
-extension AppDelegate: NSUserNotificationCenterDelegate {
-    
-    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return true
     }
     
 }
 
 extension AppDelegate: ShipObserver {
     
-    func ship(_ ship: Ship, didUpdateStateFrom oldState: Ship.State, to newState: Ship.State) {
+    func shipDidUpdate(_ ship: Ship, from oldState: Ship.State, to newState: Ship.State) {
+        statusItem.menu = NSMenu.ships(Ship.all)
+        
         let notification: NSUserNotification? = {
             switch (oldState, newState) {
             case (.stopped(let oldState), .started(let newState)):
@@ -105,6 +99,14 @@ extension AppDelegate: ShipObserver {
         if let notification = notification {
             NSUserNotificationCenter.default.deliver(notification)
         }
+    }
+    
+}
+
+extension AppDelegate: NSUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
     }
     
 }
