@@ -173,7 +173,6 @@ extension Ship {
         )
         
         Ship.all.append(self)
-        start()
     }
     
     func open() throws {

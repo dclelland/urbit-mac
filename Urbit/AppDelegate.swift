@@ -248,12 +248,12 @@ extension NSMenu {
                 ),
                 .separator(),
                 NSMenuItem(
-                    title: "Start Running",
+                    title: "Start",
                     enabled: ship.state.isStopped,
                     action: ship.start
                 ),
                 NSMenuItem(
-                    title: "Stop Running",
+                    title: "Stop",
                     enabled: ship.state.isStarted,
                     action: ship.stop
                 ),
