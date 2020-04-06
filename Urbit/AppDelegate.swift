@@ -27,6 +27,13 @@ import UrbitKit
         statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
         statusItem.menu = NSMenu.ships(Ship.all)
     }
+    
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        for ship in Ship.all {
+            ship.close()
+        }
+        return .terminateNow
+    }
 
 }
 
