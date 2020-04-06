@@ -241,10 +241,12 @@ extension NSMenu {
                 .separator(),
                 NSMenuItem(
                     title: "Start Running",
+                    enabled: ship.state.isStopped,
                     action: ship.start
                 ),
                 NSMenuItem(
                     title: "Stop Running",
+                    enabled: ship.state.isStarted,
                     action: ship.stop
                 ),
                 .separator(),
@@ -256,6 +258,7 @@ extension NSMenu {
                 ),
                 NSMenuItem(
                     title: "Open in Browser",
+                    enabled: ship.state.isRunning,
                     action: {
                         #warning("Get the real URL")
                         NSWorkspace.shared.openInBrowser(URL(string: "http://localhost:8080/")!)
@@ -263,6 +266,7 @@ extension NSMenu {
                 ),
                 NSMenuItem(
                     title: "Open in Terminal",
+                    enabled: ship.state.isRunning,
                     action: {
                         NSWorkspace.shared.openInTerminal(ship.url, script: UrbitCommandConnect(pier: ship.url).script!)
                     }
@@ -270,10 +274,12 @@ extension NSMenu {
                 .separator(),
                 NSMenuItem(
                     title: "Mount Desk...",
+                    enabled: false,
                     action: {}
                 ),
                 NSMenuItem(
                     title: "Unmount Desk...",
+                    enabled: false,
                     action: {}
                 ),
                 .separator(),

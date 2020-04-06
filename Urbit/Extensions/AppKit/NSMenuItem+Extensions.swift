@@ -11,7 +11,7 @@ import AppKit
 extension NSMenuItem {
     
     convenience init(title: String, state: NSControl.StateValue = .off, enabled: Bool = true, action: Selector? = nil, keyEquivalent: String = "", representedObject: Any? = nil, submenu: NSMenu? = nil) {
-        self.init(title: title, action: action, keyEquivalent: keyEquivalent)
+        self.init(title: title, action: enabled ? action : nil, keyEquivalent: keyEquivalent)
         self.state = state
         self.isEnabled = enabled
         self.representedObject = representedObject
@@ -30,25 +30,6 @@ extension NSMenuItem {
             action: #selector(performRepresentedObjectAction(_:)),
             keyEquivalent: keyEquivalent,
             representedObject: action,
-            submenu: submenu
-        )
-        self.target = self
-    }
-    
-    convenience init(title: String, state: NSControl.StateValue = .off, enabled: Bool = true, action: @escaping () throws -> Void, keyEquivalent: String = "", representedObject: Any? = nil, submenu: NSMenu? = nil) {
-        self.init(
-            title: title,
-            state: state,
-            enabled: enabled,
-            action: #selector(performRepresentedObjectAction(_:)),
-            keyEquivalent: keyEquivalent,
-            representedObject: {
-                do {
-                    try action()
-                } catch let error {
-                    NSAlert(error: error).runModal()
-                }
-            },
             submenu: submenu
         )
         self.target = self

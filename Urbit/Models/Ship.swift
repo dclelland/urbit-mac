@@ -70,6 +70,30 @@ class Ship {
             }
         }
         
+        var isStopped: Bool {
+            if case .stopped = self {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        var isStarted: Bool {
+            if case .started = self {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        var isRunning: Bool {
+            if case .started(.running) = self {
+                return true
+            } else {
+                return false
+            }
+        }
+        
     }
     
     var pier: Pier
@@ -113,7 +137,7 @@ extension Ship {
     }
     
     func new(bootType: UrbitCommandNew.BootType) throws {
-        guard case .stopped = state else {
+        guard state.isStopped else {
             return
         }
         
@@ -171,7 +195,7 @@ extension Ship {
 extension Ship {
         
     func start() {
-        guard case .stopped = state else {
+        guard state.isStopped else {
             return
         }
         
@@ -204,7 +228,7 @@ extension Ship {
     }
     
     func stop() {
-        guard case .started = state else {
+        guard state.isStarted else {
             return
         }
         
