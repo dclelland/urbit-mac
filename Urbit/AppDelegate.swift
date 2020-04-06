@@ -13,10 +13,12 @@ import UrbitKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
     
+    internal var shipObserverToken: NSObjectProtocol?
+    
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        NotificationCenter.default.addObserver(self, selector: #selector(shipDidUpdateState(_:)), name: Ship.didUpdateStateNotification, object: nil)
+        Ship.addObserver(self)
         
         NSUserNotificationCenter.default.delegate = self
         
@@ -27,15 +29,26 @@ import UrbitKit
 
 }
 
-extension AppDelegate {
+extension AppDelegate: NSMenuDelegate {
     
-    @objc private func shipDidUpdateState(_ notification: Notification) {
-        guard
-            let ship = notification.object as? Ship,
-            let oldState = notification.userInfo?[Ship.oldStateNotificationUserInfoKey] as? Ship.State,
-            let newState = notification.userInfo?[Ship.newStateNotificationUserInfoKey] as? Ship.State
-            else { return }
-        
+    func menuWillOpen(_ menu: NSMenu) {
+        statusItem.menu = NSMenu.ships(Ship.all)
+        statusItem.menu?.delegate = self
+    }
+    
+}
+
+extension AppDelegate: NSUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
+    
+}
+
+extension AppDelegate: ShipObserver {
+    
+    func ship(_ ship: Ship, didUpdateStateFrom oldState: Ship.State, to newState: Ship.State) {
         let notification: NSUserNotification? = {
             switch (oldState, newState) {
             case (.stopped(let oldState), .started(let newState)):
@@ -92,23 +105,6 @@ extension AppDelegate {
         if let notification = notification {
             NSUserNotificationCenter.default.deliver(notification)
         }
-    }
-    
-}
-
-extension AppDelegate: NSMenuDelegate {
-    
-    func menuWillOpen(_ menu: NSMenu) {
-        statusItem.menu = NSMenu.ships(Ship.all)
-        statusItem.menu?.delegate = self
-    }
-    
-}
-
-extension AppDelegate: NSUserNotificationCenterDelegate {
-    
-    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return true
     }
     
 }

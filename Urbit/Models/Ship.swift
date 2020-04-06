@@ -10,6 +10,37 @@ import Foundation
 import Combine
 import UrbitKit
 
+protocol ShipObserver: class {
+    
+    var shipObserverToken: NSObjectProtocol? { get set }
+    
+    func ship(_ ship: Ship, didUpdateStateFrom oldState: Ship.State, to newState: Ship.State)
+    
+}
+
+extension Ship {
+    
+    static func addObserver(_ observer: ShipObserver) {
+        observer.shipObserverToken = NotificationCenter.default.addObserver(forName: Ship.didUpdateStateNotification, object: nil, queue: nil) { [weak observer] notification in
+            guard
+                let ship = notification.object as? Ship,
+                let oldState = notification.userInfo?[Ship.oldStateNotificationUserInfoKey] as? Ship.State,
+                let newState = notification.userInfo?[Ship.newStateNotificationUserInfoKey] as? Ship.State
+                else { return }
+            
+            observer?.ship(ship, didUpdateStateFrom: oldState, to: newState)
+        }
+    }
+    
+    static func removeObserver(_ observer: ShipObserver) {
+        observer.shipObserverToken = observer.shipObserverToken.flatMap { shipObserverToken in
+            NotificationCenter.default.removeObserver(shipObserverToken, name: Ship.didUpdateStateNotification, object: nil)
+            return nil
+        }
+    }
+    
+}
+
 extension Ship {
     
     static let didUpdateStateNotification = NSNotification.Name("shipDidUpdateState")
