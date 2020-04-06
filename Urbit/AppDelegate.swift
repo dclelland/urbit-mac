@@ -30,7 +30,7 @@ import UrbitKit
     
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         for ship in Ship.all {
-            ship.close()
+            ship.stop()
         }
         
         return .terminateNow
