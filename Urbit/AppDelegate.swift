@@ -22,8 +22,6 @@ import UrbitKit
         Pier.addObserver(self)
         Ship.addObserver(self)
         
-        NSUserNotificationCenter.default.delegate = self
-        
         statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
         statusItem.menu = NSMenu.ships(Ship.all)
     }
@@ -105,7 +103,7 @@ extension AppDelegate: ShipObserver {
         }()
         
         if let notification = notification {
-            NSUserNotificationCenter.default.deliver(notification)
+            NSUserNotificationCenter.default.scheduleNotification(notification)
         }
     }
     
