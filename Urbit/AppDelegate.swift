@@ -291,6 +291,7 @@ extension NSMenu {
                 .separator(),
                 NSMenuItem(
                     title: "Show Log...",
+                    enabled: false,
                     action: {}
                 ),
                 .separator(),
