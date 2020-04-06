@@ -12,6 +12,16 @@ import UrbitKit
 
 extension Ship {
     
+    static let didUpdateStateNotification = NSNotification.Name("shipDidUpdateState")
+    
+    static let oldStateNotificationUserInfoKey = "oldState"
+    
+    static let newStateNotificationUserInfoKey = "newState"
+    
+}
+
+extension Ship {
+    
     static var all: [Ship] = Pier.all.map { Ship(pier: $0) } {
         didSet {
             Pier.all = all.map { $0.pier }
@@ -26,6 +36,7 @@ class Ship {
         
         enum StoppedState {
             
+            case cancelled
             case finished
             case failure(_ error: Error)
             
@@ -56,8 +67,14 @@ class Ship {
     
     var state: State = .stopped(.finished) {
         didSet {
-            #warning("TODO: Move `handleEvents` and `sink` in here")
-            deliverUserNotification()
+            NotificationCenter.default.post(
+                name: Ship.didUpdateStateNotification,
+                object: self,
+                userInfo: [
+                    Ship.oldStateNotificationUserInfoKey: oldValue,
+                    Ship.newStateNotificationUserInfoKey: state
+                ]
+            )
         }
     }
     
@@ -99,7 +116,7 @@ extension Ship {
             .creating(
                 subscriber: UrbitCommandNew(pier: url, bootType: bootType).process.publisher().handleEvents(
                     receiveCancel: {
-                        self.state = .stopped(.finished)
+                        self.state = .stopped(.cancelled)
                     }
                 ).sink(
                     receiveCompletion: { completion in
@@ -150,7 +167,7 @@ extension Ship {
             .running(
                 subscriber: UrbitCommandRun(pier: url).process.publisher().handleEvents(
                     receiveCancel: {
-                        self.state = .stopped(.finished)
+                        self.state = .stopped(.cancelled)
                     }
                 ).sink(
                     receiveCompletion: { completion in
@@ -208,32 +225,6 @@ extension Ship: Equatable {
     
     static func == (lhs: Ship, rhs: Ship) -> Bool {
         return lhs.url == rhs.url
-    }
-    
-}
-
-extension Ship: UserNotification {
-    
-    var userNotification: NSUserNotification? {
-        switch state {
-        case .stopped(.finished):
-            return nil
-        case .stopped(.failure(let error)):
-            return NSUserNotification(
-                title: "Stopped ship \"\(name)\"",
-                informativeText: error.localizedDescription
-            )
-        case .started(.creating):
-            return NSUserNotification(
-                title: "Creating ship \"\(name)\"",
-                informativeText: url.abbreviatedPath
-            )
-        case .started(.running):
-            return NSUserNotification(
-                title: "Running ship \"\(name)\"",
-                informativeText: url.abbreviatedPath
-            )
-        }
     }
     
 }

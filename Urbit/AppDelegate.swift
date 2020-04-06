@@ -16,6 +16,8 @@ import UrbitKit
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        NotificationCenter.default.addObserver(self, selector: #selector(shipDidUpdateState(_:)), name: Ship.didUpdateStateNotification, object: nil)
+        
         NSUserNotificationCenter.default.delegate = self
         
         statusItem.button?.image = #imageLiteral(resourceName: "MenuIcon")
@@ -23,6 +25,75 @@ import UrbitKit
         statusItem.menu?.delegate = self
     }
 
+}
+
+extension AppDelegate {
+    
+    @objc private func shipDidUpdateState(_ notification: Notification) {
+        guard
+            let ship = notification.object as? Ship,
+            let oldState = notification.userInfo?[Ship.oldStateNotificationUserInfoKey] as? Ship.State,
+            let newState = notification.userInfo?[Ship.newStateNotificationUserInfoKey] as? Ship.State
+            else { return }
+        
+        let notification: NSUserNotification? = {
+            switch (oldState, newState) {
+            case (.stopped(let oldState), .started(let newState)):
+                switch (oldState, newState) {
+                case (_, .creating):
+                    return NSUserNotification(
+                        title: "Started creating ship \"\(ship.name)\"",
+                        informativeText: ship.url.abbreviatedPath
+                    )
+                case (_, .running):
+                    return NSUserNotification(
+                        title: "Started running ship \"\(ship.name)\"",
+                        informativeText: ship.url.abbreviatedPath
+                    )
+                }
+            case (.started(let oldState), .stopped(let newState)):
+                switch (oldState, newState) {
+                case (.creating, .cancelled):
+                    return NSUserNotification(
+                        title: "Cancelled creating ship \"\(ship.name)\"",
+                        informativeText: ship.url.abbreviatedPath
+                    )
+                case (.creating, .finished):
+                    return NSUserNotification(
+                        title: "Finished creating ship \"\(ship.name)\"",
+                        informativeText: ship.url.abbreviatedPath
+                    )
+                case (.creating, .failure(let error)):
+                    return NSUserNotification(
+                        title: "Failed creating ship \"\(ship.name)\"",
+                        informativeText: error.localizedDescription
+                    )
+                case (.running, .cancelled):
+                    return NSUserNotification(
+                        title: "Cancelled running ship \"\(ship.name)\"",
+                        informativeText: ship.url.abbreviatedPath
+                    )
+                case (.running, .finished):
+                    return NSUserNotification(
+                        title: "Finished running ship \"\(ship.name)\"",
+                        informativeText: ship.url.abbreviatedPath
+                    )
+                case (.running, .failure(let error)):
+                    return NSUserNotification(
+                        title: "Failed running ship \"\(ship.name)\"",
+                        informativeText: error.localizedDescription
+                    )
+                }
+            default:
+                return nil
+            }
+        }()
+        
+        if let notification = notification {
+            NSUserNotificationCenter.default.deliver(notification)
+        }
+    }
+    
 }
 
 extension AppDelegate: NSMenuDelegate {
@@ -167,6 +238,8 @@ extension NSMenu {
                 NSMenuItem(
                     title: {
                         switch ship.state {
+                        case .stopped(.cancelled):
+                            return "Ready"
                         case .stopped(.finished):
                             return "Ready"
                         case .stopped(.failure(let error)):
