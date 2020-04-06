@@ -35,6 +35,25 @@ extension NSMenuItem {
         self.target = self
     }
     
+    convenience init(title: String, state: NSControl.StateValue = .off, enabled: Bool = true, action: @escaping () throws -> Void, keyEquivalent: String = "", representedObject: Any? = nil, submenu: NSMenu? = nil) {
+        self.init(
+            title: title,
+            state: state,
+            enabled: enabled,
+            action: #selector(performRepresentedObjectAction(_:)),
+            keyEquivalent: keyEquivalent,
+            representedObject: {
+                do {
+                    try action()
+                } catch let error {
+                    NSAlert(error: error).runModal()
+                }
+            },
+            submenu: submenu
+        )
+        self.target = self
+    }
+    
 }
 
 extension NSMenuItem {
