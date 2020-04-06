@@ -32,6 +32,7 @@ import UrbitKit
         for ship in Ship.all {
             ship.close()
         }
+        
         return .terminateNow
     }
 
