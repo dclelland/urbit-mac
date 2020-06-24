@@ -1,6 +1,6 @@
 # urbit-mac
 
-An Urbit client for macOS.
+An Urbit binary manager for macOS.
 
 ### Dependencies
 
